@@ -17,7 +17,7 @@
 
     <header>
         <a href="" class="logo">
-            <i class="ri-home-heart-fill"><span>EcoSystem</span></i>
+            <i class="ri-leaf-fill"><span>EcoSystem</span></i>
         </a>
 
         <ul class="navbar">
@@ -31,8 +31,8 @@
         </ul>
 
         <div class="main">
-            <a href="" class="user"><i class="ri-user-fill"></i>Sing In</a>
-            <a href="">Register</a>
+            <a href="" class="user"><i class="ri-user-fill"></i>Log-in</a>
+            <button class="neon">Sign-Up</button>
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
 
