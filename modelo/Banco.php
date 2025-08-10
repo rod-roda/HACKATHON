@@ -3,7 +3,7 @@
         private static $HOST='127.0.0.1';
         private static $USER='root';
         private static $PWD='';
-        private static $DB='mydb';
+        private static $DB='hackathon';
         private static $PORT=3306;
         private static $CONEXAO = null;
 
