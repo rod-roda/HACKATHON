@@ -108,4 +108,33 @@ class PerguntaQuiz implements JsonSerializable{
         return $perguntas_array;
     }
 
+    public function read10Perguntas($array_perguntas){
+        $conexao = Banco::getConexao();
+        $sql = "SELECT * FROM perguntas_quiz WHERE id_pergunta IN (" . implode(',', array_fill(0, count($array_perguntas), '?')) . ") ORDER BY RAND() LIMIT 10;";
+        $prepareSql = $conexao->prepare($sql);
+        $types = str_repeat('i', count($array_perguntas));
+        $prepareSql->bind_param($types, ...$array_perguntas);
+        $prepareSql->execute();
+
+        $matrizResultados = $prepareSql->get_result();
+        $perguntas_array = [];
+        $i = 0;
+        while($tuplaBanco = $matrizResultados->fetch_object()){
+            $pergunta = new PerguntaQuiz();
+            $pergunta->setIdPergunta($tuplaBanco->id_pergunta);
+            $pergunta->setPergunta($tuplaBanco->pergunta);
+            $pergunta->setAlternativas([
+                $tuplaBanco->alternativa_a,
+                $tuplaBanco->alternativa_b,
+                $tuplaBanco->alternativa_c,
+                $tuplaBanco->alternativa_d
+            ]);
+            $pergunta->setAlternativaCorreta($tuplaBanco->alternativa_correta);
+            $perguntas_array[$i] = $pergunta;
+            $i++;
+        }
+        $prepareSql->close();
+        return $perguntas_array;
+    }
+
 }

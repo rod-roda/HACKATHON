@@ -1,16 +1,40 @@
-<?php require_once 'rotas.php'; ?>
+<?php
+require_once("modelo/Router.php");
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco System</title>
-    <?php include __DIR__ . '/public/components/links.php'; ?>
-</head>
-<body>
-    <?php include __DIR__ . '/public/components/header.php'; ?>
-    
-    <script src="script.js"></script>
-</body>
-</html>
+$roteador = new Router();
+
+$roteador->get('/', function () {
+    echo 'router OK';
+});
+
+$roteador->get('/perguntas/(\d+)', function ($id) {
+    // require_once __DIR__ . '/controle/controller_perguntas_quiz.php';
+    // echo readById($id);
+    echo("id digitado:" . $id);
+});
+
+/*
+EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
+
+$roteador->get("/usuarios/(\d+)", function($parametro_idusuario){
+    require_once("controle/usuario/controle_usuario_read_by_id.php");
+});
+
+    $roteador->delete("/usuarios/(\d+)", function($parametro_idusuario){
+    require_once("controle/usuario/controle_usuario_delete.php");
+});
+
+    $roteador->post("/usuarios", function(){
+    require_once("controle/usuario/controle_usuario_create.php");
+});
+
+
+    $roteador->put("/usuarios/(\d+)", function($parametro_idusuario){
+    require_once("controle/usuario/controle_usuario_update.php");
+});
+
+*/
+
+$roteador->run();
+
+?>
