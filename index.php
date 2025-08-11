@@ -8,9 +8,8 @@ $roteador->get('/', function () {
 });
 
 $roteador->get('/perguntas/(\d+)', function ($id) {
-    // require_once __DIR__ . '/controle/controller_perguntas_quiz.php';
-    // echo readById($id);
-    echo("id digitado:" . $id);
+    require_once __DIR__ . '/controle/controller_perguntas_quiz.php';
+    echo readById($id);
 });
 
 /*
