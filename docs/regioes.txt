@@ -1,0 +1,3510 @@
+"region": [
+			{
+				"id": "AD",
+				"name": "Andorra"
+			},
+			{
+				"id": "AE",
+				"name": "United Arab Emirates (the)"
+			},
+			{
+				"id": "AE-AUH",
+				"name": "Abu Dhabi, AZ, AE"
+			},
+			{
+				"id": "AE-DXB",
+				"name": "Dubai, DU, AE"
+			},
+			{
+				"id": "AF",
+				"name": "Afghanistan"
+			},
+			{
+				"id": "AFRICA",
+				"name": "Africa"
+			},
+			{
+				"id": "AG",
+				"name": "Antigua and Barbuda"
+			},
+			{
+				"id": "AI",
+				"name": "Anguilla"
+			},
+			{
+				"id": "AL",
+				"name": "Albania"
+			},
+			{
+				"id": "AM",
+				"name": "Armenia"
+			},
+			{
+				"id": "AO",
+				"name": "Angola"
+			},
+			{
+				"id": "AQ",
+				"name": "Antarctica"
+			},
+			{
+				"id": "AR",
+				"name": "Argentina"
+			},
+			{
+				"id": "AR-BUE",
+				"name": "Buenos Aires, C, AR"
+			},
+			{
+				"id": "AS",
+				"name": "American Samoa"
+			},
+			{
+				"id": "ASIA_AFRICA",
+				"name": "Asia and Africa"
+			},
+			{
+				"id": "AT",
+				"name": "Austria"
+			},
+			{
+				"id": "AT-VIE",
+				"name": "Wien, 9, AT"
+			},
+			{
+				"id": "AU",
+				"name": "Australia"
+			},
+			{
+				"id": "AU-5WA",
+				"name": "Pilbara, WA, AU"
+			},
+			{
+				"id": "AU-ACT",
+				"name": "Australian Capital Territory, AU"
+			},
+			{
+				"id": "AU-ALT",
+				"name": "Altona, VIC, AU"
+			},
+			{
+				"id": "AU-ASP",
+				"name": "Alice Springs, NT, AU"
+			},
+			{
+				"id": "AU-BDB",
+				"name": "Bundaberg, QLD, AU"
+			},
+			{
+				"id": "AU-BNE",
+				"name": "Brisbane, QLD, AU"
+			},
+			{
+				"id": "AU-BRW",
+				"name": "Brigalow, QLD, AU"
+			},
+			{
+				"id": "AU-BTB",
+				"name": "Botany Bay, NSW, AU"
+			},
+			{
+				"id": "AU-CBR",
+				"name": "Canberra, ACT, AU"
+			},
+			{
+				"id": "AU-CENTRAL",
+				"name": "Central Australia, AU"
+			},
+			{
+				"id": "AU-EAST",
+				"name": "Eastern States of Australia, AU"
+			},
+			{
+				"id": "AU-FIT",
+				"name": "Fitzroy, VIC, AU"
+			},
+			{
+				"id": "AU-GSC",
+				"name": "Gascoyne Junction, WA, AU"
+			},
+			{
+				"id": "AU-KBD",
+				"name": "Kimberley Downs, WA, AU"
+			},
+			{
+				"id": "AU-MEL",
+				"name": "Melbourne, VIC, AU"
+			},
+			{
+				"id": "AU-MKY",
+				"name": "Mackay, QLD, AU"
+			},
+			{
+				"id": "AU-NSW",
+				"name": "New South Wales, AU"
+			},
+			{
+				"id": "AU-NT",
+				"name": "Northern Territory, AU"
+			},
+			{
+				"id": "AU-NTL",
+				"name": "Newcastle, NSW, AU"
+			},
+			{
+				"id": "AU-PER",
+				"name": "Perth, WA, AU"
+			},
+			{
+				"id": "AU-QLD",
+				"name": "Queensland, AU"
+			},
+			{
+				"id": "AU-SA",
+				"name": "South Australia, AU"
+			},
+			{
+				"id": "AU-SYD",
+				"name": "Sydney, NSW, AU"
+			},
+			{
+				"id": "AU-TAS",
+				"name": "Tasmania, AU"
+			},
+			{
+				"id": "AU-VIC",
+				"name": "Victoria, AU"
+			},
+			{
+				"id": "AU-WA",
+				"name": "Western Australia, AU"
+			},
+			{
+				"id": "AW",
+				"name": "Aruba"
+			},
+			{
+				"id": "AX",
+				"name": "Åland Islands"
+			},
+			{
+				"id": "AZ",
+				"name": "Azerbaijan"
+			},
+			{
+				"id": "BA",
+				"name": "Bosnia and Herzegovina"
+			},
+			{
+				"id": "BB",
+				"name": "Barbados"
+			},
+			{
+				"id": "BD",
+				"name": "Bangladesh"
+			},
+			{
+				"id": "BD-DAC",
+				"name": "Dhaka, 13, BD"
+			},
+			{
+				"id": "BE",
+				"name": "Belgium"
+			},
+			{
+				"id": "BE-BRU",
+				"name": "Bruxelles-Capitale, Région de, BE"
+			},
+			{
+				"id": "BE-GHI",
+				"name": "Saint-Ghislain, WHT, BE"
+			},
+			{
+				"id": "BE-VLG",
+				"name": "Flanders, BE"
+			},
+			{
+				"id": "BE-WAL",
+				"name": "Waterloo, WBR, BE"
+			},
+			{
+				"id": "BF",
+				"name": "Burkina Faso"
+			},
+			{
+				"id": "BG",
+				"name": "Bulgaria"
+			},
+			{
+				"id": "BH",
+				"name": "Bahrain"
+			},
+			{
+				"id": "BH-AMH",
+				"name": "Al Manamah, 13, BH"
+			},
+			{
+				"id": "BI",
+				"name": "Burundi"
+			},
+			{
+				"id": "BJ",
+				"name": "Benin"
+			},
+			{
+				"id": "BL",
+				"name": "Saint Barthélemy"
+			},
+			{
+				"id": "BM",
+				"name": "Bermuda"
+			},
+			{
+				"id": "BN",
+				"name": "Brunei Darussalam"
+			},
+			{
+				"id": "BO",
+				"name": "Bolivia, Plurinational State of"
+			},
+			{
+				"id": "BQ",
+				"name": "Bonaire, Sint Eustatius and Saba"
+			},
+			{
+				"id": "BR",
+				"name": "Brazil"
+			},
+			{
+				"id": "BR-RIO",
+				"name": "Rio de Janeiro, RJ, BR"
+			},
+			{
+				"id": "BR-SAO",
+				"name": "São Paulo, SP, BR"
+			},
+			{
+				"id": "BS",
+				"name": "Bahamas"
+			},
+			{
+				"id": "BT",
+				"name": "Bhutan"
+			},
+			{
+				"id": "BW",
+				"name": "Botswana"
+			},
+			{
+				"id": "BY",
+				"name": "Belarus"
+			},
+			{
+				"id": "BZ",
+				"name": "Belize"
+			},
+			{
+				"id": "CA",
+				"name": "Canada"
+			},
+			{
+				"id": "CA-AB",
+				"name": "Alberta, CA"
+			},
+			{
+				"id": "CA-BC",
+				"name": "British Columbia, CA"
+			},
+			{
+				"id": "CA-CAL",
+				"name": "Calgary, AB, CA"
+			},
+			{
+				"id": "CA-EDM",
+				"name": "Edmonton, AB, CA"
+			},
+			{
+				"id": "CA-KGN",
+				"name": "Kingston, NS, CA"
+			},
+			{
+				"id": "CA-KWL",
+				"name": "Kelowna, BC, CA"
+			},
+			{
+				"id": "CA-MB",
+				"name": "Manitoba, CA"
+			},
+			{
+				"id": "CA-MNT",
+				"name": "Moncton, NB, CA"
+			},
+			{
+				"id": "CA-MTR",
+				"name": "Montreal, QC, CA"
+			},
+			{
+				"id": "CA-NB",
+				"name": "New Brunswick, CA"
+			},
+			{
+				"id": "CA-NIA",
+				"name": "Niagara Falls, ON, CA"
+			},
+			{
+				"id": "CA-NL",
+				"name": "Newfoundland and Labrador, CA"
+			},
+			{
+				"id": "CA-NS",
+				"name": "Nova Scotia, CA"
+			},
+			{
+				"id": "CA-NT",
+				"name": "Northwest Territories, CA"
+			},
+			{
+				"id": "CA-NU",
+				"name": "Nunavut, CA"
+			},
+			{
+				"id": "CA-ON",
+				"name": "Ontario, CA"
+			},
+			{
+				"id": "CA-OTT",
+				"name": "Ottawa, ON, CA"
+			},
+			{
+				"id": "CA-PE",
+				"name": "Prince Edward Island, CA"
+			},
+			{
+				"id": "CA-QC",
+				"name": "Quebec, CA"
+			},
+			{
+				"id": "CA-QUE",
+				"name": "Quebec, QC, CA"
+			},
+			{
+				"id": "CA-REG",
+				"name": "Regina, SK, CA"
+			},
+			{
+				"id": "CA-SAK",
+				"name": "Saskatoon, SK, CA"
+			},
+			{
+				"id": "CA-SJF",
+				"name": "Saint-John's, NL, CA"
+			},
+			{
+				"id": "CA-SK",
+				"name": "Saskatchewan, CA"
+			},
+			{
+				"id": "CA-TOR",
+				"name": "Toronto, ON, CA"
+			},
+			{
+				"id": "CA-VAN",
+				"name": "Vancouver, BC, CA"
+			},
+			{
+				"id": "CA-WNP",
+				"name": "Winnipeg, MB, CA"
+			},
+			{
+				"id": "CA-YT",
+				"name": "Yukon, CA"
+			},
+			{
+				"id": "CARIBBEAN",
+				"name": "Caribbean region"
+			},
+			{
+				"id": "CC",
+				"name": "Cocos (Keeling) Islands"
+			},
+			{
+				"id": "CD",
+				"name": "Congo, The Democratic Republic of the"
+			},
+			{
+				"id": "CF",
+				"name": "Central African Republic"
+			},
+			{
+				"id": "CG",
+				"name": "Congo"
+			},
+			{
+				"id": "CH",
+				"name": "Switzerland"
+			},
+			{
+				"id": "CH-GVA",
+				"name": "Genève, GE, CH"
+			},
+			{
+				"id": "CH-ZRH",
+				"name": "Zurich, ZH, CH"
+			},
+			{
+				"id": "CI",
+				"name": "Côte d'Ivoire"
+			},
+			{
+				"id": "CK",
+				"name": "Cook Islands"
+			},
+			{
+				"id": "CL",
+				"name": "Chile"
+			},
+			{
+				"id": "CL-SCL",
+				"name": "Santiago, RM, CL"
+			},
+			{
+				"id": "CM",
+				"name": "Cameroon"
+			},
+			{
+				"id": "CN",
+				"name": "China"
+			},
+			{
+				"id": "CN-BJS",
+				"name": "Beijing, BJ, CN"
+			},
+			{
+				"id": "CN-C",
+				"name": "Central China grid, CN"
+			},
+			{
+				"id": "CN-CDU",
+				"name": "Chengdu, SC, CN"
+			},
+			{
+				"id": "CN-CGC",
+				"name": "Changchun, JL, CN"
+			},
+			{
+				"id": "CN-CNA",
+				"name": "Changsha, GD, CN"
+			},
+			{
+				"id": "CN-CQI",
+				"name": "Chongqing, CQ, CN"
+			},
+			{
+				"id": "CN-CZX",
+				"name": "Changzhou, JS, CN"
+			},
+			{
+				"id": "CN-DAL",
+				"name": "Dalian, LN, CN"
+			},
+			{
+				"id": "CN-DGG",
+				"name": "Dongguan, GD, CN"
+			},
+			{
+				"id": "CN-E",
+				"name": "East China grid, CN"
+			},
+			{
+				"id": "CN-FOS",
+				"name": "Foshan, GD, CN"
+			},
+			{
+				"id": "CN-FZH",
+				"name": "Fuzhou, FJ, CN"
+			},
+			{
+				"id": "CN-GGZ",
+				"name": "Guangzhou, GD, CN"
+			},
+			{
+				"id": "CN-GYA",
+				"name": "Guiyang, GZ, CN"
+			},
+			{
+				"id": "CN-HAZ",
+				"name": "Hangzhou, ZJ, CN"
+			},
+			{
+				"id": "CN-HFI",
+				"name": "Hefei, AH, CN"
+			},
+			{
+				"id": "CN-HI",
+				"name": "Hainan Sheng, CN"
+			},
+			{
+				"id": "CN-HKO",
+				"name": "Haikou, HI, CN"
+			},
+			{
+				"id": "CN-HRN",
+				"name": "Harbin, HL, CN"
+			},
+			{
+				"id": "CN-HUI",
+				"name": "Huizhou, GD, CN"
+			},
+			{
+				"id": "CN-HZH",
+				"name": "Huzhou, ZJ, CN"
+			},
+			{
+				"id": "CN-JAX",
+				"name": "Jiaxing, ZJ, CN"
+			},
+			{
+				"id": "CN-JHA",
+				"name": "Jinhua, ZJ, CN"
+			},
+			{
+				"id": "CN-JNA",
+				"name": "Jinan, SD, CN"
+			},
+			{
+				"id": "CN-KNM",
+				"name": "Kunming, YN, CN"
+			},
+			{
+				"id": "CN-LFZ",
+				"name": "Langfang, HE, CN"
+			},
+			{
+				"id": "CN-MAC",
+				"name": "Macun, HI, CN"
+			},
+			{
+				"id": "CN-N",
+				"name": "North China grid, CN"
+			},
+			{
+				"id": "CN-NBO",
+				"name": "Ningbo, ZJ, CN"
+			},
+			{
+				"id": "CN-NCH",
+				"name": "Nanchang, JX, CN"
+			},
+			{
+				"id": "CN-NE",
+				"name": "China Northeast grid, CN"
+			},
+			{
+				"id": "CN-NHN",
+				"name": "Wuhan, HB, CN"
+			},
+			{
+				"id": "CN-NIN",
+				"name": "Nanning, GX, CN"
+			},
+			{
+				"id": "CN-NJI",
+				"name": "Nanjing, JS, CN"
+			},
+			{
+				"id": "CN-NW",
+				"name": "China Northwest grid, CN"
+			},
+			{
+				"id": "CN-NX",
+				"name": "Ningxia Huizu Zizhiqu, CN"
+			},
+			{
+				"id": "CN-QIN",
+				"name": "Qingdao, SD, CN"
+			},
+			{
+				"id": "CN-QZL",
+				"name": "Quanzhou, FJ, CN"
+			},
+			{
+				"id": "CN-S",
+				"name": "China Southern grid, CN"
+			},
+			{
+				"id": "CN-SGH",
+				"name": "Shanghai, SH, CN"
+			},
+			{
+				"id": "CN-SHY",
+				"name": "Shenyang, LN, CN"
+			},
+			{
+				"id": "CN-SNZ",
+				"name": "Shenzhen, GD, CN"
+			},
+			{
+				"id": "CN-SUZ",
+				"name": "Suzhou, GS, CN"
+			},
+			{
+				"id": "CN-SXG",
+				"name": "Shaoxing, ZJ, CN"
+			},
+			{
+				"id": "CN-SYX",
+				"name": "Sanya, HI, CN"
+			},
+			{
+				"id": "CN-TNJ",
+				"name": "Tianjin, TJ, CN"
+			},
+			{
+				"id": "CN-WXS",
+				"name": "Wuxi, JS, CN"
+			},
+			{
+				"id": "CN-XAM",
+				"name": "Xiamen, FJ, CN"
+			},
+			{
+				"id": "CN-XIA",
+				"name": "Xian, SN, CN"
+			},
+			{
+				"id": "CN-XZH",
+				"name": "Xuzhou, JS, CN"
+			},
+			{
+				"id": "CN-YAT",
+				"name": "Yantai, SD, CN"
+			},
+			{
+				"id": "CN-YCH",
+				"name": "Yinchuan, NX, CN"
+			},
+			{
+				"id": "CN-ZGZ",
+				"name": "Zhengzhou, HA, CN"
+			},
+			{
+				"id": "CN-ZHE",
+				"name": "Zhenjiang, JS, CN"
+			},
+			{
+				"id": "CN-ZUH",
+				"name": "Zhuhai, GD, CN"
+			},
+			{
+				"id": "CO",
+				"name": "Colombia"
+			},
+			{
+				"id": "CO-BOG",
+				"name": "Bogotá, CUN, CO"
+			},
+			{
+				"id": "CO-CTG",
+				"name": "Cartagena, CO"
+			},
+			{
+				"id": "CR",
+				"name": "Costa Rica"
+			},
+			{
+				"id": "CR-SJO",
+				"name": "San José, SJ, CR"
+			},
+			{
+				"id": "CU",
+				"name": "Cuba"
+			},
+			{
+				"id": "CV",
+				"name": "Cape Verde"
+			},
+			{
+				"id": "CW",
+				"name": "Curaçao"
+			},
+			{
+				"id": "CX",
+				"name": "Christmas Island"
+			},
+			{
+				"id": "CY",
+				"name": "Cyprus"
+			},
+			{
+				"id": "CZ",
+				"name": "Czechia"
+			},
+			{
+				"id": "CZ-PRG",
+				"name": "Praha, CZ"
+			},
+			{
+				"id": "DE",
+				"name": "Germany"
+			},
+			{
+				"id": "DE-BER",
+				"name": "Berlin, BE, DE"
+			},
+			{
+				"id": "DE-CGN",
+				"name": "Köln, NW, DE"
+			},
+			{
+				"id": "DE-DRS",
+				"name": "Dresden, SN, DE"
+			},
+			{
+				"id": "DE-DUS",
+				"name": "Düsseldorf, NW, DE"
+			},
+			{
+				"id": "DE-FRA",
+				"name": "Frankfurt am Main, HE, DE"
+			},
+			{
+				"id": "DE-HAJ",
+				"name": "Hannover, NI, DE"
+			},
+			{
+				"id": "DE-HAM",
+				"name": "Hamburg, HH, DE"
+			},
+			{
+				"id": "DE-LEJ",
+				"name": "Leipzig, SN, DE"
+			},
+			{
+				"id": "DE-MUC",
+				"name": "München, BY, DE"
+			},
+			{
+				"id": "DE-RGM",
+				"name": "Nuremberg, BY, DE"
+			},
+			{
+				"id": "DJ",
+				"name": "Djibouti"
+			},
+			{
+				"id": "DK",
+				"name": "Denmark"
+			},
+			{
+				"id": "DM",
+				"name": "Dominica"
+			},
+			{
+				"id": "DO",
+				"name": "Dominican Republic"
+			},
+			{
+				"id": "DO-PCN",
+				"name": "Punta Cana, 22, DO"
+			},
+			{
+				"id": "DO-SDQ",
+				"name": "Santo Domingo, 01, DO"
+			},
+			{
+				"id": "DZ",
+				"name": "Algeria"
+			},
+			{
+				"id": "EC",
+				"name": "Ecuador"
+			},
+			{
+				"id": "ECOINVENT_EUROPE",
+				"name": "Europe (Ecoinvent)"
+			},
+			{
+				"id": "EE",
+				"name": "Estonia"
+			},
+			{
+				"id": "EG",
+				"name": "Egypt"
+			},
+			{
+				"id": "EG-CAI",
+				"name": "El Qahira (Cairo), C, EG"
+			},
+			{
+				"id": "EH",
+				"name": "Western Sahara"
+			},
+			{
+				"id": "ER",
+				"name": "Eritrea"
+			},
+			{
+				"id": "ES",
+				"name": "Spain"
+			},
+			{
+				"id": "ES-BCN",
+				"name": "Barcelona, ES"
+			},
+			{
+				"id": "ES-BIO",
+				"name": "Bilbao, BI, ES"
+			},
+			{
+				"id": "ES-BUR",
+				"name": "Burgos, ES"
+			},
+			{
+				"id": "ES-CAD",
+				"name": "Cadiz, ES"
+			},
+			{
+				"id": "ES-GRX",
+				"name": "Granada, ES"
+			},
+			{
+				"id": "ES-LEI",
+				"name": "Almería, AL, ES"
+			},
+			{
+				"id": "ES-LGO",
+				"name": "Lugo, ES"
+			},
+			{
+				"id": "ES-LPG",
+				"name": "Las Palmas, TF, ES"
+			},
+			{
+				"id": "ES-MAD",
+				"name": "Madrid, ES"
+			},
+			{
+				"id": "ES-PMI",
+				"name": "Palma de Mallorca, ES"
+			},
+			{
+				"id": "ES-SVQ",
+				"name": "Sevilla, ES"
+			},
+			{
+				"id": "ES-TOL",
+				"name": "Toledo, ES"
+			},
+			{
+				"id": "ES-VLC",
+				"name": "Valencia, ES"
+			},
+			{
+				"id": "ES-ZMR",
+				"name": "Zamora, ES"
+			},
+			{
+				"id": "ET",
+				"name": "Ethiopia"
+			},
+			{
+				"id": "EU",
+				"name": "European Union"
+			},
+			{
+				"id": "EU_S_AMERICA",
+				"name": "Europe and South America"
+			},
+			{
+				"id": "EUROPE",
+				"name": "Europe"
+			},
+			{
+				"id": "EUROPE_ASIA",
+				"name": "Europe and Asia"
+			},
+			{
+				"id": "FI",
+				"name": "Finland"
+			},
+			{
+				"id": "FI-HEL",
+				"name": "Helsinki (Helsingfors), 18, FI"
+			},
+			{
+				"id": "FI-HMN",
+				"name": "Hamina (Fredrikshamn), 09, FI"
+			},
+			{
+				"id": "FJ",
+				"name": "Fiji"
+			},
+			{
+				"id": "FJ-NAN",
+				"name": "Nadi, FJ"
+			},
+			{
+				"id": "FK",
+				"name": "Falkland Islands (Malvinas)"
+			},
+			{
+				"id": "FM",
+				"name": "Micronesia, Federated States of"
+			},
+			{
+				"id": "FO",
+				"name": "Faroe Islands"
+			},
+			{
+				"id": "FR",
+				"name": "France"
+			},
+			{
+				"id": "FR-20R",
+				"name": "Corsica, FR"
+			},
+			{
+				"id": "FR-2A-FR-2B",
+				"name": "Corse-du-Sud, FR"
+			},
+			{
+				"id": "FR-NCE",
+				"name": "Nice, 06, FR"
+			},
+			{
+				"id": "FR-PAR",
+				"name": "Paris, 75C, FR"
+			},
+			{
+				"id": "GA",
+				"name": "Gabon"
+			},
+			{
+				"id": "GB",
+				"name": "United Kingdom"
+			},
+			{
+				"id": "GB-ABD",
+				"name": "Aberdeenshire, GB"
+			},
+			{
+				"id": "GB-BRS",
+				"name": "Bristol, BST, GB"
+			},
+			{
+				"id": "GB-CDF",
+				"name": "Cardiff, CRF, GB"
+			},
+			{
+				"id": "GB-EDI",
+				"name": "Edinburgh, EDH, GB"
+			},
+			{
+				"id": "GB-ENG",
+				"name": "England, GB"
+			},
+			{
+				"id": "GB-GLW",
+				"name": "Glasgow, GLG, GB"
+			},
+			{
+				"id": "GB-LBA",
+				"name": "Leeds, LDS, GB"
+			},
+			{
+				"id": "GB-LIV",
+				"name": "Liverpool, GB"
+			},
+			{
+				"id": "GB-LON",
+				"name": "London, LND, GB"
+			},
+			{
+				"id": "GB-MNC",
+				"name": "Manchester, MAN, GB"
+			},
+			{
+				"id": "GB-NIR",
+				"name": "Northern Ireland, GB"
+			},
+			{
+				"id": "GB-SCT",
+				"name": "Scotland, GB"
+			},
+			{
+				"id": "GB-WLS",
+				"name": "Wales, GB"
+			},
+			{
+				"id": "GB-WXT",
+				"name": "West Midlands, BIR, GB"
+			},
+			{
+				"id": "GB-YRK",
+				"name": "York, NYK, GB"
+			},
+			{
+				"id": "GD",
+				"name": "Grenada"
+			},
+			{
+				"id": "GE",
+				"name": "Georgia"
+			},
+			{
+				"id": "GF",
+				"name": "French Guiana"
+			},
+			{
+				"id": "GG",
+				"name": "Guernsey"
+			},
+			{
+				"id": "GH",
+				"name": "Ghana"
+			},
+			{
+				"id": "GI",
+				"name": "Gibraltar"
+			},
+			{
+				"id": "GL",
+				"name": "Greenland"
+			},
+			{
+				"id": "GLOBAL",
+				"name": "Global"
+			},
+			{
+				"id": "GM",
+				"name": "Gambia"
+			},
+			{
+				"id": "GN",
+				"name": "Guinea"
+			},
+			{
+				"id": "GP",
+				"name": "Guadeloupe"
+			},
+			{
+				"id": "GQ",
+				"name": "Equatorial Guinea"
+			},
+			{
+				"id": "GR",
+				"name": "Greece"
+			},
+			{
+				"id": "GR-ATH",
+				"name": "Athínai, I, GR"
+			},
+			{
+				"id": "GS",
+				"name": "South Georgia and the South Sandwich Islands"
+			},
+			{
+				"id": "GT",
+				"name": "Guatemala"
+			},
+			{
+				"id": "GT-GUA",
+				"name": "Guatemala City, GT"
+			},
+			{
+				"id": "GU",
+				"name": "Guam"
+			},
+			{
+				"id": "GW",
+				"name": "Guinea-Bissau"
+			},
+			{
+				"id": "GY",
+				"name": "Guyana"
+			},
+			{
+				"id": "HK",
+				"name": "Hong Kong"
+			},
+			{
+				"id": "HM",
+				"name": "Heard Island and McDonald Islands"
+			},
+			{
+				"id": "HN",
+				"name": "Honduras"
+			},
+			{
+				"id": "HR",
+				"name": "Croatia"
+			},
+			{
+				"id": "HR-POR",
+				"name": "Porec, 18, HR"
+			},
+			{
+				"id": "HT",
+				"name": "Haiti"
+			},
+			{
+				"id": "HU",
+				"name": "Hungary"
+			},
+			{
+				"id": "HU-BUD",
+				"name": "Budapest, BU, HU"
+			},
+			{
+				"id": "ID",
+				"name": "Indonesia"
+			},
+			{
+				"id": "ID-BDO",
+				"name": "Bandung, Java, ID"
+			},
+			{
+				"id": "ID-DPS",
+				"name": "Denpasar, Bali, BA, ID"
+			},
+			{
+				"id": "ID-JKT",
+				"name": "Jakarta, Java, JK, ID"
+			},
+			{
+				"id": "ID-SUB",
+				"name": "Surabaya, JI, ID"
+			},
+			{
+				"id": "IE",
+				"name": "Ireland"
+			},
+			{
+				"id": "IE-DUB",
+				"name": "Dublin, IE"
+			},
+			{
+				"id": "IL",
+				"name": "Israel"
+			},
+			{
+				"id": "IL-TLV",
+				"name": "Tel Aviv-Yafo, TA, IL"
+			},
+			{
+				"id": "IM",
+				"name": "Isle of Man"
+			},
+			{
+				"id": "IN",
+				"name": "India"
+			},
+			{
+				"id": "IN-AMD",
+				"name": "Ahmedabad, GJ, IN"
+			},
+			{
+				"id": "IN-AP",
+				"name": "Andhra Pradesh, IN"
+			},
+			{
+				"id": "IN-AR",
+				"name": "Arunāchal Pradesh, IN"
+			},
+			{
+				"id": "IN-AS",
+				"name": "Assam, IN"
+			},
+			{
+				"id": "IN-BOM",
+				"name": "Mumbai (ex Bombay), MH, IN"
+			},
+			{
+				"id": "IN-BR",
+				"name": "Bihār, IN"
+			},
+			{
+				"id": "IN-CCU",
+				"name": "Kolkata (ex Calcutta), WB, IN"
+			},
+			{
+				"id": "IN-CT",
+				"name": "Chhattīsgarh, IN"
+			},
+			{
+				"id": "IN-DEL",
+				"name": "Delhi, DL, IN"
+			},
+			{
+				"id": "IN-DL",
+				"name": "Delhi, IN"
+			},
+			{
+				"id": "IN-GA",
+				"name": "Goa, IN"
+			},
+			{
+				"id": "IN-GJ",
+				"name": "Gujarāt, IN"
+			},
+			{
+				"id": "IN-GOI",
+				"name": "Goa, IN"
+			},
+			{
+				"id": "IN-HAR",
+				"name": "Haryana, HR, IN"
+			},
+			{
+				"id": "IN-HP",
+				"name": "Himāchal Pradesh, IN"
+			},
+			{
+				"id": "IN-HR",
+				"name": "Haryāna, IN"
+			},
+			{
+				"id": "IN-HYD",
+				"name": "Hyderabad, TG, IN"
+			},
+			{
+				"id": "IN-JH",
+				"name": "Jhārkhand, IN"
+			},
+			{
+				"id": "IN-JK",
+				"name": "Jammu and Kashmīr, IN"
+			},
+			{
+				"id": "IN-KA",
+				"name": "Karnātaka, IN"
+			},
+			{
+				"id": "IN-KL",
+				"name": "Kerala, IN"
+			},
+			{
+				"id": "IN-KOC",
+				"name": "Kochi, KL, IN"
+			},
+			{
+				"id": "IN-LA",
+				"name": "Ladākh, IN"
+			},
+			{
+				"id": "IN-LD",
+				"name": "Lakshadweep, IN"
+			},
+			{
+				"id": "IN-MAA",
+				"name": "Chennai (ex Madras), TN, IN"
+			},
+			{
+				"id": "IN-MH",
+				"name": "Mahārāshtra, IN"
+			},
+			{
+				"id": "IN-ML",
+				"name": "Meghālaya, IN"
+			},
+			{
+				"id": "IN-MN",
+				"name": "Manipur, IN"
+			},
+			{
+				"id": "IN-MP",
+				"name": "Madhya Pradesh, IN"
+			},
+			{
+				"id": "IN-MZ",
+				"name": "Mizoram, IN"
+			},
+			{
+				"id": "IN-NL",
+				"name": "Nāgāland, IN"
+			},
+			{
+				"id": "IN-OR",
+				"name": "Odisha, IN"
+			},
+			{
+				"id": "IN-PB",
+				"name": "Punjab, IN"
+			},
+			{
+				"id": "IN-PNQ",
+				"name": "Pune, MH, IN"
+			},
+			{
+				"id": "IN-PY",
+				"name": "Puducherry, IN"
+			},
+			{
+				"id": "IN-RJ",
+				"name": "Rājasthān, IN"
+			},
+			{
+				"id": "IN-SK",
+				"name": "Sikkim, IN"
+			},
+			{
+				"id": "IN-TG",
+				"name": "Telangāna, IN"
+			},
+			{
+				"id": "IN-TN",
+				"name": "Tamil Nādu, IN"
+			},
+			{
+				"id": "IN-TR",
+				"name": "Tripura, IN"
+			},
+			{
+				"id": "IN-UP",
+				"name": "Uttar Pradesh, IN"
+			},
+			{
+				"id": "IN-UT",
+				"name": "Uttarākhand, IN"
+			},
+			{
+				"id": "IN-WB",
+				"name": "West Bengal, IN"
+			},
+			{
+				"id": "IO",
+				"name": "British Indian Ocean Territory"
+			},
+			{
+				"id": "IQ",
+				"name": "Iraq"
+			},
+			{
+				"id": "IR",
+				"name": "Iran, Islamic Republic of"
+			},
+			{
+				"id": "IS",
+				"name": "Iceland"
+			},
+			{
+				"id": "IT",
+				"name": "Italy"
+			},
+			{
+				"id": "IT-MIL",
+				"name": "Milano, IT"
+			},
+			{
+				"id": "IT-NAP",
+				"name": "Napoli, NA, IT"
+			},
+			{
+				"id": "IT-ROM",
+				"name": "Rome (Roma), RM, IT"
+			},
+			{
+				"id": "IT-VCE",
+				"name": "Venezia, VE, IT"
+			},
+			{
+				"id": "JE",
+				"name": "Jersey"
+			},
+			{
+				"id": "JM",
+				"name": "Jamaica"
+			},
+			{
+				"id": "JM-MBJ",
+				"name": "Montego Bay, JM"
+			},
+			{
+				"id": "JO",
+				"name": "Jordan"
+			},
+			{
+				"id": "JO-AMM",
+				"name": "Amman, JO"
+			},
+			{
+				"id": "JP",
+				"name": "Japan"
+			},
+			{
+				"id": "JP-NGO",
+				"name": "Nagoya, Aichi, 23, JP"
+			},
+			{
+				"id": "JP-OSA",
+				"name": "Osaka, 27, JP"
+			},
+			{
+				"id": "JP-STM",
+				"name": "Saitama, 11, JP"
+			},
+			{
+				"id": "JP-TYO",
+				"name": "Tokyo, 13, JP"
+			},
+			{
+				"id": "JP-UKY",
+				"name": "Kyoto, 26, JP"
+			},
+			{
+				"id": "KE",
+				"name": "Kenya"
+			},
+			{
+				"id": "KG",
+				"name": "Kyrgyzstan"
+			},
+			{
+				"id": "KH",
+				"name": "Cambodia"
+			},
+			{
+				"id": "KI",
+				"name": "Kiribati"
+			},
+			{
+				"id": "KM",
+				"name": "Comoros"
+			},
+			{
+				"id": "KN",
+				"name": "Saint Kitts and Nevis"
+			},
+			{
+				"id": "KP",
+				"name": "Korea, Democratic People's Republic of"
+			},
+			{
+				"id": "KR",
+				"name": "Korea, Republic of"
+			},
+			{
+				"id": "KR-SEL",
+				"name": "Seoul, 11, KR"
+			},
+			{
+				"id": "KW",
+				"name": "Kuwait"
+			},
+			{
+				"id": "KW-KWI",
+				"name": "Kuwait, KW"
+			},
+			{
+				"id": "KY",
+				"name": "Cayman Islands"
+			},
+			{
+				"id": "KY-GCM",
+				"name": "Grand Cayman, KY"
+			},
+			{
+				"id": "KZ",
+				"name": "Kazakhstan"
+			},
+			{
+				"id": "LA",
+				"name": "Lao People's Democratic Republic"
+			},
+			{
+				"id": "LATAM",
+				"name": "Latin America"
+			},
+			{
+				"id": "LB",
+				"name": "Lebanon"
+			},
+			{
+				"id": "LC",
+				"name": "Saint Lucia"
+			},
+			{
+				"id": "LI",
+				"name": "Liechtenstein"
+			},
+			{
+				"id": "LK",
+				"name": "Sri Lanka"
+			},
+			{
+				"id": "LR",
+				"name": "Liberia"
+			},
+			{
+				"id": "LS",
+				"name": "Lesotho"
+			},
+			{
+				"id": "LT",
+				"name": "Lithuania"
+			},
+			{
+				"id": "LU",
+				"name": "Luxembourg"
+			},
+			{
+				"id": "LV",
+				"name": "Latvia"
+			},
+			{
+				"id": "LY",
+				"name": "Libya"
+			},
+			{
+				"id": "MA",
+				"name": "Morocco"
+			},
+			{
+				"id": "MC",
+				"name": "Monaco"
+			},
+			{
+				"id": "MD",
+				"name": "Moldova, Republic of"
+			},
+			{
+				"id": "ME",
+				"name": "Montenegro"
+			},
+			{
+				"id": "MF",
+				"name": "Saint Martin (French Part)"
+			},
+			{
+				"id": "MG",
+				"name": "Madagascar"
+			},
+			{
+				"id": "MH",
+				"name": "Marshall Islands (the)"
+			},
+			{
+				"id": "MIDDLE_EAST",
+				"name": "Middle East"
+			},
+			{
+				"id": "MK",
+				"name": "North Macedonia"
+			},
+			{
+				"id": "ML",
+				"name": "Mali"
+			},
+			{
+				"id": "MM",
+				"name": "Myanmar"
+			},
+			{
+				"id": "MN",
+				"name": "Mongolia"
+			},
+			{
+				"id": "MO",
+				"name": "Macao"
+			},
+			{
+				"id": "MP",
+				"name": "Northern Mariana Islands (the)"
+			},
+			{
+				"id": "MQ",
+				"name": "Martinique"
+			},
+			{
+				"id": "MR",
+				"name": "Mauritania"
+			},
+			{
+				"id": "MS",
+				"name": "Montserrat"
+			},
+			{
+				"id": "MT",
+				"name": "Malta"
+			},
+			{
+				"id": "MU",
+				"name": "Mauritius"
+			},
+			{
+				"id": "MV",
+				"name": "Maldives"
+			},
+			{
+				"id": "MW",
+				"name": "Malawi"
+			},
+			{
+				"id": "MX",
+				"name": "Mexico"
+			},
+			{
+				"id": "MX-CUN",
+				"name": "Cancún, ROO, MX"
+			},
+			{
+				"id": "MX-GDL",
+				"name": "Guadalajara, JAL, MX"
+			},
+			{
+				"id": "MX-LCB",
+				"name": "Los Cabos, BCS, MX"
+			},
+			{
+				"id": "MX-MEX",
+				"name": "México, MX"
+			},
+			{
+				"id": "MX-MID",
+				"name": "Mérida, YUC, MX"
+			},
+			{
+				"id": "MX-MTY",
+				"name": "Monterrey, NLE, MX"
+			},
+			{
+				"id": "MX-PBC",
+				"name": "Puebla, PUE, MX"
+			},
+			{
+				"id": "MX-PCM",
+				"name": "Playa del Carmen, MX"
+			},
+			{
+				"id": "MX-PVR",
+				"name": "Puerto Vallarta, JAL, MX"
+			},
+			{
+				"id": "MX-QRO",
+				"name": "Querétaro, QUE, MX"
+			},
+			{
+				"id": "MX-TLC",
+				"name": "Toluca, MEX, MX"
+			},
+			{
+				"id": "MX-VSA",
+				"name": "Villahermosa, TAB, MX"
+			},
+			{
+				"id": "MY",
+				"name": "Malaysia"
+			},
+			{
+				"id": "MY-KUL",
+				"name": "Kuala Lumpur, MY"
+			},
+			{
+				"id": "MY-LGK",
+				"name": "Langkawi, 02, MY"
+			},
+			{
+				"id": "MY-NTL",
+				"name": "Penang, MY"
+			},
+			{
+				"id": "MZ",
+				"name": "Mozambique"
+			},
+			{
+				"id": "N_AMERICA",
+				"name": "North America"
+			},
+			{
+				"id": "NA",
+				"name": "Namibia"
+			},
+			{
+				"id": "NC",
+				"name": "New Caledonia"
+			},
+			{
+				"id": "NE",
+				"name": "Niger"
+			},
+			{
+				"id": "NF",
+				"name": "Norfolk Island"
+			},
+			{
+				"id": "NG",
+				"name": "Nigeria"
+			},
+			{
+				"id": "NI",
+				"name": "Nicaragua"
+			},
+			{
+				"id": "NL",
+				"name": "Netherlands"
+			},
+			{
+				"id": "NL-AMS",
+				"name": "Amsterdam, NL"
+			},
+			{
+				"id": "NL-EEM",
+				"name": "Eemshaven, NL"
+			},
+			{
+				"id": "NL-ZBD",
+				"name": "Middenmeer, NH, NL"
+			},
+			{
+				"id": "NO",
+				"name": "Norway"
+			},
+			{
+				"id": "NO-OSL",
+				"name": "Oslo, 03, NO"
+			},
+			{
+				"id": "NON_OECD_EURASIA",
+				"name": "Non-OECD Europe and Eurasia"
+			},
+			{
+				"id": "NP",
+				"name": "Nepal"
+			},
+			{
+				"id": "NR",
+				"name": "Nauru"
+			},
+			{
+				"id": "NU",
+				"name": "Niue"
+			},
+			{
+				"id": "NZ",
+				"name": "New Zealand"
+			},
+			{
+				"id": "NZ-WLG",
+				"name": "Wellington, WGN, NZ"
+			},
+			{
+				"id": "OCEANIA",
+				"name": "Oceania"
+			},
+			{
+				"id": "OM",
+				"name": "Oman"
+			},
+			{
+				"id": "OM-MCT",
+				"name": "Muscat, MA, OM"
+			},
+			{
+				"id": "OTHER_ASIA",
+				"name": "Other Asia"
+			},
+			{
+				"id": "PA",
+				"name": "Panama"
+			},
+			{
+				"id": "PA-PTY",
+				"name": "Panamá, Ciudad de, 8, PA"
+			},
+			{
+				"id": "PE",
+				"name": "Peru"
+			},
+			{
+				"id": "PE-LIM",
+				"name": "Lima, PE"
+			},
+			{
+				"id": "PF",
+				"name": "French Polynesia"
+			},
+			{
+				"id": "PF-FAA",
+				"name": "Tahiti Fa'a'à, PF"
+			},
+			{
+				"id": "PF-PPT",
+				"name": "Papeete, PF"
+			},
+			{
+				"id": "PG",
+				"name": "Papua New Guinea"
+			},
+			{
+				"id": "PH",
+				"name": "Philippines (the)"
+			},
+			{
+				"id": "PH-MNL",
+				"name": "Manila, PH"
+			},
+			{
+				"id": "PK",
+				"name": "Pakistan"
+			},
+			{
+				"id": "PL",
+				"name": "Poland"
+			},
+			{
+				"id": "PL-WAW",
+				"name": "Warszawa, 14, PL"
+			},
+			{
+				"id": "PM",
+				"name": "Saint Pierre and Miquelon"
+			},
+			{
+				"id": "PN",
+				"name": "Pitcairn"
+			},
+			{
+				"id": "PR",
+				"name": "Puerto Rico"
+			},
+			{
+				"id": "PR-SJU",
+				"name": "San Juan, PR"
+			},
+			{
+				"id": "PS",
+				"name": "Palestine, State of"
+			},
+			{
+				"id": "PT",
+				"name": "Portugal"
+			},
+			{
+				"id": "PT-LIS",
+				"name": "Lisboa, 11, PT"
+			},
+			{
+				"id": "PT-OPO",
+				"name": "Porto, 13, PT"
+			},
+			{
+				"id": "PW",
+				"name": "Palau"
+			},
+			{
+				"id": "PY",
+				"name": "Paraguay"
+			},
+			{
+				"id": "QA",
+				"name": "Qatar"
+			},
+			{
+				"id": "QA-DOH",
+				"name": "Doha, DA, QA"
+			},
+			{
+				"id": "RE",
+				"name": "Réunion"
+			},
+			{
+				"id": "RO",
+				"name": "Romania"
+			},
+			{
+				"id": "RO-BUH",
+				"name": "Bucuresti, RO"
+			},
+			{
+				"id": "ROW",
+				"name": "Rest-of-World"
+			},
+			{
+				"id": "ROW_WA",
+				"name": "Central Asia and Pacific Asia, Oceania, Antarctica"
+			},
+			{
+				"id": "ROW_WE",
+				"name": "East Europe and Iceland"
+			},
+			{
+				"id": "ROW_WF",
+				"name": "Africa except Egypt and South Africa"
+			},
+			{
+				"id": "ROW_WL",
+				"name": "Latin America except Brazil"
+			},
+			{
+				"id": "ROW_WM",
+				"name": "Middle East, Asia and Egypt"
+			},
+			{
+				"id": "RS",
+				"name": "Serbia"
+			},
+			{
+				"id": "RS-BEG",
+				"name": "Belgrade (Beograd), 00, RS"
+			},
+			{
+				"id": "RU",
+				"name": "Russian Federation (the)"
+			},
+			{
+				"id": "RW",
+				"name": "Rwanda"
+			},
+			{
+				"id": "SA",
+				"name": "Saudi Arabia"
+			},
+			{
+				"id": "SA-DMM",
+				"name": "Ad Dammam, 04, SA"
+			},
+			{
+				"id": "SA-JED",
+				"name": "Jeddah, 02, SA"
+			},
+			{
+				"id": "SA-MAK",
+				"name": "Makkah, SA"
+			},
+			{
+				"id": "SA-RUH",
+				"name": "Riyadh, 01, SA"
+			},
+			{
+				"id": "SB",
+				"name": "Solomon Islands"
+			},
+			{
+				"id": "SC",
+				"name": "Seychelles"
+			},
+			{
+				"id": "SD",
+				"name": "Sudan (the)"
+			},
+			{
+				"id": "SE",
+				"name": "Sweden"
+			},
+			{
+				"id": "SE-GVX",
+				"name": "Gävle, X, SE"
+			},
+			{
+				"id": "SE-STO",
+				"name": "Stockholm, AB, SE"
+			},
+			{
+				"id": "SG",
+				"name": "Singapore"
+			},
+			{
+				"id": "SH",
+				"name": "Saint Helena, Ascension and Tristan Da Cunha"
+			},
+			{
+				"id": "SI",
+				"name": "Slovenia"
+			},
+			{
+				"id": "SJ",
+				"name": "Svalbard and Jan Mayen"
+			},
+			{
+				"id": "SK",
+				"name": "Slovakia"
+			},
+			{
+				"id": "SL",
+				"name": "Sierra Leone"
+			},
+			{
+				"id": "SM",
+				"name": "San Marino"
+			},
+			{
+				"id": "SN",
+				"name": "Senegal"
+			},
+			{
+				"id": "SO",
+				"name": "Somalia"
+			},
+			{
+				"id": "SR",
+				"name": "Suriname"
+			},
+			{
+				"id": "SS",
+				"name": "South Sudan"
+			},
+			{
+				"id": "ST",
+				"name": "Sao Tome and Principe"
+			},
+			{
+				"id": "SV",
+				"name": "El Salvador"
+			},
+			{
+				"id": "SX",
+				"name": "Sint Maarten (Dutch Part)"
+			},
+			{
+				"id": "SY",
+				"name": "Syrian Arab Republic (the)"
+			},
+			{
+				"id": "SZ",
+				"name": "Eswatini"
+			},
+			{
+				"id": "TC",
+				"name": "Turks and Caicos Islands (the)"
+			},
+			{
+				"id": "TD",
+				"name": "Chad"
+			},
+			{
+				"id": "TF",
+				"name": "French Southern Territories"
+			},
+			{
+				"id": "TG",
+				"name": "Togo"
+			},
+			{
+				"id": "TH",
+				"name": "Thailand"
+			},
+			{
+				"id": "TH-BKK",
+				"name": "Bangkok, 10, TH"
+			},
+			{
+				"id": "TH-HHQ",
+				"name": "Hua Hin Apt, 77, TH"
+			},
+			{
+				"id": "TH-KSM",
+				"name": "Ko Samui, 84, TH"
+			},
+			{
+				"id": "TH-PHK",
+				"name": "Phuket Customs House, 83, TH"
+			},
+			{
+				"id": "TH-PYX",
+				"name": "Pattaya, 20, TH"
+			},
+			{
+				"id": "TJ",
+				"name": "Tajikistan"
+			},
+			{
+				"id": "TK",
+				"name": "Tokelau"
+			},
+			{
+				"id": "TL",
+				"name": "Timor-Leste"
+			},
+			{
+				"id": "TM",
+				"name": "Turkmenistan"
+			},
+			{
+				"id": "TN",
+				"name": "Tunisia"
+			},
+			{
+				"id": "TO",
+				"name": "Tonga"
+			},
+			{
+				"id": "TR",
+				"name": "Türkiye"
+			},
+			{
+				"id": "TR-IST",
+				"name": "Istanbul, 34, TR"
+			},
+			{
+				"id": "TT",
+				"name": "Trinidad and Tobago"
+			},
+			{
+				"id": "TV",
+				"name": "Tuvalu"
+			},
+			{
+				"id": "TW",
+				"name": "Taiwan (Province of China)"
+			},
+			{
+				"id": "TW-NTC",
+				"name": "New Taipei City, TPE, TW"
+			},
+			{
+				"id": "TZ",
+				"name": "Tanzania, United Republic of"
+			},
+			{
+				"id": "UA",
+				"name": "Ukraine"
+			},
+			{
+				"id": "UG",
+				"name": "Uganda"
+			},
+			{
+				"id": "UM",
+				"name": "United States Minor Outlying Islands"
+			},
+			{
+				"id": "US",
+				"name": "United States of America (the)"
+			},
+			{
+				"id": "US-ABI",
+				"name": "Abilene, TX, US"
+			},
+			{
+				"id": "US-ABQ",
+				"name": "Albuquerque, NM, US"
+			},
+			{
+				"id": "US-ACT",
+				"name": "Waco, TX, US"
+			},
+			{
+				"id": "US-AEV",
+				"name": "Asheville, NC, US"
+			},
+			{
+				"id": "US-AGS",
+				"name": "Augusta, GA, US"
+			},
+			{
+				"id": "US-AHN",
+				"name": "Athens, GA, US"
+			},
+			{
+				"id": "US-AIY",
+				"name": "Atlantic City, NJ, US"
+			},
+			{
+				"id": "US-AK",
+				"name": "Alaska, US"
+			},
+			{
+				"id": "US-AKGD",
+				"name": "ASCC Alaska Grid, US"
+			},
+			{
+				"id": "US-AKH",
+				"name": "Akron, OH, US"
+			},
+			{
+				"id": "US-AKMS",
+				"name": "ASCC Miscellaneous, US"
+			},
+			{
+				"id": "US-AL",
+				"name": "Alabama, US"
+			},
+			{
+				"id": "US-ALB",
+				"name": "Albany, NY, US"
+			},
+			{
+				"id": "US-ALO",
+				"name": "Waterloo, IA, US"
+			},
+			{
+				"id": "US-ANC",
+				"name": "Anchorage, AK, US"
+			},
+			{
+				"id": "US-APC",
+				"name": "Napa, CA, US"
+			},
+			{
+				"id": "US-APF",
+				"name": "Naples, FL, US"
+			},
+			{
+				"id": "US-AR",
+				"name": "Arkansas, US"
+			},
+			{
+				"id": "US-ARB",
+				"name": "Ann Arbor, MI, US"
+			},
+			{
+				"id": "US-ATL",
+				"name": "Atlanta, GA, US"
+			},
+			{
+				"id": "US-ATW",
+				"name": "Appleton, WI, US"
+			},
+			{
+				"id": "US-AUO",
+				"name": "Auburn, AL, US"
+			},
+			{
+				"id": "US-AUS",
+				"name": "Austin, TX, US"
+			},
+			{
+				"id": "US-AVW",
+				"name": "Avenel/Washington, D.C., MD, US"
+			},
+			{
+				"id": "US-AWN",
+				"name": "Allentown, PA, US"
+			},
+			{
+				"id": "US-AZ",
+				"name": "Arizona, US"
+			},
+			{
+				"id": "US-AZNM",
+				"name": "WECC Southwest, US"
+			},
+			{
+				"id": "US-AZO",
+				"name": "Kalamazoo, MI, US"
+			},
+			{
+				"id": "US-B2L",
+				"name": "Bloomington, IL, US"
+			},
+			{
+				"id": "US-BAL",
+				"name": "Baltimore, MD, US"
+			},
+			{
+				"id": "US-BB6",
+				"name": "Barnstable, MA, US"
+			},
+			{
+				"id": "US-BCB",
+				"name": "Blacksburg, VA, US"
+			},
+			{
+				"id": "US-BDR",
+				"name": "Bridgeport, CT, US"
+			},
+			{
+				"id": "US-BFL",
+				"name": "Bakersfield, CA, US"
+			},
+			{
+				"id": "US-BHM",
+				"name": "Birmingham, AL, US"
+			},
+			{
+				"id": "US-BIS",
+				"name": "Bismarck, ND, US"
+			},
+			{
+				"id": "US-BMG",
+				"name": "Bloomington, IN, US"
+			},
+			{
+				"id": "US-BNA",
+				"name": "Nashville, TN, US"
+			},
+			{
+				"id": "US-BOI",
+				"name": "Boise, ID, US"
+			},
+			{
+				"id": "US-BOS",
+				"name": "Boston, MA, US"
+			},
+			{
+				"id": "US-BRO",
+				"name": "Brownsville, TX, US"
+			},
+			{
+				"id": "US-BTR",
+				"name": "Baton Rouge, LA, US"
+			},
+			{
+				"id": "US-BUF",
+				"name": "Buffalo, NY, US"
+			},
+			{
+				"id": "US-BUO",
+				"name": "Beaumont, CA, US"
+			},
+			{
+				"id": "US-BWG",
+				"name": "Bowling Green, KY, US"
+			},
+			{
+				"id": "US-BZO",
+				"name": "Bend, OR, US"
+			},
+			{
+				"id": "US-CA",
+				"name": "California, US"
+			},
+			{
+				"id": "US-CAE",
+				"name": "Columbia, SC, US"
+			},
+			{
+				"id": "US-CAMX",
+				"name": "WECC California, US"
+			},
+			{
+				"id": "US-CHA",
+				"name": "Chattanooga, TN, US"
+			},
+			{
+				"id": "US-CHI",
+				"name": "Chicago, IL, US"
+			},
+			{
+				"id": "US-CHO",
+				"name": "Charlottesville, VA, US"
+			},
+			{
+				"id": "US-CHS",
+				"name": "Charleston, SC, US"
+			},
+			{
+				"id": "US-CID",
+				"name": "Cedar Rapids, IA, US"
+			},
+			{
+				"id": "US-CLE",
+				"name": "Cleveland, OH, US"
+			},
+			{
+				"id": "US-CLL",
+				"name": "College Station, TX, US"
+			},
+			{
+				"id": "US-CLT",
+				"name": "Charlotte, NC, US"
+			},
+			{
+				"id": "US-CMH",
+				"name": "Columbus, OH, US"
+			},
+			{
+				"id": "US-CMI",
+				"name": "Champaign, IL, US"
+			},
+			{
+				"id": "US-CO",
+				"name": "Colorado, US"
+			},
+			{
+				"id": "US-COS",
+				"name": "Colorado Springs, CO, US"
+			},
+			{
+				"id": "US-COU",
+				"name": "Columbia, MO, US"
+			},
+			{
+				"id": "US-CRP",
+				"name": "Corpus Christi, TX, US"
+			},
+			{
+				"id": "US-CRW",
+				"name": "Charleston, WV, US"
+			},
+			{
+				"id": "US-CSG",
+				"name": "Columbus, GA, US"
+			},
+			{
+				"id": "US-CT",
+				"name": "Connecticut, US"
+			},
+			{
+				"id": "US-CVG",
+				"name": "Cincinnati, OH, US"
+			},
+			{
+				"id": "US-CYS",
+				"name": "Cheyenne, WY, US"
+			},
+			{
+				"id": "US-DAB",
+				"name": "Daytona Beach, FL, US"
+			},
+			{
+				"id": "US-DAL",
+				"name": "Dallas, TX, US"
+			},
+			{
+				"id": "US-DAV",
+				"name": "Davenport, CA, US"
+			},
+			{
+				"id": "US-DAY",
+				"name": "Dayton, OH, US"
+			},
+			{
+				"id": "US-DC",
+				"name": "District of Columbia, US"
+			},
+			{
+				"id": "US-DE",
+				"name": "Delaware, US"
+			},
+			{
+				"id": "US-DEN",
+				"name": "Denver, CO, US"
+			},
+			{
+				"id": "US-DET",
+				"name": "Detroit, MI, US"
+			},
+			{
+				"id": "US-DHN",
+				"name": "Dothan, AL, US"
+			},
+			{
+				"id": "US-DLH",
+				"name": "Duluth, MN, US"
+			},
+			{
+				"id": "US-DSI",
+				"name": "Destin, FL, US"
+			},
+			{
+				"id": "US-DSM",
+				"name": "Des Moines, IA, US"
+			},
+			{
+				"id": "US-DUR",
+				"name": "Durham, NC, US"
+			},
+			{
+				"id": "US-EAU",
+				"name": "Eau Claire, WI, US"
+			},
+			{
+				"id": "US-EKX",
+				"name": "Elizabethtown, KY, US"
+			},
+			{
+				"id": "US-ELP",
+				"name": "El Paso, TX, US"
+			},
+			{
+				"id": "US-ERCT",
+				"name": "ERCOT All, US"
+			},
+			{
+				"id": "US-ERI",
+				"name": "Erie, PA, US"
+			},
+			{
+				"id": "US-EUG",
+				"name": "Eugene, OR, US"
+			},
+			{
+				"id": "US-EVV",
+				"name": "Evansville, IN, US"
+			},
+			{
+				"id": "US-FAR",
+				"name": "Fargo, ND, US"
+			},
+			{
+				"id": "US-FAT",
+				"name": "Fresno, CA, US"
+			},
+			{
+				"id": "US-FAY",
+				"name": "Fayetteville, NC, US"
+			},
+			{
+				"id": "US-FL",
+				"name": "Florida, US"
+			},
+			{
+				"id": "US-FLG",
+				"name": "Flagstaff, AZ, US"
+			},
+			{
+				"id": "US-FLO",
+				"name": "Florence, SC, US"
+			},
+			{
+				"id": "US-FMY",
+				"name": "Fort Myers, FL, US"
+			},
+			{
+				"id": "US-FNL",
+				"name": "Fort Collins, CO, US"
+			},
+			{
+				"id": "US-FNT",
+				"name": "Flint, MI, US"
+			},
+			{
+				"id": "US-FRCC",
+				"name": "FRCC All, US"
+			},
+			{
+				"id": "US-FSD",
+				"name": "Sioux Falls, SD, US"
+			},
+			{
+				"id": "US-FWA",
+				"name": "Fort Wayne, IN, US"
+			},
+			{
+				"id": "US-FYV",
+				"name": "Fayetteville, AR, US"
+			},
+			{
+				"id": "US-GA",
+				"name": "Georgia, US"
+			},
+			{
+				"id": "US-GBO",
+				"name": "Greensboro, NC, US"
+			},
+			{
+				"id": "US-GEG",
+				"name": "Spokane, WA, US"
+			},
+			{
+				"id": "US-GIR",
+				"name": "Gilroy, CA, US"
+			},
+			{
+				"id": "US-GNV",
+				"name": "Gainesville, FL, US"
+			},
+			{
+				"id": "US-GPT",
+				"name": "Gulfport, MS, US"
+			},
+			{
+				"id": "US-GRB",
+				"name": "Green Bay, WI, US"
+			},
+			{
+				"id": "US-GRR",
+				"name": "Grand Rapids, MI, US"
+			},
+			{
+				"id": "US-GSP",
+				"name": "Greer-Greenville Apt, SC, US"
+			},
+			{
+				"id": "US-HAR",
+				"name": "Harrisburg, PA, US"
+			},
+			{
+				"id": "US-HBG",
+				"name": "Hattiesburg, MS, US"
+			},
+			{
+				"id": "US-HBV",
+				"name": "Harrisonburg, VA, US"
+			},
+			{
+				"id": "US-HFD",
+				"name": "Hartford, CT, US"
+			},
+			{
+				"id": "US-HI",
+				"name": "Hawaii, US"
+			},
+			{
+				"id": "US-HIMS",
+				"name": "HICC Miscellaneous, US"
+			},
+			{
+				"id": "US-HIOA",
+				"name": "HICC Oahu, US"
+			},
+			{
+				"id": "US-HNL",
+				"name": "Honolulu, HI, US"
+			},
+			{
+				"id": "US-HNU",
+				"name": "Huntington, WV, US"
+			},
+			{
+				"id": "US-HOU",
+				"name": "Houston, TX, US"
+			},
+			{
+				"id": "US-HSV",
+				"name": "Huntsville, AL, US"
+			},
+			{
+				"id": "US-HVN",
+				"name": "New Haven, CT, US"
+			},
+			{
+				"id": "US-IA",
+				"name": "Iowa, US"
+			},
+			{
+				"id": "US-ICT",
+				"name": "Wichita, KS, US"
+			},
+			{
+				"id": "US-ID",
+				"name": "Idaho, US"
+			},
+			{
+				"id": "US-IL",
+				"name": "Illinois, US"
+			},
+			{
+				"id": "US-ILM",
+				"name": "Wilmington, NC, US"
+			},
+			{
+				"id": "US-IN",
+				"name": "Indiana, US"
+			},
+			{
+				"id": "US-IND",
+				"name": "Indianapolis, IN, US"
+			},
+			{
+				"id": "US-INT",
+				"name": "Winston Salem, NC, US"
+			},
+			{
+				"id": "US-IOW",
+				"name": "Iowa City, IA, US"
+			},
+			{
+				"id": "US-IPT",
+				"name": "Williamsport, PA, US"
+			},
+			{
+				"id": "US-JAN",
+				"name": "Jackson, MS, US"
+			},
+			{
+				"id": "US-JAX",
+				"name": "Jacksonville, FL, US"
+			},
+			{
+				"id": "US-KS",
+				"name": "Kansas, US"
+			},
+			{
+				"id": "US-KWC",
+				"name": "Kennewick, WA, US"
+			},
+			{
+				"id": "US-KY",
+				"name": "Kentucky, US"
+			},
+			{
+				"id": "US-LA",
+				"name": "Louisiana, US"
+			},
+			{
+				"id": "US-LAF",
+				"name": "Lafayette, IN, US"
+			},
+			{
+				"id": "US-LAL",
+				"name": "Lakeland, FL, US"
+			},
+			{
+				"id": "US-LAN",
+				"name": "Lansing, MI, US"
+			},
+			{
+				"id": "US-LAS",
+				"name": "Las Vegas, NV, US"
+			},
+			{
+				"id": "US-LAX",
+				"name": "Los Angeles, CA, US"
+			},
+			{
+				"id": "US-LBB",
+				"name": "Lubbock, TX, US"
+			},
+			{
+				"id": "US-LCH",
+				"name": "Lake Charles, LA, US"
+			},
+			{
+				"id": "US-LEX",
+				"name": "Lexington, KY, US"
+			},
+			{
+				"id": "US-LFT",
+				"name": "Lafayette, LA, US"
+			},
+			{
+				"id": "US-LIT",
+				"name": "Little Rock, AR, US"
+			},
+			{
+				"id": "US-LNK",
+				"name": "Lincoln, NE, US"
+			},
+			{
+				"id": "US-LNS",
+				"name": "Lancaster, PA, US"
+			},
+			{
+				"id": "US-LRU",
+				"name": "Las Cruces, NM, US"
+			},
+			{
+				"id": "US-LUI",
+				"name": "Louisville, KY, US"
+			},
+			{
+				"id": "US-LYH",
+				"name": "Lynchburg, VA, US"
+			},
+			{
+				"id": "US-MA",
+				"name": "Massachusetts, US"
+			},
+			{
+				"id": "US-MAF",
+				"name": "Midland, TX, US"
+			},
+			{
+				"id": "US-MCN",
+				"name": "Macon, GA, US"
+			},
+			{
+				"id": "US-MD",
+				"name": "Maryland, US"
+			},
+			{
+				"id": "US-ME",
+				"name": "Maine, US"
+			},
+			{
+				"id": "US-MEM",
+				"name": "Memphis, TN, US"
+			},
+			{
+				"id": "US-MES",
+				"name": "Minneapolis, MN, US"
+			},
+			{
+				"id": "US-MFR",
+				"name": "Medford, OR, US"
+			},
+			{
+				"id": "US-MGM",
+				"name": "Montgomery, AL, US"
+			},
+			{
+				"id": "US-MGW",
+				"name": "Morgantown, WV, US"
+			},
+			{
+				"id": "US-MHK",
+				"name": "Manhattan, KS, US"
+			},
+			{
+				"id": "US-MHT",
+				"name": "Manchester, NH, US"
+			},
+			{
+				"id": "US-MI",
+				"name": "Michigan, US"
+			},
+			{
+				"id": "US-MIA",
+				"name": "Miami, FL, US"
+			},
+			{
+				"id": "US-MKC",
+				"name": "Kansas City, MO, US"
+			},
+			{
+				"id": "US-MKE",
+				"name": "Milwaukee, WI, US"
+			},
+			{
+				"id": "US-MN",
+				"name": "Minnesota, US"
+			},
+			{
+				"id": "US-MO",
+				"name": "Missouri, US"
+			},
+			{
+				"id": "US-MOB",
+				"name": "Mobile, AL, US"
+			},
+			{
+				"id": "US-MOD",
+				"name": "Modesto, CA, US"
+			},
+			{
+				"id": "US-MROE",
+				"name": "MRO East, US"
+			},
+			{
+				"id": "US-MROW",
+				"name": "MRO West, US"
+			},
+			{
+				"id": "US-MS",
+				"name": "Mississippi, US"
+			},
+			{
+				"id": "US-MSN",
+				"name": "Madison, WI, US"
+			},
+			{
+				"id": "US-MSO",
+				"name": "Missoula, MT, US"
+			},
+			{
+				"id": "US-MSY",
+				"name": "New Orleans, LA, US"
+			},
+			{
+				"id": "US-MT",
+				"name": "Montana, US"
+			},
+			{
+				"id": "US-MYR",
+				"name": "Myrtle Beach, SC, US"
+			},
+			{
+				"id": "US-NC",
+				"name": "North Carolina, US"
+			},
+			{
+				"id": "US-ND",
+				"name": "North Dakota, US"
+			},
+			{
+				"id": "US-NE",
+				"name": "Nebraska, US"
+			},
+			{
+				"id": "US-NEWE",
+				"name": "NPCC New England, US"
+			},
+			{
+				"id": "US-NH",
+				"name": "New Hampshire, US"
+			},
+			{
+				"id": "US-NJ",
+				"name": "New Jersey, US"
+			},
+			{
+				"id": "US-NLE",
+				"name": "Niles, MI, US"
+			},
+			{
+				"id": "US-NM",
+				"name": "New Mexico, US"
+			},
+			{
+				"id": "US-NOC",
+				"name": "Norwich, CT, US"
+			},
+			{
+				"id": "US-NV",
+				"name": "Nevada, US"
+			},
+			{
+				"id": "US-NWPP",
+				"name": "WECC Northwest, US"
+			},
+			{
+				"id": "US-NY",
+				"name": "New York, US"
+			},
+			{
+				"id": "US-NYC",
+				"name": "New York, NY, US"
+			},
+			{
+				"id": "US-NYCW",
+				"name": "NPCC NYC/Westchester, US"
+			},
+			{
+				"id": "US-NYLI",
+				"name": "NPCC Long Island, US"
+			},
+			{
+				"id": "US-NYUP",
+				"name": "NPCC Upstate NY, US"
+			},
+			{
+				"id": "US-OCF",
+				"name": "Ocala, FL, US"
+			},
+			{
+				"id": "US-OH",
+				"name": "Ohio, US"
+			},
+			{
+				"id": "US-OK",
+				"name": "Oklahoma, US"
+			},
+			{
+				"id": "US-OKC",
+				"name": "Oklahoma City, OK, US"
+			},
+			{
+				"id": "US-OMA",
+				"name": "Omaha, NE, US"
+			},
+			{
+				"id": "US-OR",
+				"name": "Oregon, US"
+			},
+			{
+				"id": "US-ORH",
+				"name": "Worcester, MA, US"
+			},
+			{
+				"id": "US-ORL",
+				"name": "Orlando, FL, US"
+			},
+			{
+				"id": "US-OSD",
+				"name": "Odessa, TX, US"
+			},
+			{
+				"id": "US-PA",
+				"name": "Pennsylvania, US"
+			},
+			{
+				"id": "US-PBY",
+				"name": "Palm Bay, FL, US"
+			},
+			{
+				"id": "US-PDX",
+				"name": "Portland, OR, US"
+			},
+			{
+				"id": "US-PFN",
+				"name": "Panama City, FL, US"
+			},
+			{
+				"id": "US-PHL",
+				"name": "Philadelphia, PA, US"
+			},
+			{
+				"id": "US-PHX",
+				"name": "Phoenix, AZ, US"
+			},
+			{
+				"id": "US-PIA",
+				"name": "Peoria, IL, US"
+			},
+			{
+				"id": "US-PIT",
+				"name": "Pittsburgh, PA, US"
+			},
+			{
+				"id": "US-PNS",
+				"name": "Pensacola, FL, US"
+			},
+			{
+				"id": "US-POT",
+				"name": "Port Tampa, FL, US"
+			},
+			{
+				"id": "US-POU",
+				"name": "Poughkeepsie, NY, US"
+			},
+			{
+				"id": "US-PR",
+				"name": "Puerto Rico (see also separate entry under PR), US"
+			},
+			{
+				"id": "US-PRMS",
+				"name": "Puerto Rico Miscellaneous, US"
+			},
+			{
+				"id": "US-PSF",
+				"name": "Pittsfield, MA, US"
+			},
+			{
+				"id": "US-PVD",
+				"name": "Providence, RI, US"
+			},
+			{
+				"id": "US-PVU",
+				"name": "Provo, UT, US"
+			},
+			{
+				"id": "US-PWM",
+				"name": "Portland, ME, US"
+			},
+			{
+				"id": "US-PZL",
+				"name": "Port Saint Lucie, FL, US"
+			},
+			{
+				"id": "US-RAG",
+				"name": "Raleigh, NC, US"
+			},
+			{
+				"id": "US-RAP",
+				"name": "Rapid City, SD, US"
+			},
+			{
+				"id": "US-RDG",
+				"name": "Reading, PA, US"
+			},
+			{
+				"id": "US-RFCE",
+				"name": "RFC East, US"
+			},
+			{
+				"id": "US-RFCM",
+				"name": "RFC Michigan, US"
+			},
+			{
+				"id": "US-RFCW",
+				"name": "RFC West, US"
+			},
+			{
+				"id": "US-RI",
+				"name": "Rhode Island, US"
+			},
+			{
+				"id": "US-RIC",
+				"name": "Richmond, VA, US"
+			},
+			{
+				"id": "US-RMPA",
+				"name": "WECC Rockies, US"
+			},
+			{
+				"id": "US-RNO",
+				"name": "Reno, NV, US"
+			},
+			{
+				"id": "US-ROA",
+				"name": "Roanoke, VA, US"
+			},
+			{
+				"id": "US-ROC",
+				"name": "Rochester, NY, US"
+			},
+			{
+				"id": "US-RST",
+				"name": "Rochester, MN, US"
+			},
+			{
+				"id": "US-RWI",
+				"name": "Rocky Mount, NC, US"
+			},
+			{
+				"id": "US-SAC",
+				"name": "Sacramento, CA, US"
+			},
+			{
+				"id": "US-SAN",
+				"name": "San Diego, CA, US"
+			},
+			{
+				"id": "US-SAT",
+				"name": "San Antonio, TX, US"
+			},
+			{
+				"id": "US-SAV",
+				"name": "Savannah, GA, US"
+			},
+			{
+				"id": "US-SBA",
+				"name": "Santa Barbara, CA, US"
+			},
+			{
+				"id": "US-SBN",
+				"name": "South Bend, IN, US"
+			},
+			{
+				"id": "US-SBT",
+				"name": "San Bernardino, CA, US"
+			},
+			{
+				"id": "US-SC",
+				"name": "South Carolina, US"
+			},
+			{
+				"id": "US-SCK",
+				"name": "Stockton, CA, US"
+			},
+			{
+				"id": "US-SCR",
+				"name": "Scranton, PA, US"
+			},
+			{
+				"id": "US-SD",
+				"name": "South Dakota, US"
+			},
+			{
+				"id": "US-SEA",
+				"name": "Seattle, WA, US"
+			},
+			{
+				"id": "US-SFO",
+				"name": "San Francisco, CA, US"
+			},
+			{
+				"id": "US-SFY",
+				"name": "Springfield, MA, US"
+			},
+			{
+				"id": "US-SGF",
+				"name": "Springfield, MO, US"
+			},
+			{
+				"id": "US-SGM",
+				"name": "Saginaw, MI, US"
+			},
+			{
+				"id": "US-SGU",
+				"name": "Saint George, UT, US"
+			},
+			{
+				"id": "US-SHV",
+				"name": "Shreveport, LA, US"
+			},
+			{
+				"id": "US-SJC",
+				"name": "San Jose, CA, US"
+			},
+			{
+				"id": "US-SJT",
+				"name": "San Angelo, TX, US"
+			},
+			{
+				"id": "US-SLC",
+				"name": "Salt Lake City, UT, US"
+			},
+			{
+				"id": "US-SNS",
+				"name": "Salinas, CA, US"
+			},
+			{
+				"id": "US-SPA",
+				"name": "Spartanburg, SC, US"
+			},
+			{
+				"id": "US-SPI",
+				"name": "Springfield, IL, US"
+			},
+			{
+				"id": "US-SPNO",
+				"name": "SPP North, US"
+			},
+			{
+				"id": "US-SPSO",
+				"name": "SPP South, US"
+			},
+			{
+				"id": "US-SRMV",
+				"name": "SERC Mississippi Valley, US"
+			},
+			{
+				"id": "US-SRMW",
+				"name": "SERC Midwest, US"
+			},
+			{
+				"id": "US-SRSO",
+				"name": "SERC South, US"
+			},
+			{
+				"id": "US-SRTV",
+				"name": "SERC Tennessee Valley, US"
+			},
+			{
+				"id": "US-SRU",
+				"name": "Santa Cruz, CA, US"
+			},
+			{
+				"id": "US-SRVC",
+				"name": "SERC Virginia/Carolina, US"
+			},
+			{
+				"id": "US-SSI",
+				"name": "Brunswick, GA, US"
+			},
+			{
+				"id": "US-STL",
+				"name": "Saint Louis, MO, US"
+			},
+			{
+				"id": "US-STS",
+				"name": "Santa Rosa, CA, US"
+			},
+			{
+				"id": "US-SUX",
+				"name": "Sioux City, IA, US"
+			},
+			{
+				"id": "US-SYR",
+				"name": "Syracuse, NY, US"
+			},
+			{
+				"id": "US-SZG",
+				"name": "Sebastian, FL, US"
+			},
+			{
+				"id": "US-TCL",
+				"name": "Tuscaloosa, AL, US"
+			},
+			{
+				"id": "US-THV",
+				"name": "York, PA, US"
+			},
+			{
+				"id": "US-TLH",
+				"name": "Tallahassee, FL, US"
+			},
+			{
+				"id": "US-TN",
+				"name": "Tennessee, US"
+			},
+			{
+				"id": "US-TOL",
+				"name": "Toledo, OH, US"
+			},
+			{
+				"id": "US-TOP",
+				"name": "Topeka, KS, US"
+			},
+			{
+				"id": "US-TPL",
+				"name": "Temple, TX, US"
+			},
+			{
+				"id": "US-TRI",
+				"name": "Tri-Cities Regional Airport, TN, US"
+			},
+			{
+				"id": "US-TTN",
+				"name": "Trenton, NJ, US"
+			},
+			{
+				"id": "US-TUL",
+				"name": "Tulsa, OK, US"
+			},
+			{
+				"id": "US-TUZ",
+				"name": "Tucson, AZ, US"
+			},
+			{
+				"id": "US-TX",
+				"name": "Texas, US"
+			},
+			{
+				"id": "US-TXC",
+				"name": "McAllen, TX, US"
+			},
+			{
+				"id": "US-TXK",
+				"name": "Texarkana, AR, US"
+			},
+			{
+				"id": "US-TYR",
+				"name": "Tyler, TX, US"
+			},
+			{
+				"id": "US-TYS",
+				"name": "Knoxville, TN, US"
+			},
+			{
+				"id": "US-UT",
+				"name": "Utah, US"
+			},
+			{
+				"id": "US-VA",
+				"name": "Virginia, US"
+			},
+			{
+				"id": "US-VAB",
+				"name": "Virginia Beach, VA, US"
+			},
+			{
+				"id": "US-VLD",
+				"name": "Valdosta, GA, US"
+			},
+			{
+				"id": "US-VLO",
+				"name": "Vallejo, CA, US"
+			},
+			{
+				"id": "US-VNT",
+				"name": "Ventura, CA, US"
+			},
+			{
+				"id": "US-VT",
+				"name": "Vermont, US"
+			},
+			{
+				"id": "US-WA",
+				"name": "Washington, US"
+			},
+			{
+				"id": "US-WBU",
+				"name": "Boulder, CO, US"
+			},
+			{
+				"id": "US-WGO",
+				"name": "Winchester, VA, US"
+			},
+			{
+				"id": "US-WHE",
+				"name": "Wheeling, IL, US"
+			},
+			{
+				"id": "US-WI",
+				"name": "Wisconsin, US"
+			},
+			{
+				"id": "US-WV",
+				"name": "West Virginia, US"
+			},
+			{
+				"id": "US-WY",
+				"name": "Wyoming, US"
+			},
+			{
+				"id": "US-YNG",
+				"name": "Youngstown, OH, US"
+			},
+			{
+				"id": "US-YUM",
+				"name": "Yuma, AZ, US"
+			},
+			{
+				"id": "US-ZLV",
+				"name": "Longview, TX, US"
+			},
+			{
+				"id": "US-ZOR",
+				"name": "Sarasota, FL, US"
+			},
+			{
+				"id": "UY",
+				"name": "Uruguay"
+			},
+			{
+				"id": "UZ",
+				"name": "Uzbekistan"
+			},
+			{
+				"id": "VA",
+				"name": "Holy See (Vatican City State)"
+			},
+			{
+				"id": "VC",
+				"name": "Saint Vincent and the Grenadines"
+			},
+			{
+				"id": "VE",
+				"name": "Venezuela (Bolivarian Republic of)"
+			},
+			{
+				"id": "VG",
+				"name": "Virgin Islands (British)"
+			},
+			{
+				"id": "VI",
+				"name": "Virgin Islands (U.S.)"
+			},
+			{
+				"id": "VN",
+				"name": "Viet Nam"
+			},
+			{
+				"id": "VN-DAD",
+				"name": "Da Nang, 27, VN"
+			},
+			{
+				"id": "VN-HAN",
+				"name": "Hanoi, HN, VN"
+			},
+			{
+				"id": "VN-PQC",
+				"name": "Phu Quoc, VN"
+			},
+			{
+				"id": "VN-SGN",
+				"name": "Ho Chi Minh City, SG, VN"
+			},
+			{
+				"id": "VU",
+				"name": "Vanuatu"
+			},
+			{
+				"id": "WEU",
+				"name": "Western Europe"
+			},
+			{
+				"id": "WF",
+				"name": "Wallis and Futuna"
+			},
+			{
+				"id": "WS",
+				"name": "Samoa"
+			},
+			{
+				"id": "XK",
+				"name": "Kosovo"
+			},
+			{
+				"id": "YE",
+				"name": "Yemen"
+			},
+			{
+				"id": "YT",
+				"name": "Mayotte"
+			},
+			{
+				"id": "ZA",
+				"name": "South Africa"
+			},
+			{
+				"id": "ZA-CPT",
+				"name": "Cape Town, WC, ZA"
+			},
+			{
+				"id": "ZA-HDL",
+				"name": "Heriotdale/Johannesburg, ZA"
+			},
+			{
+				"id": "ZM",
+				"name": "Zambia"
+			},
+			{
+				"id": "ZW",
+				"name": "Zimbabwe"
+			}
+		],
