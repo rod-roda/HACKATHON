@@ -764,6 +764,7 @@ header{
     border-radius: var(--radius-full);
     color: var(--text-muted);
     transition: var(--transition-normal);
+    margin-left: var(--space-sm);
 }
 
 .quiz-actions {
@@ -854,6 +855,10 @@ header{
     animation: slideInRight 0.3s ease;
 }
 
+.notification.hide {
+    animation: slideOutRight 0.3s ease forwards;
+}
+
 .notification-success {
     border-color: var(--success);
     background: rgba(74, 222, 128, 0.1);
@@ -905,6 +910,17 @@ header{
     to {
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
     }
 }
 

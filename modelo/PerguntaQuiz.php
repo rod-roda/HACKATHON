@@ -89,6 +89,7 @@ class PerguntaQuiz implements JsonSerializable{
             $tuplaBanco->alternativa_e
         ]);
         $pergunta->setAlternativaCorreta($tuplaBanco->alternativa_correta);
+        $pergunta->setExplicao($tuplaBanco->explicacao);
 
         $prepareSql->close();
         return $pergunta;
@@ -111,9 +112,11 @@ class PerguntaQuiz implements JsonSerializable{
                 $tuplaBanco->alternativa_a,
                 $tuplaBanco->alternativa_b,
                 $tuplaBanco->alternativa_c,
-                $tuplaBanco->alternativa_d
+                $tuplaBanco->alternativa_d,
+                $tuplaBanco->alternativa_e
             ]);
             $pergunta->setAlternativaCorreta($tuplaBanco->alternativa_correta);
+            $pergunta->setExplicao($tuplaBanco->explicacao);
             $perguntas_array[$i] = $pergunta;
             $i++;
         }
@@ -140,9 +143,11 @@ class PerguntaQuiz implements JsonSerializable{
                 $tuplaBanco->alternativa_a,
                 $tuplaBanco->alternativa_b,
                 $tuplaBanco->alternativa_c,
-                $tuplaBanco->alternativa_d
+                $tuplaBanco->alternativa_d,
+                $tuplaBanco->alternativa_e
             ]);
             $pergunta->setAlternativaCorreta($tuplaBanco->alternativa_correta);
+            $pergunta->setExplicao($tuplaBanco->explicacao);
             $perguntas_array[$i] = $pergunta;
             $i++;
         }

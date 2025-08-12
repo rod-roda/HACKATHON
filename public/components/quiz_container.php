@@ -80,14 +80,27 @@
                         </div>
                     </label>
 
+                    <label class="answer-option" for="option5">
+                        <input type="radio" id="option5" name="answer" value="5">
+                        <div class="option-content">
+                            <div class="option-letter">E</div>
+                            <div class="option-text">
+                                <span class="option-title"></span>
+                            </div>
+                        </div>
+                        <div class="option-indicator">
+                            <i class="ri-check-line"></i>
+                        </div>
+                    </label>
+
                 </div>
             </form>
         </div>
 
         <!-- Quiz Actions -->
         <div class="quiz-actions text-center">
-            <button type="button" class="btn btn-secondary mr-md" onclick="previousQuestion()">
-                <i class="ri-arrow-left-line"></i> Anterior
+            <button type="button" class="btn btn-secondary mr-md" onclick="restartQuiz()">
+                <i class="ri-reset-left-line"></i>
             </button>
             <button type="submit" form="quizForm" class="btn btn-primary mr-md">
                 Próxima <i class="ri-arrow-right-line"></i>

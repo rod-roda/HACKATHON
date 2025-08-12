@@ -9,7 +9,7 @@ let quizData;
 
 // Initialize quiz
 document.addEventListener('DOMContentLoaded', function() {
-    if (window.location.pathname.includes('quiz_screen')) {
+    if (window.location.pathname.includes('quiz')) {
         fetchGet("http://localhost:80/HACKATON/perguntas/random")
         .then(data => {
             quizData = transformarQuiz(data);
@@ -21,6 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeQuiz() {
+    const nextButton = document.querySelector('.btn-primary');
+    nextButton.disabled = true;
+    nextButton.style.opacity = '0.6';
+    
     updateProgressBar();
     loadQuestion(currentQuestion);
 }
@@ -57,7 +61,7 @@ function transformarQuiz(apiResponse) {
             description: ""
         })),
         correctAnswer: letterToIndex[item.alternativa_correta],
-        explanation: ""
+        explanation: item.explicacao
     }));
 }
 
@@ -297,11 +301,18 @@ function showNotification(message, type = 'info') {
     document.body.appendChild(notification);
 
     // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentElement) {
-            notification.remove();
-        }
-    }, 5000);
+    setTimeout(() => closeNotification(notification), 3000);
+}
+
+function closeNotification(el) {
+    const notification = el.classList.contains('notification')
+        ? el
+        : el.closest('.notification');
+
+    if (notification) {
+        notification.classList.add('hide');
+        notification.addEventListener('animationend', () => notification.remove(), { once: true });
+    }
 }
 
 // ========== UTILITY FUNCTIONS ==========
