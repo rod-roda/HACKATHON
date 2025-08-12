@@ -5,7 +5,7 @@
 
     <ul class="navbar">
         <li><a href="">Mapa</a></li>
-        <li><a href="">DashBoard</a></li>
+        <li><a href="../view/dashboard.php">DashBoard</a></li>
         <li><a href="">Monitoramento</a></li>
         <li><a href="">EcoQuiz</a></li>
         <li><a href="">EcoGame</a></li>
