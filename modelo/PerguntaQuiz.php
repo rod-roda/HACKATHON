@@ -58,7 +58,7 @@ class PerguntaQuiz implements JsonSerializable{
 
     public function readById($id){
         $conexao = Banco::getConexao();
-        $sql = "SELECT id, pergunta, imagem, alternativa_a, alternativa_b, alternativa_c, alternativa_d, alternativa_correta FROM perguntas_quiz WHERE id = ?";
+        $sql = "SELECT id, pergunta, imagem, alternativa_a, alternativa_b, alternativa_c, alternativa_d, alternativa_e, alternativa_correta, explicacao FROM perguntas_quiz WHERE id = ?";
         $prepareSql = $conexao->prepare($sql);
         $prepareSql->bind_param("i", $id);
         $executou = $prepareSql->execute();
@@ -73,7 +73,8 @@ class PerguntaQuiz implements JsonSerializable{
             $tuplaBanco->alternativa_a,
             $tuplaBanco->alternativa_b,
             $tuplaBanco->alternativa_c,
-            $tuplaBanco->alternativa_d
+            $tuplaBanco->alternativa_d,
+            $tuplaBanco->alternativa_e
         ]);
         $pergunta->setAlternativaCorreta($tuplaBanco->alternativa_correta);
 
