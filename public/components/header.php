@@ -7,7 +7,7 @@
         <li><a href="">Mapa</a></li>
         <li><a href="">DashBoard</a></li>
         <li><a href="">Monitoramento</a></li>
-        <li><a href="">EcoQuiz</a></li>
+        <li><a href="/HACKATON/view/quiz_screen.php">EcoQuiz</a></li>
         <li><a href="">EcoGame</a></li>
         <li><a href="">Doações</a></li>
     </ul>

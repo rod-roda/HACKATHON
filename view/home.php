@@ -9,6 +9,6 @@
 <body>
     <?php include __DIR__ . '/../public/components/header.php'; ?>
 
-    <script src="../js/script.js"></script>
+    <!-- <script src="../js/script.js"></script> -->
 </body>
 </html>

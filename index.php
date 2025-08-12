@@ -12,6 +12,12 @@ $roteador->get('/perguntas/(\d+)', function ($id) {
     echo readById($id);
 });
 
+$roteador->get('/perguntas/random', function () {
+    require_once __DIR__ . '/controle/controller_perguntas_quiz.php';
+    echo read10Perguntas();
+});
+
+
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 

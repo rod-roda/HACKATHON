@@ -56,18 +56,18 @@ class PerguntaQuiz implements JsonSerializable{
         $this->alternativa_correta = $alternativa_correta;
     }
 
-    public function readById(){
+    public function readById($id){
         $conexao = Banco::getConexao();
-        $sql = "SELECT id_pergunta, pergunta, imagem, alternativa_a, alternativa_b, alternativa_c, alternativa_d, alternativa_correta FROM perguntas_quiz WHERE id_pergunta = ?";
+        $sql = "SELECT id, pergunta, imagem, alternativa_a, alternativa_b, alternativa_c, alternativa_d, alternativa_correta FROM perguntas_quiz WHERE id = ?";
         $prepareSql = $conexao->prepare($sql);
-        $prepareSql->bind_param("i", $this->id_pergunta);
+        $prepareSql->bind_param("i", $id);
         $executou = $prepareSql->execute();
 
         $matrizResultados = $prepareSql->get_result();
         $tuplaBanco = $matrizResultados->fetch_object();
 
         $pergunta = new PerguntaQuiz();
-        $pergunta->setIdPergunta($tuplaBanco->id_pergunta);
+        $pergunta->setIdPergunta($tuplaBanco->id);
         $pergunta->setPergunta($tuplaBanco->pergunta);
         $pergunta->setAlternativas([
             $tuplaBanco->alternativa_a,
@@ -83,7 +83,7 @@ class PerguntaQuiz implements JsonSerializable{
 
     public function readAll(){
         $conexao = Banco::getConexao();
-        $sql = "SELECT * FROM perguntas_quiz ORDER BY id_pergunta;";
+        $sql = "SELECT * FROM perguntas_quiz ORDER BY id;";
         $prepareSql = $conexao->prepare($sql);
         $prepareSql->execute();
 
@@ -92,7 +92,7 @@ class PerguntaQuiz implements JsonSerializable{
         $i = 0;
         while($tuplaBanco = $matrizResultados->fetch_object()){
             $pergunta = new PerguntaQuiz();
-            $pergunta->setIdPergunta($tuplaBanco->id_pergunta);
+            $pergunta->setIdPergunta($tuplaBanco->id);
             $pergunta->setPergunta($tuplaBanco->pergunta);
             $pergunta->setAlternativas([
                 $tuplaBanco->alternativa_a,
@@ -110,7 +110,7 @@ class PerguntaQuiz implements JsonSerializable{
 
     public function read10Perguntas($array_perguntas){
         $conexao = Banco::getConexao();
-        $sql = "SELECT * FROM perguntas_quiz WHERE id_pergunta IN (" . implode(',', array_fill(0, count($array_perguntas), '?')) . ") ORDER BY RAND() LIMIT 10;";
+        $sql = "SELECT * FROM perguntas_quiz WHERE id IN (" . implode(',', array_fill(0, count($array_perguntas), '?')) . ") ORDER BY RAND() LIMIT 10;";
         $prepareSql = $conexao->prepare($sql);
         $types = str_repeat('i', count($array_perguntas));
         $prepareSql->bind_param($types, ...$array_perguntas);
@@ -121,7 +121,7 @@ class PerguntaQuiz implements JsonSerializable{
         $i = 0;
         while($tuplaBanco = $matrizResultados->fetch_object()){
             $pergunta = new PerguntaQuiz();
-            $pergunta->setIdPergunta($tuplaBanco->id_pergunta);
+            $pergunta->setIdPergunta($tuplaBanco->id);
             $pergunta->setPergunta($tuplaBanco->pergunta);
             $pergunta->setAlternativas([
                 $tuplaBanco->alternativa_a,
