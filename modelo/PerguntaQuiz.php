@@ -5,6 +5,7 @@ class PerguntaQuiz implements JsonSerializable{
     private $pergunta;
     private $alternativas = [];
     private $alternativa_correta;
+    private $explicacao;
 
     public function jsonSerialize()
     {
@@ -13,6 +14,7 @@ class PerguntaQuiz implements JsonSerializable{
         $obj->pergunta = $this->getPergunta();
         $obj->alternativas = $this->getAlternativas();
         $obj->alternativa_correta = $this->getAlternativaCorreta();
+        $obj->explicacao = $this->getExplicacao();
         return $obj;
     }
 
@@ -54,6 +56,16 @@ class PerguntaQuiz implements JsonSerializable{
     public function setAlternativaCorreta($alternativa_correta)
     {
         $this->alternativa_correta = $alternativa_correta;
+    }
+
+    public function getExplicacao()
+    {
+        return $this->explicacao;
+    }
+
+    public function setExplicao($explicacao)
+    {
+        $this->explicacao = $explicacao;
     }
 
     public function readById($id){
