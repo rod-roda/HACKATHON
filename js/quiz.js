@@ -10,7 +10,7 @@ let quizData;
 // Initialize quiz
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('quiz')) {
-        fetchGet("http://localhost:80/HACKATON/perguntas/random")
+        fetchGet(`${window.location.origin}/HACKATON/perguntas/random`)
         .then(data => {
             quizData = transformarQuiz(data);
             console.log("Quiz carregado:", quizData);
