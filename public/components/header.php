@@ -9,7 +9,7 @@
         <li><a href="">Monitoramento</a></li>
         <li><a href="/HACKATON/view/quiz.php">EcoQuiz</a></li>
         <li><a href="">EcoGame</a></li>
-        <li><a href="">Doações</a></li>
+        <li><a href="/HACKATON/view/donation_screen.php">Doações</a></li>
     </ul>
 
     <div class="main">
