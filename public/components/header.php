@@ -4,7 +4,7 @@
     </a>
 
     <ul class="navbar">
-        <li><a href="">Mapa</a></li>
+        <li><a href="/HACKATON/view/weather.php">Mapa</a></li>
         <li><a href="">DashBoard</a></li>
         <li><a href="">Monitoramento</a></li>
         <li><a href="/HACKATON/view/quiz.php">EcoQuiz</a></li>
