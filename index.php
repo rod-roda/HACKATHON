@@ -17,6 +17,12 @@ $roteador->get('/perguntas/random', function () {
     echo read10Perguntas();
 });
 
+$roteador->post("/cadastrar", function(){
+    // echo('oi'); die;
+    require_once __DIR__ . '/controle/controller_usuarios.php';
+    echo cadastrar();
+});
+
 
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
