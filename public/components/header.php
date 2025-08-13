@@ -1,15 +1,15 @@
 <header>
-    <a href="/HACKATON/view/home.php" class="logo">
+    <a href="/HACKATHON/view/home.php" class="logo">
         <i class="ri-leaf-fill"><span>EcoSystem</span></i>
     </a>
 
     <ul class="navbar">
-        <li><a href="/HACKATON/view/weather.php">Mapa</a></li>
+        <li><a href="/HACKATHON/view/weather.php">Mapa</a></li>
         <li><a href="">DashBoard</a></li>
         <li><a href="">Monitoramento</a></li>
-        <li><a href="/HACKATON/view/quiz.php">EcoQuiz</a></li>
+        <li><a href="/HACKATHON/view/quiz.php">EcoQuiz</a></li>
         <li><a href="">EcoGame</a></li>
-        <li><a href="/HACKATON/view/donation.php">Doações</a></li>
+        <li><a href="/HACKATHON/view/donation.php">Doações</a></li>
     </ul>
 
     <div class="main">

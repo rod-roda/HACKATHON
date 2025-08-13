@@ -10,7 +10,7 @@ let quizData;
 // Initialize quiz
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('quiz')) {
-        fetchGet(`${window.location.origin}/HACKATON/perguntas/random`)
+        fetchGet(`${window.location.origin}/HACKATHON/perguntas/random`)
         .then(data => {
             quizData = transformarQuiz(data);
             console.log("Quiz carregado:", quizData);
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.add('loading');
                 setTimeout(() => {
                     this.classList.remove('loading');
-                }, 1000);
+                }, 2000);
             }
         });
     });
