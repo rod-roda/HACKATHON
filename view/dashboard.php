@@ -15,7 +15,8 @@
 }
 
         .container-new { 
-            background-color: #ffffff;
+            
+    background:  #222327;
             padding: 30px;
             border-radius: 12px;
             box-shadow: var(--card-shadow);
@@ -24,7 +25,8 @@
         
         /* Estilização dos filtros */
         .filtros-container {
-            background-color: #ffffff;
+    background:  #222327;
+    color:white 
             border-radius: 12px;
             padding: 25px;
             margin-bottom: 30px;
@@ -39,7 +41,7 @@
         }
         
         .filtros-header h2 {
-            color: #2c3e50;
+            color: #f6f8faff;
             font-size: 1.5rem;
             font-weight: 600;
             margin: 0;
@@ -52,6 +54,7 @@
         }
         
         .filtro-group {
+            
             margin-bottom: 0;
         }
         
@@ -59,7 +62,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #34495e;
+            color: #f6f8faff;
             font-size: 0.95rem;
         }
         
@@ -69,7 +72,8 @@
             padding: 12px 15px;
             border: 1px solid #e0e6ed;
             border-radius: 8px;
-            background-color: #f8fafc;
+            background-color:      #222327;
+            color : #fff;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
@@ -269,10 +273,10 @@
                             <div class="stat-icon icon-danger">
                                 <i class="bi bi-person-x"></i>
                             </div>
-                            <div>
-                                <p class="stat-title">Alunos em Alerta</p>
-                                <h3 class="stat-value">7</h3>
-                            </div>
+                     <div style="color: white;">
+    <p class="stat-title">Alunos em Alerta</p>
+    <h3 class="stat-value">7</h3>
+</div>
                         </div>
                         <div class="stat-footer">
                             <i class="bi bi-info-circle"></i> 2 novos casos esta semana

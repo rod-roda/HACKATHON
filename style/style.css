@@ -105,6 +105,7 @@
 .transition-bounce { transition: all var(--transition-bounce); }
 
 /* Opacidades */
+
 .opacity-disabled { opacity: var(--opacity-disabled); }
 .opacity-hover { opacity: var(--opacity-hover); }
 .opacity-light { opacity: var(--opacity-light); }
@@ -527,9 +528,11 @@ body{
             margin-bottom: 25px;
         }
         
+
         .stat-card {
-            background: white;
+            background:#201f1f;
             border-radius: 12px;
+            color: #fff;
             padding: 20px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
@@ -540,6 +543,7 @@ body{
         }
         
         .stat-header {
+            color: white;
             display: flex;
             align-items: center;
             margin-bottom: 15px;
@@ -578,7 +582,7 @@ body{
         
         .stat-title {
             font-size: 0.9rem;
-            color: #777;
+            color: #ffffff;
             margin: 0;
         }
         
@@ -586,7 +590,7 @@ body{
             font-size: 2rem;
             font-weight: 700;
             margin: 0;
-            color: var(--dark);
+            color: var(--white);
         }
         
         .stat-footer {
