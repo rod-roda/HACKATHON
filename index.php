@@ -18,9 +18,13 @@ $roteador->get('/perguntas/random', function () {
 });
 
 $roteador->post("/cadastrar", function(){
-    // echo('oi'); die;
     require_once __DIR__ . '/controle/controller_usuarios.php';
     echo cadastrar();
+});
+
+$roteador->post("/logar", function(){
+    require_once __DIR__ . '/controle/controller_usuarios.php';
+    echo logar();
 });
 
 

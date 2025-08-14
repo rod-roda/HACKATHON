@@ -20,6 +20,7 @@ function cadastrar(){
 
     if(empty($objJson->senha)) return json_encode(error("O campo 'senha' é obrigatório", 400, $resposta));
     $senha = $objJson->senha;
+    if(mb_strlen($senha) < 8) return json_encode(error("A senha deve ter pelo menos 8 caracteres.", 400, $resposta));
 
     if(empty($objJson->cpf)) return json_encode(error("O campo 'cpf' é obrigatório", 400, $resposta));
     $cpf = $objJson->cpf;
@@ -39,15 +40,52 @@ function cadastrar(){
         $objToken = new MeuTokenJWT();
         $claims = new stdClass();
 
-        $claims->nome = $nome;
         $claims->email = $email;
-        $claims->cpf = $cpf;
 
         $token = $objToken->gerarToken($claims);
 
         $resposta->cod = 1;
         $resposta->status = true;
         $resposta->msg = "Cadastrado com sucesso!";
+        $resposta->token = $token;
+
+        return json_encode($resposta);
+    }
+
+    return json_encode(error("Erro no sistema", 500, $resposta));
+}
+
+function logar(){
+    $json = file_get_contents('php://input');
+    $objJson = json_decode($json);
+
+    $resposta = new stdClass();
+
+    if(empty($objJson->email)) return json_encode(error("O campo 'email' é obrigatório", 400, $resposta));
+    $email = $objJson->email;
+
+    if(empty($objJson->senha)) return json_encode(error("O campo 'senha' é obrigatório", 400, $resposta));
+    $senha = $objJson->senha;
+
+    $usuario = new Usuario();
+    if(!($usuario->isUser($email))){
+        return json_encode(error("E-mail incorreto", 400, $resposta));
+    }
+
+    $senha_hash = $usuario->consultarSenha($email);
+    if(!($senha == descriptografar($senha_hash))){
+        return json_encode(error("Senha incorreta", 400, $resposta));
+    }
+
+    if($usuario->logar($email, $senha_hash)){
+        $objToken = new MeuTokenJWT();
+        $claims = new stdClass();
+        $claims->email = $email;
+        $token = $objToken->gerarToken($claims);
+
+        $resposta->cod = 1;
+        $resposta->status = true;
+        $resposta->msg = "Logado com sucesso!";
         $resposta->token = $token;
 
         return json_encode($resposta);

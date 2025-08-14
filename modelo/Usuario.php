@@ -64,6 +64,29 @@ class Usuario implements JsonSerializable{
         return $executou;
     }
 
+    public function consultarSenha($email){
+        $conexao = Banco::getConexao();
+        $sql = "SELECT senha_hash FROM usuario WHERE email = ?;";
+        $prepareSql = $conexao->prepare($sql);
+        $prepareSql->bind_param("s", $email);
+        $executou = $prepareSql->execute();
+        $matrizTuplas = $prepareSql->get_result();
+        $objTupla = $matrizTuplas->fetch_object();
+
+        return $objTupla ? $objTupla->senha_hash : null;
+    }
+
+    public function logar($email, $senha){
+        $conexao = Banco::getConexao();
+        $sql = "SELECT count(*) as qtd FROM usuario WHERE email = ? AND senha_hash = ?;";
+        $prepareSql = $conexao->prepare($sql);
+        $prepareSql->bind_param("ss", $email, $senha);
+        $executou = $prepareSql->execute();
+        $matrizTuplas = $prepareSql->get_result();
+        $objTupla = $matrizTuplas->fetch_object();
+        return $objTupla->qtd > 0;
+    }
+
     public function isUser($email){
         $conexao = Banco::getConexao();
         $sql = "SELECT COUNT(*) AS qtd FROM usuario WHERE email = ?";
