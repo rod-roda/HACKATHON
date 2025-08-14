@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const tokenField = document.getElementById("pixToken");
 
-    fetch(`${window.location.origin}/HACKATON/pix/token`)
+    fetch(`${window.location.origin}/HACKATHON/pix/token`)
         .then(response => response.json())
         .then(data => {
             if (data.status && data.access_token) {

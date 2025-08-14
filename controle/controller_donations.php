@@ -1,89 +1,72 @@
 <?php
-function getAccessToken(){
-    $objResposta = new stdClass();
-    
-    $headers = getallheaders();
-    // $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
-    // $token = new MeuTokenJWT();
-    // if($token->validarToken($authorization)){
+function getAccessToken() {
+    $config = [
+        "certificado" => "C:/xampp/htdocs/HACKATHON/certificados/certificado_completo.pem",
+        "client_id" => "Client_Id_040e1ea39273b7d69e13ba2e1a1fbf363c9d93ca",
+        "client_secret" => "Client_Secret_5ebd64768c8002a55f98427382ba212880b6fc9d"
+    ];
 
-        $config = [
-            "certificado" => "C:/xampp/htdocs/HACKATON/certificados/certificado_completo.pem",
-            "client_id" => "Client_Id_040e1ea39273b7d69e13ba2e1a1fbf363c9d93ca",
-            "client_secret" => "Client_Secret_5ebd64768c8002a55f98427382ba212880b6fc9d"
-        ];
+    $autorizacao = base64_encode($config["client_id"] . ":" . $config["client_secret"]);
 
-        $autorizacao = base64_encode($config["client_id"] . ":" . $config["client_secret"]);
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => "https://pix.api.efipay.com.br/oauth/token",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => '{"grant_type": "client_credentials"}',
+        CURLOPT_SSLCERT => $config["certificado"],
+        CURLOPT_SSLCERTPASSWD => "",
+        CURLOPT_HTTPHEADER => [
+            "Authorization: Basic $autorizacao",
+            "Content-Type: application/json"
+        ],
+    ]);
 
-        $curl = curl_init();
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://pix.api.efipay.com.br/oauth/token",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => '{"grant_type": "client_credentials"}',
-            CURLOPT_SSLCERT => $config["certificado"],
-            CURLOPT_SSLCERTPASSWD => "",
-            CURLOPT_HTTPHEADER => [
-                "Authorization: Basic $autorizacao",
-                "Content-Type: application/json"
-            ],
-        ]);
+    $response = curl_exec($curl);
 
-        $response = curl_exec($curl);
-
-        if ($response === false) {
-            $objResposta->cod = 0;
-            $objResposta->status = false;
-            $objResposta->mensagem = "Erro CURL: " . curl_error($curl);
-        } else {
-            $dados = json_decode($response, true);
-
-            if (isset($dados['access_token'])) {
-                $objResposta->cod = 1;
-                $objResposta->status = true;
-                $objResposta->mensagem = "Token gerado com sucesso!";
-                $objResposta->access_token = $dados['access_token'];
-            } else {
-                $objResposta->cod = 0;
-                $objResposta->status = false;
-                $objResposta->mensagem = "Erro ao gerar token";
-                $objResposta->resposta_api = $dados;
-            }
-        }
-
+    if ($response === false) {
         curl_close($curl);
+        return false; // erro de conexão
+    }
 
-    // }else{
-    //     $objResposta->cod = 2;
-    //     $objResposta->status = false;
-    //     $objResposta->mensagem = "Token invalido!";
-    //     $objResposta->tokenRecebido = $authorization;
-    // }
+    curl_close($curl);
 
-    header("Content-Type: application/json");
-    header("HTTP/1.1 200");
-    echo json_encode($objResposta);
+    $dados = json_decode($response, true);
+
+    if (isset($dados['access_token'])) {
+        return $dados['access_token']; // retorna somente o token
+    }
+
+    return false; // caso a API não retorne o token
 }
 
 function postGerarCodigo() {
     $objResposta = new stdClass();
 
-    // Lê o corpo da requisição apenas uma vez
     $rawBody = file_get_contents("php://input");
     $body = json_decode($rawBody, true);
 
-    if (empty($body['token']) || empty($body['valor'])) {
+    if (empty($body['valor'])) {
         $objResposta->cod = 0;
         $objResposta->status = false;
-        $objResposta->mensagem = "Token e valor são obrigatórios no corpo da requisição!";
+        $objResposta->mensagem = "O campo 'valor' é obrigatório!";
         header("Content-Type: application/json");
-        echo json_encode($objResposta);
-        return;
+        return json_encode($objResposta);
+    }
+
+    // Obtém token via função
+    $token = getAccessToken();
+    if (!$token) {
+        $objResposta->cod = 0;
+        $objResposta->status = false;
+        $objResposta->mensagem = "Erro ao gerar token de acesso!";
+        header("Content-Type: application/json");
+        return json_encode($objResposta);
     }
 
     $config = [
-        "certificado" => "C:/xampp/htdocs/HACKATON/certificados/certificado_completo.pem",
-        "token" => $body['token']
+        "certificado" => "C:/xampp/htdocs/HACKATHON/certificados/certificado_completo.pem",
+        "token" => $token
     ];
 
     $dados = [
@@ -134,5 +117,5 @@ function postGerarCodigo() {
     curl_close($curl);
 
     header("Content-Type: application/json");
-    echo json_encode($objResposta);
+    return json_encode($objResposta);
 }

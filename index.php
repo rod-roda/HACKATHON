@@ -17,14 +17,9 @@ $roteador->get('/perguntas/random', function () {
     echo read10Perguntas();
 });
 
-$roteador->get('/pix/token', function () {
-    require_once __DIR__ . '/controle/controller_donations.php';
-    echo getAccessToken();
-});
-
 $roteador->post('/pix/gerarCodigo', function () {
     require_once __DIR__ . '/controle/controller_donations.php';
-    postGerarCodigo();
+    echo postGerarCodigo();
 });
 
 
