@@ -23,5 +23,6 @@
     <?php include __DIR__ . '/../public/components/quiz_container.php'; ?>
 
     <script src="../js/quiz.js"></script>
+    <script src="../js/functions.js"></script>
 </body>
 </html>

@@ -259,6 +259,8 @@
     --max-width-6xl: 72rem;   /* 1152px */
     --max-width-7xl: 80rem;   /* 1280px */
     --max-width-full: 100%;
+
+    --sbw: calc(100vw - 100%);
 }
 body{
     min-height: 100vh;
@@ -1024,7 +1026,7 @@ header{
 }
 
 .info-section {
-    width: 100vw;
+    width: calc(100vw - var(--sbw));
     margin: 0;
     padding: 0;
     display: flex;
@@ -1036,8 +1038,8 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 70vh;
-    width: 100vw;
+    width: calc(70vw - var(--sbw));
+    width: calc(100vw - var(--sbw));
     padding: var(--space-2xl) 5vw;
     box-sizing: border-box;
     position: relative;
@@ -1179,7 +1181,7 @@ header{
 
 /* ========== DONATION SECTION STYLES ========== */
 .donation-section {
-    width: 100vw;
+    width: calc(100vw - var(--sbw));
     margin: 0;
     padding: 0;
 }
@@ -1189,7 +1191,7 @@ header{
     align-items: center;
     justify-content: center;
     min-height: 70vh;
-    width: 100vw;
+    width: calc(100vw - var(--sbw));
     padding: var(--space-2xl) 5vw;
     box-sizing: border-box;
     position: relative;
