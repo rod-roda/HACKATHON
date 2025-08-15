@@ -39,7 +39,7 @@
                 <i class="ri-pause-fill"></i> Pausar
             </button>
             <button id="resetBtn" class="game-button secondary">
-                <i class="ri-refresh-fill"></i> Reiniciar
+                <i class="ri-reset-left-line"></i> Reiniciar
             </button>
         </div>
 
@@ -237,24 +237,55 @@
                     ctx.restore();
                     
                 } else {
+
                     const colorIndex = (index - 1) % colors.containers.length;
-                    ctx.fillStyle = colors.containers[colorIndex];
+                    const containerColor = colors.containers[colorIndex];
                     
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+                    ctx.fillRect(centerX - size/2 + 2, centerY - size/2 + 2, size - 2, size - 2);
+                    
+                    ctx.fillStyle = containerColor;
                     ctx.fillRect(centerX - size/2 + 1, centerY - size/2 + 1, size - 2, size - 2);
                     
-                    ctx.strokeStyle = colors.shipDeck;
-                    ctx.lineWidth = 1;
+                    const gradient = ctx.createLinearGradient(
+                        centerX - size/2 + 1, centerY - size/2 + 1,
+                        centerX + size/2 - 1, centerY + size/2 - 1
+                    );
+                    gradient.addColorStop(0, containerColor);
+                    gradient.addColorStop(0.3, containerColor);
+                    gradient.addColorStop(1, darkenColor(containerColor, 0.3));
                     
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(centerX - size/2 + 1, centerY - size/2 + 1, size - 2, size - 2);
+                    
+                    ctx.strokeStyle = darkenColor(containerColor, 0.5);
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(centerX - size/2 + 1, centerY - size/2 + 1, size - 2, size - 2);
+                    
+                    ctx.strokeStyle = darkenColor(containerColor, 0.4);
+                    ctx.lineWidth = 1;
                     for (let i = 1; i < 4; i++) {
+                        const y = centerY - size/2 + 1 + (i * (size-2)/4);
                         ctx.beginPath();
-                        ctx.moveTo(centerX - size/2 + 1, centerY - size/2 + (i * (size-2)/4));
-                        ctx.lineTo(centerX + size/2 - 1, centerY - size/2 + (i * (size-2)/4));
+                        ctx.moveTo(centerX - size/2 + 2, y);
+                        ctx.lineTo(centerX + size/2 - 2, y);
                         ctx.stroke();
                     }
                     
-                    ctx.fillStyle = colors.shipDeck;
-                    ctx.fillRect(centerX + size/3, centerY - size/6, 3, size/3);
-
+                    for (let i = 1; i < 3; i++) {
+                        const x = centerX - size/2 + 1 + (i * (size-2)/3);
+                        ctx.beginPath();
+                        ctx.moveTo(x, centerY - size/2 + 2);
+                        ctx.lineTo(x, centerY + size/2 - 2);
+                        ctx.stroke();
+                    }
+                    
+                    ctx.fillStyle = '#1f2937';
+                    ctx.fillRect(centerX + size/3 - 1, centerY - size/8, 4, size/4);
+                    
+                    ctx.fillStyle = '#374151';
+                    ctx.fillRect(centerX + size/3, centerY - size/12, 2, size/6);
+                    
                 }
             });
         }
@@ -281,6 +312,22 @@
                 case 2: return '🥤';
                 default: return '🗑️';
             }
+        }
+
+        function darkenColor(color, factor) {
+            color = color.replace('#', '');
+            
+            const r = parseInt(color.substr(0, 2), 16);
+            const g = parseInt(color.substr(2, 2), 16);
+            const b = parseInt(color.substr(4, 2), 16);
+            
+            // Escurece a cor
+            const newR = Math.round(r * (1 - factor));
+            const newG = Math.round(g * (1 - factor));
+            const newB = Math.round(b * (1 - factor));
+            
+            // Converte de volta para hex
+            return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
         }
 
         function moveShip() {
