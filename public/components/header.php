@@ -8,7 +8,7 @@
         <li><a href="">DashBoard</a></li>
         <li><a href="">Monitoramento</a></li>
         <li><a href="/HACKATHON/view/quiz.php">EcoQuiz</a></li>
-        <li><a href="">EcoGame</a></li>
+        <li><a href="/HACKATHON/view/game.php">EcoGame</a></li>
         <li><a href="/HACKATHON/view/donation.php">Doações</a></li>
     </ul>
 
