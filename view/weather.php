@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoSystem - Mapa Climático</title>
+  <title>Mapa Climático | Eco System</title>
 
   <?php include __DIR__ . '/../public/components/links.php'; ?>
 

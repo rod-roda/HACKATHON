@@ -87,7 +87,13 @@
                 <h2 style="margin-bottom:16px;">Escaneie o QR Code Pix</h2>
                 <img id="pixQrCodeImg" src="" alt="QR Code Pix" style="width:220px; height:220px; margin-bottom:16px;" />
                 <p style="margin-bottom:8px;">Use o app do seu banco para escanear e doar.</p>
-                <div id="pixKeyBlock" style="margin-bottom:8px; font-size:16px; color:#333;"></div>
+                <div id="pixKeyBlock" style="margin-bottom:16px; font-size:14px; color:#666; word-break:break-all; background:#f5f5f5; padding:8px; border-radius:6px; border:1px solid #ddd;"></div>
+                <button id="copyPixBtn" style="background:#0e9a2d; color:#fff; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-size:14px; margin-top:8px; display:flex; align-items:center; justify-content:center; gap:8px; margin:0 auto;">
+                    <i class="ri-file-copy-line"></i> Copiar Código PIX
+                </button>
+                <div id="copyFeedback" style="margin-top:8px; color:#28a745; font-size:12px; display:none;">
+                    ✓ Código copiado com sucesso!
+                </div>
             </div>
         </div>
 </section>

@@ -16,6 +16,10 @@ function initializeDonation() {
     const closePixModalBtn = document.getElementById('closePixModal');
     const pixQrCodeImg = document.getElementById('pixQrCodeImg');
     const pixKeyBlock = document.getElementById('pixKeyBlock');
+    const copyPixBtn = document.getElementById('copyPixBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+    
+    let currentPixKey = '';
 
     if (openPixModalBtn) {
         openPixModalBtn.addEventListener('click', function() {
@@ -35,14 +39,40 @@ function initializeDonation() {
 
             fetchPost('/HACKATHON/pix/gerarCodigo', { valor: valor})
             .then(res => {
-                const pixKey = res.pixCopiaECola;
-                const qrApiUrl = generateQRCode(pixKey);
+                currentPixKey = res.pixCopiaECola; // Armazena a chave PIX
+                const qrApiUrl = generateQRCode(currentPixKey);
 
                 pixModal.style.display = 'flex';
-                pixKeyBlock.textContent = 'Chave Pix: ' + pixKey;
+                pixKeyBlock.textContent = currentPixKey;
                 pixQrCodeImg.src = qrApiUrl;
+                
+                // Reset feedback message
+                copyFeedback.style.display = 'none';
             });
 
+        });
+    }
+
+    if (copyPixBtn) {
+        copyPixBtn.addEventListener('click', function() {
+            if (currentPixKey) {
+                copyToClipboard(currentPixKey)
+                    .then(() => {
+                        // Mostra feedback de sucesso
+                        copyFeedback.style.display = 'block';
+                        copyPixBtn.innerHTML = '<i class="ri-check-line"></i> Copiado!';
+                        copyPixBtn.style.background = '#28a745';
+                        
+                        setTimeout(() => {
+                            copyFeedback.style.display = 'none';
+                            copyPixBtn.innerHTML = '<i class="ri-file-copy-line"></i> Copiar Código PIX';
+                            copyPixBtn.style.background = '#0e9a2d';
+                        }, 2000);
+                    })
+                    .catch(() => {
+                        showNotification('Erro ao copiar código PIX. Tente copiar manualmente.', 'error');
+                    });
+            }
         });
     }
 
@@ -72,4 +102,35 @@ function getDonationValue() {
     }
 
     return value;
+}
+
+async function copyToClipboard(text) {
+    try {
+        // Tenta usar a API moderna do clipboard
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return Promise.resolve();
+        } else {
+            // Fallback para navegadores mais antigos
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            const successful = document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            if (successful) {
+                return Promise.resolve();
+            } else {
+                return Promise.reject();
+            }
+        }
+    } catch (err) {
+        return Promise.reject(err);
+    }
 }
