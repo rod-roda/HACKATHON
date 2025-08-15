@@ -1,4 +1,9 @@
 <?php
+
+use Firebase\JWT\MeuTokenJWT;
+require_once "modelo/MeuTokenJWT.php";
+require_once "modelo/Banco.php";
+require_once "modelo/Donation.php";
 function getAccessToken() {
     $config = [
         "certificado" => "C:/xampp/htdocs/HACKATHON/certificados/certificado_completo.pem",
@@ -118,4 +123,30 @@ function postGerarCodigo() {
 
     header("Content-Type: application/json");
     return json_encode($objResposta);
+}
+function registrarPix() {
+    $json = file_get_contents('php://input');
+    $objJson = json_decode($json);
+
+    $resposta = new stdClass();
+
+    if (empty($objJson->usuarioId)) {
+        return json_encode(error("O campo 'usuarioId' é obrigatório", 400, $resposta));
+    }
+    $usuarioId = $objJson->usuarioId;
+
+    if (empty($objJson->valor) || !is_numeric($objJson->valor) || $objJson->valor <= 0) {
+        return json_encode(error("O campo 'valor' é inválido", 400, $resposta));
+    }
+    $valor = $objJson->valor;
+
+    $donation = new Donation();
+    if ($donation->cadastrar($usuarioId, $valor)) {
+        $resposta->cod = 1;
+        $resposta->status = true;
+        $resposta->msg = "Doação cadastrada com sucesso!";
+        return json_encode($resposta);
+    }
+
+    return json_encode(error("Erro ao cadastrar a doação", 500, $resposta));
 }
