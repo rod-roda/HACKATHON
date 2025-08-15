@@ -37,6 +37,10 @@
             });
         });
     </script>
-    
+
+    <!-- GERAR O QR CODE  -->
+    <script src="https://unpkg.com/qrcode/build/qrcode.min.js"></script>
+    <script src="../js/donation.js"></script>
+    <script src="../js/functions.js"></script>
 </body>
 </html>

@@ -27,6 +27,11 @@ $roteador->post("/logar", function(){
     echo logar();
 });
 
+$roteador->post('/pix/gerarCodigo', function () {
+    require_once __DIR__ . '/controle/controller_donations.php';
+    echo postGerarCodigo();
+});
+
 
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
