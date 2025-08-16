@@ -10,12 +10,19 @@ let quizData;
 // Initialize quiz
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('quiz')) {
-        fetchGet(`${window.location.origin}/HACKATHON/perguntas/random`)
+        let token = localStorage.getItem('token')
+        console.log("Token do localStorage: " + token.trim())
+        
+        fetchGet(`${window.location.origin}/HACKATHON/perguntas/random`, token)
         .then(data => {
-            quizData = transformarQuiz(data);
-            console.log("Quiz carregado:", quizData);
-            initializeQuiz();
-            setupEventListeners();
+            if(data.status){
+                quizData = transformarQuiz(data);
+                console.log("Quiz carregado:", quizData);
+                initializeQuiz();
+                setupEventListeners();
+            }else{
+                showNotification(`Erro: ${data.msg}`, 'warning');
+            }
         }); 
     }
 });

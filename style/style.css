@@ -2519,3 +2519,185 @@ header{
         height: auto !important;
     }
 }
+
+/* ------------------------------------------------ LOGAR */
+.body-logar{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('../image/forestbg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 360px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    text-align: center;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+    font-weight: 600;
+    margin-top: 30px
+}
+
+.login-container span {
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: white;
+}
+
+#toggleSenha{
+    cursor: pointer !important;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: var(--transition-normal);
+}
+
+.login-container button:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-neon);
+    transform: translateY(-2px);
+}
+
+.login-container span a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------ CADASTRAR */
+
+.sign-in-container {
+    width: 360px;
+    height: auto;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    text-align: center;
+}
+
+.sign-in-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+    font-weight: 600;
+    margin-top: 30px
+}
+
+.sign-in-container span {
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: white;
+}
+
+.sign-in-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: var(--transition-normal);
+}
+
+.sign-in-container button:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-neon);
+    transform: translateY(-2px);
+}
+
+.sign-in-container span a {
+    color: white;
+    text-decoration: underline;
+}

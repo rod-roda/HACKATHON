@@ -7,6 +7,10 @@
     <?php include __DIR__ . '/../public/components/links.php'; ?>
 </head>
 <body>
+    <script>
+        if(!(localStorage.getItem('token')))  window.location.href = "logar.php"; //TODO -- DEIXAR ISSO MAIS SEGURO DPS COM O SERVERSIDE DO PHP
+    </script>
+
     <?php include __DIR__ . '/../public/components/header.php'; ?>
 
     <!-- <script src="../js/script.js"></script> -->

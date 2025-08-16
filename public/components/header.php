@@ -13,8 +13,14 @@
     </ul>
 
     <div class="main">
-        <a href="" class="user"><i class="ri-user-fill"></i>Log-in</a>
-        <button class="neon">Sign-Up</button>
+        <a href="/HACKATHON/view/logar.php" class="user"><i class="ri-user-fill"></i>Log-in</a>
+        <button class="neon" id="btn-cadastrar">Sign-Up</button>
         <div class="bx bx-menu" id="menu-icon"></div>
     </div>
+
+    <script>
+        document.querySelector('#btn-cadastrar').addEventListener('click', function() {
+            window.location.href = "cadastrar.php";
+        });
+    </script>
 </header>

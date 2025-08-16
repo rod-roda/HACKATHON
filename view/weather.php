@@ -72,7 +72,11 @@
 </head>
 
 <body>
-    <?php include __DIR__ . '/../public/components/header.php'; ?>
+  <script>
+        if(!(localStorage.getItem('token')))  window.location.href = "logar.php"; //TODO -- DEIXAR ISSO MAIS SEGURO DPS COM O SERVERSIDE DO PHP
+  </script>  
+
+  <?php include __DIR__ . '/../public/components/header.php'; ?>
     
     <script>
         document.querySelectorAll(".navbar li a").forEach(link => {
