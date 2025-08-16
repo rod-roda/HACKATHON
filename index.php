@@ -8,8 +8,14 @@ $roteador->get('/', function () {
 });
 
 $roteador->get('/perguntas/(\d+)', function ($id) {
-    require_once __DIR__ . '/controle/controller_perguntas_quiz.php';
+    require_once __DIR__ . '/HACKATON/controle/controller_perguntas_quiz.php';
     echo readById($id);
+});
+
+$roteador->post('/dashboard', function () {
+    require_once __DIR__ . '/controle/controller_dashboards.php';
+        echo createAtividade();
+
 });
 
 /*

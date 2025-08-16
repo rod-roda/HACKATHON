@@ -1,41 +1,40 @@
 <?php
 use Firebase\JWT\MeuTokenJWT;
-require_once "modelo/MeuTokenJWT.php";
-require_once "modelo/Banco.php";
-require_once "modelo/AtividadeEcologica.php";
+require_once __DIR__ . '/../modelo/MeuTokenJWT.php';
+require_once __DIR__ . '/../modelo/Banco.php';
+require_once __DIR__ . '/../modelo/Dashboard.php';
 
 // Criar nova atividade
-function createAtividade($dados) {
+function createAtividade() {
     $objResposta = new stdClass();
     $atividade = new AtividadeEcologica();
 
-    $headers = getallheaders();
-    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
-    $token = new MeuTokenJWT();
+    // Pega o JSON enviado pelo front-end
+    $dados = json_decode(file_get_contents("php://input"));
 
-    if($token->validarToken($authorization)) {
-        $atividade->setUsuarioId($dados->usuario_id);
-        $atividade->setNomeAtividade($dados->nome_atividade);
-        $atividade->setQuantidade($dados->quantidade);
-        $atividade->setCarbonoEmitido($dados->carbono_emitido);
-        $atividade->setDataAtividade($dados->data_atividade);
-
-        $atividade->create();
-
-        $objResposta->cod = 1;
-        $objResposta->status = true;
-        $objResposta->mensagem = "Atividade registrada!";
-        $objResposta->dados = $atividade;
-    } else {
+    if (!$dados) {
         $objResposta->cod = 2;
         $objResposta->status = false;
-        $objResposta->mensagem = "Token inválido!";
-        $objResposta->tokenRecebido = $authorization;
+        $objResposta->mensagem = "Dados inválidos ou ausentes";
+        echo json_encode($objResposta);
+        exit;
     }
 
+    $atividade->setUsuarioId(1); // depois pegar do token
+    $atividade->setNomeAtividade($dados->nome_atividade);
+    $atividade->setQuantidade($dados->quantidade);
+    $atividade->setDataAtividade($dados->data_atividade);
+
+    $atividade->create();
+
+    $objResposta->cod = 1;
+    $objResposta->status = true;
+    $objResposta->mensagem = "Atividade registrada!";
+
     header("Content-Type: application/json");
-    header("HTTP/1.1 200");
-    return json_encode($objResposta);
+    header("HTTP/1.1 200 OK");
+    echo json_encode($objResposta);
+    exit;
 }
 
 // Listar atividades
@@ -44,21 +43,21 @@ function readAtividades() {
     $atividade = new AtividadeEcologica();
 
     $headers = getallheaders();
-    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
-    $token = new MeuTokenJWT();
+//    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+//$token = new MeuTokenJWT();
 
-    if($token->validarToken($authorization)) {
+  //  if($token->validarToken($authorization)) {
         $dados = $atividade->readAll();
         $objResposta->cod = 1;
         $objResposta->status = true;
         $objResposta->mensagem = "Atividades encontradas!";
         $objResposta->dados = $dados;
-    } else {
+  //  } else {
         $objResposta->cod = 2;
         $objResposta->status = false;
-        $objResposta->mensagem = "Token inválido!";
-        $objResposta->tokenRecebido = $authorization;
-    }
+     //   $objResposta->mensagem = "Token inválido!";
+    //    $objResposta->tokenRecebido = $authorization;
+   // }
 
     header("Content-Type: application/json");
     header("HTTP/1.1 200");

@@ -333,6 +333,9 @@
         <i class="bi bi-plus-circle"></i> Registrar Atividade Ecológica
     </button>
 </div>
+
+
+
     </div>
 </div>
 
@@ -441,47 +444,35 @@
     </div>
 </div>
 
-     <div class="modal-overlay" id="modalOverlay">
-            <div class="modal">
-                <div class="modal-header">
-                    <h2><i class="bi bi-tree"></i> Nova Atividade Ecológica</h2>
-                    <button class="close-btn" id="closeModal">
-                        <i class="bi bi-x-lg"></i>
-                    </button>
-                </div>
-                
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="activityName"><i class="bi bi-tag"></i> Nome da Atividade Ecológica</label>
-                        <input type="text" id="activityName" placeholder="Ex: Reciclagem de plástico, Plantio de árvores...">
-                    </div>
-                    
-              <div class="form-group">
-    <label for="quantity"><i class="bi bi-123"></i> Quantidade</label>
-    <input type="number" id="quantity" placeholder="Ex: 50, 100, 250..." min="1">
-</div>
-                    
-                    <div class="form-group">
-                        <label for="period"><i class="bi bi-calendar"></i> Período</label>
-                        <select id="period">
-                            <option value="">Selecione um período</option>
-                            <option value="diario">Diário</option>
-                            <option value="semanal">Semanal</option>
-                            <option value="mensal">Mensal</option>
-                            <option value="trimestral">Trimestral</option>
-                            <option value="anual">Anual</option>
-                        </select>
-                    </div>
-                    
-            
-                </div>
-                
-                <div class="modal-footer">
-                    <button class="modal-btn btn-cancel" id="cancelModal">Cancelar</button>
-                    <button class="modal-btn btn-save"><i class="bi bi-check-circle"></i> Salvar Atividade</button>
-                </div>
-            </div>
+   <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h2><i class="bi bi-tree"></i> Cadastrar Atividade</h2>
+            <button class="close-btn" id="closeModal"><i class="bi bi-x-lg"></i></button>
         </div>
+        <div class="modal-body">
+            <form id="formAtividade">
+                <div class="form-group">
+                    <label for="nome_atividade"><i class="bi bi-tag"></i> Nome da Atividade</label>
+                    <input type="text" id="nome_atividade" name="nome_atividade" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade"><i class="bi bi-123"></i> Quantidade</label>
+                    <input type="number" id="quantidade" name="quantidade" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="data_atividade"><i class="bi bi-calendar"></i> Data da Atividade</label>
+                    <input type="date" id="data_atividade" name="data_atividade" required>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn btn-cancel" id="cancelModal">Cancelar</button>
+            <button class="modal-btn btn-save" id="btnSalvar"><i class="bi bi-check-circle"></i> Salvar</button>
+        </div>
+    </div>
+</div>
 
 
         

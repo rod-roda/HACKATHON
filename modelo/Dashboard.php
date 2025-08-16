@@ -27,6 +27,7 @@ class AtividadeEcologica implements JsonSerializable {
         $conexao = Banco::getConexao();
         $sql = "INSERT INTO atividades_ecologicas (usuario_id, nome_atividade, quantidade, carbono_emitido, data_atividade) 
                 VALUES (?, ?, ?, ?, ?)";
+        echo $this->usuario_id;
         $prepareSql = $conexao->prepare($sql);
         $prepareSql->bind_param("isdds", $this->usuario_id, $this->nome_atividade, $this->quantidade, $this->carbono_emitido, $this->data_atividade);
         $prepareSql->execute();
