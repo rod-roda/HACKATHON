@@ -53,6 +53,12 @@ $roteador->post('/logs/acao', function () {
     require_once __DIR__ . '/controle/controller_logs.php';
     echo listarLogsPorAcao();
 });
+
+$roteador->post('/iaServices/pergunta', function () {
+    require_once __DIR__ . '/controle/controller_iaServices.php';
+    echo responderPerguntaSustentabilidade();
+});
+
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 
