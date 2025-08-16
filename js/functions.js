@@ -1,9 +1,13 @@
-function fetchGet(uri) {
+function fetchGet(uri, token = null) {
+    const headers = {
+        'Content-Type': 'application/json'
+    };
+
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    
     return fetch(uri, {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        headers
     })
     .then(response => {
         if (!response.ok) {
@@ -17,12 +21,17 @@ function fetchGet(uri) {
     });
 }
 
-function fetchPost(uri, data) {
+function fetchPost(uri, data, token = null) {
+    const headers = {
+        'Content-Type': 'application/json'
+    };
+
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    console.log(token);
+    
     return fetch(uri, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers,
         body: JSON.stringify(data) // transforma o objeto em JSON
     })
     .then(response => {

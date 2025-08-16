@@ -37,17 +37,23 @@ function initializeDonation() {
                 return;
             }
 
-            fetchPost('/HACKATHON/pix/gerarCodigo', { valor: valor})
+            let token = localStorage.getItem('token')
+            
+            fetchPost('/HACKATHON/pix/gerarCodigo', { valor: valor}, token)
             .then(res => {
-                currentPixKey = res.pixCopiaECola; // Armazena a chave PIX
-                const qrApiUrl = generateQRCode(currentPixKey);
-
-                pixModal.style.display = 'flex';
-                pixKeyBlock.textContent = currentPixKey;
-                pixQrCodeImg.src = qrApiUrl;
-                
-                // Reset feedback message
-                copyFeedback.style.display = 'none';
+                if(res.status){
+                    currentPixKey = res.pixCopiaECola; // Armazena a chave PIX
+                    const qrApiUrl = generateQRCode(currentPixKey);
+    
+                    pixModal.style.display = 'flex';
+                    pixKeyBlock.textContent = currentPixKey;
+                    pixQrCodeImg.src = qrApiUrl;
+                    
+                    // Reset feedback message
+                    copyFeedback.style.display = 'none';
+                }else{
+                    showNotification(`Erro: ${res.msg}`, 'warning');
+                }
             });
 
         });

@@ -30,7 +30,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
         .then(res => {
             if(res.status){
                 showNotification("Cadastro realizado com sucesso!");
-                localStorage.setItem('token', JSON.stringify(res.token));
+                localStorage.setItem('token', res.token);
                 window.location.href = "home.php";
             } else {
                 showNotification(`Erro ao cadastrar! ${res.msg}`);
