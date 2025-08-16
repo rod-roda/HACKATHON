@@ -37,6 +37,22 @@ $roteador->post("/pix/registrar", function(){
     echo registrarPix();
 });
 
+$roteador->post('/logs/registrar', function () {
+    require_once __DIR__ . '/controle/controller_logs.php';
+    echo registrarLog();
+});
+
+// Listar todos os logs
+$roteador->get('/logs/listar', function () {
+    require_once __DIR__ . '/controle/controller_logs.php';
+    echo listarLogs();
+});
+
+// Listar logs filtrando por ação (lê 'acao' do body JSON)
+$roteador->post('/logs/acao', function () {
+    require_once __DIR__ . '/controle/controller_logs.php';
+    echo listarLogsPorAcao();
+});
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 
