@@ -1,0 +1,165 @@
+:root{
+  --bg-img: url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZXN0JTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D');
+  --main-color: #00fa53;
+  --text-color: #ffffff;
+}
+
+/* ===== Base ===== */
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+body{
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  display: flex;
+  align-items: center;         /* centra verticalmente o box */
+  justify-content: center;     /* centra horizontalmente o box */
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-img) no-repeat center / cover;
+  padding: 24px;
+  color: var(--text-color);
+}
+
+/* ===== Card (glass) ===== */
+.glass{
+  width: min(400px, 92vw);
+  padding: 32px 28px;
+  border-radius: 24px;
+  text-align: center;
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  background: rgba(34, 34, 34, 0.699);
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+/* ===== Logo (centralizada) ===== */
+.logo-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* centraliza a logo dentro do box */
+  gap: 10px;
+  transition: transform .25s ease;
+  margin-bottom: 24px;
+}
+.logo-login i{
+  color: var(--main-color);
+  font-size: 32px;
+  filter: drop-shadow(0 0 10px rgba(6, 129, 31, 0.3));
+}
+.logo-login span{
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+  background: linear-gradient(135deg, var(--main-color), #20c94a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.logo-login:hover{ transform: scale(1.06); }
+
+/* ===== Inputs com ícone dentro ===== */
+.input-group{
+  position: relative;
+  margin-bottom: 16px;
+}
+.input-group input{
+  width: 100%;
+  height: 50px;
+  padding: 10px 16px 10px 46px;   /* espaço para o ícone à esquerda */
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(2, 2, 2, 0.315);
+  color: var(--text-color);
+  border-radius: 41px;
+  outline: none;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: lighter;
+}
+.input-group input::placeholder{
+  color: rgba(255,255,255,0.8);
+}
+.input-group i{
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--main-color);
+  pointer-events: none; /* não bloqueia o clique no input */
+}
+
+.input-group.no-icon input {
+  padding-left: 25px; /* igual aos outros campos sem ícone */
+} 
+
+.input-group::selection {
+    background: rgba(41, 182, 88, 0.74);
+    color: #0a0a0a;
+}
+
+.input-group input:focus{
+  border-color: rgb(4, 105, 37);
+  box-shadow: 1px 0px 5px rgba(0, 255, 85, 0.753);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group:focus-within i{
+  color: #21f96a;
+  filter: drop-shadow(0 0 6px rgba(33, 249, 106, 0.5));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+
+
+  /* ===== Links ===== */
+  .links{
+    margin: 10px 0 18px;
+    padding-left: 5px;
+    font-size: .95rem;
+    text-align: left;
+  }
+  .links a{
+    color: rgba(33, 249, 106, 0.9);
+    text-decoration: none;
+  }
+
+  .links a:hover{
+    transition: transform 0.3s ease, filter 0.3s ease;
+    color: rgba(33, 249, 106, 1);
+  }
+
+/* ===== Botão ===== */
+.btn-login{
+  width: 60%;
+  height: 46px;
+  border: none;
+  border-radius: 1000px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: bolder;
+  font-size: 15px;
+  background: linear-gradient(135deg, var(--main-color), #1cdf61);
+  color: #0a0a0a;
+  box-shadow: 1px 0px 15px rgba(33, 249, 106, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-login:hover{
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+.btn-login:active{
+  transform: translateY(0);
+}
+
+/* ===== Rodapé ===== */
+.register{
+  margin-top: 18px;
+  font-size: .95rem;
+}
+.register a{
+  color: rgba(33, 249, 106, 0.9);
+  text-decoration: none;
+}
+.register a:hover { 
+    transition: transform 0.3s ease, filter 0.3s ease;
+    color: rgba(33, 249, 106, 1);
+}
