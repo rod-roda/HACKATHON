@@ -47,6 +47,10 @@
             </button>
         </div>
 
+        <p class="points-title">
+            Melhor pontuação: <span>300</span>
+        </p>
+
         <div class="game-board">
             <canvas id="gameCanvas" width="400" height="400"></canvas>
             <div id="gameOverlay" class="game-over-overlay">

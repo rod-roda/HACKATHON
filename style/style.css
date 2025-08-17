@@ -2344,6 +2344,16 @@ header{
     margin-bottom: var(--space-lg);
 }
 
+.points-title{
+    font-size: var(--font-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.points-title span{
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
 .game-board {
     background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 50%, #1e1b4b 100%);
     border: 3px solid var(--primary);
