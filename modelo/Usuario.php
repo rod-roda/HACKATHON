@@ -97,4 +97,23 @@ class Usuario implements JsonSerializable{
         $objTupla = $matrizTuplas->fetch_object();
         return $objTupla->qtd > 0;
     }
+
+    public function readUserByEmail($email){
+        $conexao = Banco::getConexao();
+        $sql = "SELECT * FROM usuario WHERE email = ?";
+        $prepareSql = $conexao->prepare($sql);
+        $prepareSql->bind_param("s", $email);
+        $executou = $prepareSql->execute();
+        
+        $matrizTuplas = $prepareSql->get_result();
+        $objTupla = $matrizTuplas->fetch_object();
+        
+        $usuario = new Usuario();
+        $usuario->setId($objTupla->id);
+        $usuario->setNome($objTupla->nome);
+        $usuario->setCpf($objTupla->cpf);
+
+        $prepareSql->close();
+        return $usuario;
+    }
 }

@@ -59,6 +59,8 @@ class MeuTokenJWT
         $objPayload->jti = bin2hex(random_bytes(16)); // gera um valor aleatório para jti;
 
         //Public Claims
+        $objPayload->idUsuario = $parametro_claims->idUsuario;
+        $objPayload->nomeUsuario = $parametro_claims->nomeUsuario;
         $objPayload->emailUsuario = $parametro_claims->emailUsuario;
         $objPayload->senhaUsuario = $parametro_claims->senhaUsuario;
 

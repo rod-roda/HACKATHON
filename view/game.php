@@ -47,6 +47,10 @@
             </button>
         </div>
 
+        <p class="points-title">
+            Melhor pontuação: <span id="points-text">0</span>
+        </p>
+
         <div class="game-board">
             <canvas id="gameCanvas" width="400" height="400"></canvas>
             <div id="gameOverlay" class="game-over-overlay">
@@ -81,6 +85,26 @@
             </button>
         </div>
     </div>
+
+    <script src="../js/functions.js"></script>
+    <script>
+        
+        function updateBestScore(){
+            const textoId = document.getElementById('points-text');
+            const token = localStorage.getItem('token');
+            
+            fetchGet(`${window.location.origin}/HACKATHON/user_game/read`, token)
+            .then(data => {
+                if(data.status){
+                    let dados = data.cod != 404 ? data.dados.resultado : 0;
+                    textoId.textContent = dados;
+                }else{
+                    showNotification(`Erro ao resgatar sua pontuação: ${data.msg}`, 'warning');
+                }
+            });
+        }
+        updateBestScore();
+    </script>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -382,6 +406,21 @@
             gameOverlay.style.display = 'flex';
             startBtn.style.display = 'inline-flex';
             pauseBtn.style.display = 'none';
+
+            const token = localStorage.getItem('token');
+            const jsonBody = {
+                jogo_nome: 'EcoMarine',
+                resultado: score
+            };
+
+            fetchPost(`${window.location.origin}/HACKATHON/user_game/insert`, jsonBody, token)
+            .then(data => {
+                if(data.status){
+                    updateBestScore();
+                }else{
+                    showNotification("Erro ao atualizar sua pontuação", 'warning');
+                }
+            });
         }
 
         function update() {
