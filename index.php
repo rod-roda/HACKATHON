@@ -48,6 +48,16 @@ $roteador->post('/user_quiz/insert', function () {
     echo insertScore();
 });
 
+$roteador->get('/user_quiz/read', function () {
+    require_once __DIR__ . '/controle/controller_user_quiz.php';
+    echo readById();
+});
+
+$roteador->get('/user_game/read', function () {
+    require_once __DIR__ . '/controle/controller_user_game.php';
+    echo readById();
+});
+
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 

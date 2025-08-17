@@ -58,3 +58,37 @@ function insertScore(){
 
     return json_encode($resposta);
 }
+
+function readById(){
+    $resposta = new stdClass();
+
+    $headers = getallheaders();
+    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+    
+    $userQuiz = new UserQuiz();
+    
+    $token = new MeuTokenJWT();
+    if($token->validarToken($authorization)){
+        $payload = $token->getPayload($authorization); //contem o ID
+        $usuario_id = $payload->idUsuario;
+
+        if($userQuiz->isUserQuiz($usuario_id)){
+            $dados = $userQuiz->readById($usuario_id);
+            $resposta->cod = 1;
+            $resposta->status = true;
+            $resposta->msg = "Dados do UserQuiz encontrados!";
+            $resposta->dados = $dados;
+        }else{
+            $resposta->cod = 404;
+            $resposta->status = true;
+            $resposta->msg = "Usuário não encontrado ou ainda não existente";
+        }
+    }else{
+        $resposta->cod = 2;
+        $resposta->status = false;
+        $resposta->msg = "Token invalido!";
+        $resposta->tokenRecebido = $authorization;
+    }
+
+    return json_encode($resposta);
+}
