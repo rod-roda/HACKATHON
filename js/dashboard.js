@@ -36,6 +36,8 @@ btnSalvar.addEventListener("click", () => {
     registrarAtividade();
 });
 
+
+
 async function registrarAtividade() {
     try {
         const form = document.getElementById("formAtividade");
@@ -68,3 +70,25 @@ async function registrarAtividade() {
         console.error("Erro ao cadastrar:", err);
     }
 }
+
+
+async function carregarCarbonoStats() {
+    try {
+        const resposta = await fetch("/HACKATON/dashboard/relatorio/dashboards");
+        const json = await resposta.json();
+
+        if (json.status) {
+            document.getElementById("carbonoTotal").innerText = json.dados.total + " kg";
+            document.getElementById("carbonoMes").innerText = json.dados.mes + " kg";
+            console.log(json.dados)
+             document.getElementById("qtdQuiz").innerText = json.dados.quiz_acertos_mes + " pts";
+        document.getElementById("donation").innerText = "R$" + json.dados.total_doado_mes;
+        }
+    } catch (err) {
+        console.error("Erro ao carregar stats de carbono:", err);
+    }
+}
+
+
+// chama ao carregar a página
+document.addEventListener("DOMContentLoaded", carregarCarbonoStats);

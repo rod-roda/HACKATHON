@@ -18,6 +18,15 @@ $roteador->post('/dashboard', function () {
 
 });
 
+$roteador->get('/dashboard/relatorio/dashboards', function () {
+    require_once __DIR__ . '/controle/controller_dashboards.php';
+    readDashboardStats();
+});
+
+$roteador->get('/dashboard/relatorio/graficos', function () {
+    require_once __DIR__ . '/controle/controller_dashboards.php';
+    readGraficosGerais();
+});
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 

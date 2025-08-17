@@ -1,0 +1,47 @@
+@ -1,66 +0,0 @@
+<!-- Styles -->
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+</style>
+
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+<!-- Chart code --><script>
+am5.ready(async function() {
+
+  var root = am5.Root.new("chartdiv");
+  root.setThemes([am5themes_Animated.new(root)]);
+
+  var chart = root.container.children.push(
+    am5percent.PieChart.new(root, { layout: root.verticalLayout })
+  );
+
+  var series = chart.series.push(
+    am5percent.PieSeries.new(root, {
+      valueField: "value",
+      categoryField: "category"
+    })
+  );
+
+  try {
+    const resp = await fetch("/HACKATON//dashboard/relatorio/graficos");
+const json = await resp.json();
+if (json.status && json.dados && json.dados.resumo) {
+  series.data.setAll(json.dados.resumo);
+}
+  } catch (e) {
+    console.error("Erro ao carregar gráfico:", e);
+  }
+
+  series.appear(1000, 100);
+});
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>

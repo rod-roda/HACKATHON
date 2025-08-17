@@ -345,50 +345,53 @@
     <!-- Gráficos -->
                <!-- Dashboard Stats -->
    <div class="dashboard-grid">
-    <div class="stat-card">
-        <div class="stat-header">
-            <div class="stat-icon icon-primary">
-                <i class="bi bi-bicycle"></i>
-            </div>
-            <div>
-                <p class="stat-title">Viagens Sustentáveis (mês)</p>
-                <h3 class="stat-value">1.245</h3>
-            </div>
-        </div>
-        <div class="stat-footer">
-            <i class="bi bi-arrow-up"></i> 15% mais que o mês anterior
-        </div>
-    </div>
 
-    <div class="stat-card">
-        <div class="stat-header">
-            <div class="stat-icon icon-warning">
-                <i class="bi bi-cloud-fog"></i>
-            </div>
-            <div>
-                <p class="stat-title">Emissões de CO₂ (ton)</p>
-                <h3 class="stat-value">325</h3>
-            </div>
-        </div>
-        <div class="stat-footer">
-            <i class="bi bi-arrow-down text-success"></i> Redução de 8% este mês
-        </div>
-    </div>
 
-    <div class="stat-card">
-        <div class="stat-header">
-            <div class="stat-icon icon-danger">
-                <i class="bi bi-lightning-charge"></i>
-            </div>
-            <div>
-                <p class="stat-title">Energia Renovável (%)</p>
-                <h3 class="stat-value">62%</h3>
-            </div>
+<div class="stat-card">
+    <div class="stat-header">
+        <div class="stat-icon icon-warning">
+            <i class="bi bi-cloud"></i>
         </div>
-        <div class="stat-footer">
-            <i class="bi bi-arrow-up"></i> Meta de 70% até final do ano
+        <div>
+            <p class="stat-title">Carbono Emitido (total)</p>
+            <h3 id="carbonoTotal" class="stat-value">0 kg</h3>
         </div>
     </div>
+    <div class="stat-footer">
+        <i class="bi bi-info-circle"></i> Soma de todas as atividades
+    </div>
+</div>
+
+<div class="stat-card">
+    <div class="stat-header">
+        <div class="stat-icon icon-success">
+            <i class="bi bi-calendar-check"></i>
+        </div>
+        <div>
+            <p class="stat-title">Carbono Emitido (este mês)</p>
+            <h3 id="carbonoMes" class="stat-value">0 kg</h3>
+        </div>
+    </div>
+    <div class="stat-footer">
+        <i class="bi bi-info-circle"></i> Considerando <?php echo date('m/Y'); ?>
+    </div>
+</div>
+
+<div class="stat-card">
+    <div class="stat-header">
+        <div class="stat-icon icon-success">
+            <i class="bi bi-calendar-check"></i>
+        </div>
+        <div>
+            <p class="stat-title">Acertos no quiz:</p>
+            <h3 id="qtdQuiz" class="stat-value">13</h3>
+        </div>
+    </div>
+    <div class="stat-footer">
+        <i class="bi bi-info-circle"></i> Considerando <?php echo date('m/Y'); ?>
+    </div>
+</div>
+
 
     <div class="stat-card">
         <div class="stat-header">
@@ -396,8 +399,8 @@
                 <i class="bi bi-tree"></i>
             </div>
             <div>
-                <p class="stat-title">Árvores Plantadas</p>
-                <h3 class="stat-value">4.530</h3>
+                <p class="stat-title">Total doado:</p>
+                <h3 id="donation"  class="stat-value">R$203</h3>
             </div>
         </div>
         <div class="stat-footer">
@@ -408,40 +411,47 @@
 
                 
 <div class="caixas">
+   <div class="graficoOcorrencias">
+    <h3 class="grafico-titulo">Sua média em relação aos outros países</h3>
+    <div class="grafico-frame">
+        <iframe src="graficos/graficoComparacao.html"></iframe>
+    </div>
+</div>
+
     <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">🚴 Tipos de Transporte Utilizados</h3>
+        <h3 class="grafico-titulo">🌎 Emissões de CO₂ neste ano</h3>
         <div class="grafico-frame">
-            <iframe src="graficos/transporteVertical.html"></iframe>
+            <iframe src="graficos/graficoMesEmissao.html"></iframe>
         </div>
     </div>
 
     <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">🌎 Emissões de CO₂ por Mês</h3>
+        <h3 class="grafico-titulo">Suas atividades</h3>
         <div class="grafico-frame">
-            <iframe src="graficos/emissoesPizza.html"></iframe>
+            <iframe src="graficos/graficoTipoAtividade.html"></iframe>
         </div>
     </div>
 
     <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">⚡ Fontes de Energia Utilizadas</h3>
+        <h3 class="grafico-titulo">Top doadores</h3>
         <div class="grafico-frame">
-            <iframe src="graficos/energiaVertical.html"></iframe>
+            <iframe src="graficos/graficoDoadores.html"></iframe>
+        </div>
+    </div>
+ <div class="graficoOcorrencias">
+        <h3 class="grafico-titulo">Top quiz</h3>
+        <div class="grafico-frame">
+            <iframe src="graficos/graficoTopQuiz.html"></iframe>
         </div>
     </div>
 
-    <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">🌱 Áreas Reflorestadas</h3>
+     <div class="graficoOcorrencias">
+        <h3 class="grafico-titulo">Top games</h3>
         <div class="grafico-frame">
-            <iframe src="graficos/reflorestamentoPizza.html"></iframe>
+            <iframe src="graficos/graficoTopGames.html"></iframe>
         </div>
     </div>
-
-    <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">🏢 Empresas que Adotaram Medidas Climáticas</h3>
-        <div class="grafico-frame">
-            <iframe src="graficos/empresasVertical.html"></iframe>
-        </div>
-    </div>
+   
 </div>
 
    <div class="modal-overlay" id="modalOverlay">

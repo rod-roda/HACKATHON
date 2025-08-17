@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparação Carbono</title>
+  <style>
+    #chartdiv {
+      width: 66%;
+      height: 400px;
+      margin: auto;
+    }
+  </style>
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+</head>
+<body>
+
+<div id="chartdiv"></div>
+
+<script>
+am5.ready(async function () {
+  const root = am5.Root.new("chartdiv");
+
+  const myTheme = am5.Theme.new(root);
+  myTheme.rule("Grid", ["base"]).setAll({ strokeOpacity: 0.1 });
+
+  root.setThemes([
+    am5themes_Animated.new(root),
+    myTheme
+  ]);
+
+  const chart = root.container.children.push(
+    am5xy.XYChart.new(root, {
+      panX: false,
+      panY: false,
+      wheelX: "none",
+      wheelY: "none",
+      paddingLeft: 0
+    })
+  );
+
+  const yRenderer = am5xy.AxisRendererY.new(root, { minGridDistance: 30 });
+  yRenderer.grid.template.set("location", 1);
+
+  const yAxis = chart.yAxes.push(
+    am5xy.CategoryAxis.new(root, {
+      maxDeviation: 0,
+      categoryField: "category",
+      renderer: yRenderer
+    })
+  );
+
+  const xAxis = chart.xAxes.push(
+    am5xy.ValueAxis.new(root, {
+      maxDeviation: 0,
+      min: 0,
+      renderer: am5xy.AxisRendererX.new(root, {
+        visible: true,
+        strokeOpacity: 0.1,
+        minGridDistance: 80
+      })
+    })
+  );
+
+  const series = chart.series.push(
+    am5xy.ColumnSeries.new(root, {
+      name: "Comparação",
+      xAxis: xAxis,
+      yAxis: yAxis,
+      valueXField: "valor",
+      categoryYField: "category",
+      sequencedInterpolation: true
+    })
+  );
+
+  const columnTemplate = series.columns.template;
+  columnTemplate.setAll({
+    draggable: true,
+    cursorOverStyle: "pointer",
+    cornerRadiusBR: 10,
+    cornerRadiusTR: 10,
+    strokeOpacity: 0,
+    tooltipText: "{category}: [bold]{value}[/]"
+  });
+
+  columnTemplate.adapters.add("fill", (fill, target) =>
+    chart.get("colors").getIndex(series.columns.indexOf(target))
+  );
+  columnTemplate.adapters.add("stroke", (stroke, target) =>
+    chart.get("colors").getIndex(series.columns.indexOf(target))
+  );
+
+  // Reordena os itens no eixo Y
+  function sortCategoryAxis() {
+    series.dataItems.sort((x, y) =>
+      y.get("graphics").y() - x.get("graphics").y()
+    );
+
+    const easing = am5.ease.out(am5.ease.cubic);
+    am5.array.each(yAxis.dataItems, function (dataItem) {
+      const seriesDataItem = series.dataItems.find(
+        i => i.get("categoryY") === dataItem.get("category")
+      );
+      if (!seriesDataItem) return;
+
+      const index = series.dataItems.indexOf(seriesDataItem);
+      const column = seriesDataItem.get("graphics");
+
+      const fy = yRenderer.positionToCoordinate(yAxis.indexToPosition(index)) - column.height() / 2;
+      if (index !== dataItem.get("index")) {
+        dataItem.set("index", index);
+        const x = column.x();
+        const y = column.y();
+        column.set("dy", -(fy - y));
+        column.set("dx", x);
+        column.animate({ key: "dy", to: 0, duration: 600, easing });
+        column.animate({ key: "dx", to: 0, duration: 600, easing });
+      } else {
+        column.animate({ key: "y", to: fy, duration: 600, easing });
+        column.animate({ key: "x", to: 0, duration: 600, easing });
+      }
+    });
+
+    yAxis.dataItems.sort((x, y) => x.get("index") - y.get("index"));
+  }
+
+  columnTemplate.events.on("dragstop", sortCategoryAxis);
+
+  // BUSCAR DADOS da rota correta
+  try {
+    const resp = await fetch("/HACKATON/dashboard/relatorio/graficos");
+    const json = await resp.json();
+    if (json.status && json.dados && json.dados.comparacao) {
+      const dados = json.dados.comparacao;
+
+      const maxValor = Math.max(...dados.map(d => d.valor)) + 2;
+      xAxis.setAll({ min: 0, max: maxValor, strictMinMax: true });
+
+      yAxis.data.setAll(dados);
+      series.data.setAll(dados);
+
+      chart.appear(1000);
+      series.appear(1000);
+      sortCategoryAxis();
+    }
+  } catch (e) {
+    console.error("Erro ao buscar gráfico:", e);
+  }
+});
+</script>
+
+</body>
+</html>

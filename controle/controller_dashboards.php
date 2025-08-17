@@ -63,3 +63,52 @@ function readAtividades() {
     header("HTTP/1.1 200");
     return json_encode($objResposta);
 }
+
+
+// controller_dashboards.php
+
+
+function readDashboardStats() {
+        $usuarioId = 1; // pegar do token futuramente
+
+    $atividade = new AtividadeEcologica();
+    $resposta = new stdClass();
+    $resposta->cod = 1;
+    $resposta->status = true;
+    $resposta->mensagem = "Totais de carbono encontrados!";
+$resposta->dados = [
+    "total" => $atividade->getTotalCarbono(),
+    "mes"   => $atividade->getTotalCarbonoMes(), // <- dado total do mês atual (pode manter)
+    "quiz_acertos_mes" => $atividade->getAcertosQuizMes($usuarioId),
+    "total_doado_mes" => $atividade->getTotalDoadoMes($usuarioId)
+];
+
+
+    header("Content-Type: application/json");
+    echo json_encode($resposta);
+    exit;
+}
+
+function readGraficosGerais() {
+    $atividade = new AtividadeEcologica();
+    $usuarioId = 1; // pegar do token futuramente
+
+    $resposta = new stdClass();
+    $resposta->cod = 1;
+    $resposta->status = true;
+    $resposta->mensagem = "Dados para gráficos";
+
+    $resposta->dados = [
+        "comparacao" => $atividade->getComparacaoCarbonoComPaises($usuarioId),
+        "carbono_mes" => $atividade->getTotalCarbonoMesPorAno($usuarioId),
+        "resumo" => $atividade->getResumoAtividadesPorUsuario($usuarioId),
+        "doadores" => $atividade->getTopDoadores(5),
+        "jogos" => $atividade->getTopJogos(5),
+        "quizzes" => $atividade->getTopQuizzes(5),
+     
+    ];
+
+    header("Content-Type: application/json");
+    echo json_encode($resposta);
+    exit;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emissões de Carbono por Mês</title>
+
+  <!-- Recursos do amCharts -->
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+</head>
+
+<body>
+
+  <div id="chartdiv" style="width: 100%; height: 500px;"></div>
+
+  <script>
+    am4core.ready(function () {
+      // Tema animado
+      am4core.useTheme(am4themes_animated);
+
+      // Criar gráfico XY
+      var chart = am4core.create("chartdiv", am4charts.XYChart);
+      chart.colors.step = 2;
+
+      // Eixo X = meses
+      var xAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      xAxis.dataFields.category = "mes";
+      xAxis.renderer.grid.template.location = 0;
+      xAxis.renderer.cellStartLocation = 0.1;
+      xAxis.renderer.cellEndLocation = 0.9;
+      xAxis.renderer.minGridDistance = 1;
+      xAxis.renderer.labels.template.rotation = 0;
+      xAxis.renderer.labels.template.horizontalCenter = "middle";
+      xAxis.renderer.labels.template.verticalCenter = "middle";
+
+      // Eixo Y = emissões
+      var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      yAxis.min = 0;
+
+      // Série de linha
+      var series = chart.series.push(new am4charts.LineSeries());
+      series.dataFields.valueY = "carbono";
+      series.dataFields.categoryX = "mes";
+      series.name = "Carbono (kg)";
+      series.strokeWidth = 3;
+      series.tooltipText = "{categoryX}: [bold]{valueY}[/] kg";
+      series.tensionX = 0.8;
+
+      // Pontos nas linhas
+      var bullet = series.bullets.push(new am4charts.CircleBullet());
+      bullet.circle.radius = 5;
+      bullet.circle.strokeWidth = 2;
+      bullet.circle.fill = am4core.color("#fff");
+
+      // Labels acima dos pontos
+      var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+      labelBullet.label.text = "{valueY}";
+      labelBullet.label.dy = -10;
+
+      // Cursor interativo
+      chart.cursor = new am4charts.XYCursor();
+      chart.cursor.behavior = "panX";
+      chart.cursor.lineY.opacity = 0;
+
+      // Carregar dados da API
+      fetch("/HACKATON/dashboard/relatorio/graficos")
+        .then(res => res.json())
+        .then(res => {
+          if (res.status && res.dados && res.dados.carbono_mes) {
+            chart.data = res.dados.carbono_mes;
+          }
+        })
+        .catch(err => console.error("Erro ao carregar gráfico:", err));
+    });
+  </script>
+
+</body>
+
+</html>

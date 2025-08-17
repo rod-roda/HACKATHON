@@ -23,6 +23,7 @@ class AtividadeEcologica implements JsonSerializable {
    
 
     // CRUD
+    
     public function create() {
         $conexao = Banco::getConexao();
         $sql = "INSERT INTO atividades_ecologicas (usuario_id, nome_atividade, quantidade, carbono_emitido, data_atividade) 
@@ -35,6 +36,236 @@ class AtividadeEcologica implements JsonSerializable {
         $prepareSql->close();
         return $this;
     }
+public function getTotalCarbono() {
+    $conexao = Banco::getConexao();
+    $sql = "SELECT SUM(carbono_emitido) AS total FROM atividades_ecologicas";
+    $result = $conexao->query($sql);
+    $row = $result ? $result->fetch_assoc() : null;
+    return $row && $row['total'] !== null ? (float)$row['total'] : 0.0;
+}
+
+public function getTotalCarbonoMes() {
+    $conexao = Banco::getConexao();
+    $sql = "SELECT SUM(carbono_emitido) AS total
+            FROM atividades_ecologicas
+            WHERE YEAR(data_atividade) = YEAR(CURRENT_DATE())
+              AND MONTH(data_atividade) = MONTH(CURRENT_DATE())";
+    $result = $conexao->query($sql);
+    $row = $result ? $result->fetch_assoc() : null;
+    return $row && $row['total'] !== null ? (float)$row['total'] : 0.0;
+}
+
+
+
+
+public function getResumoAtividadesPorUsuario($usuarioId) {
+    $conexao = Banco::getConexao();
+    $sql = "SELECT nome_atividade AS categoria, SUM(quantidade) AS total
+            FROM atividades_ecologicas
+            WHERE usuario_id = ?
+            GROUP BY nome_atividade";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $usuarioId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $atividades = [];
+    while ($row = $result->fetch_assoc()) {
+        $atividades[] = [
+            "category" => $row["categoria"],
+            "value"    => (int)$row["total"]
+        ];
+    }
+    $stmt->close();
+    return $atividades;
+}
+public function getComparacaoCarbonoComPaises($usuarioId) {
+    $conexao = Banco::getConexao();
+
+    // Pega o último registro de carbono do usuário
+    $sqlUltimo = "SELECT carbono_emitido 
+                  FROM atividades_ecologicas 
+                  WHERE usuario_id = ? 
+                  ORDER BY data_atividade DESC 
+                  LIMIT 1";
+    $stmtUltimo = $conexao->prepare($sqlUltimo);
+    $stmtUltimo->bind_param("i", $usuarioId);
+    $stmtUltimo->execute();
+    $resUltimo = $stmtUltimo->get_result();
+    $rowUltimo = $resUltimo->fetch_assoc();
+    $stmtUltimo->close();
+
+    $carbonoUsuario = $rowUltimo ? (float)$rowUltimo["carbono_emitido"] : 0;
+
+    // Médias fixas de exemplo para países (em toneladas por pessoa/ano)
+    $dadosComparacao = [
+        ["category" => "Brasil",     "valor" => 2.2],
+        ["category" => "EUA",        "valor" => 15.5],
+        ["category" => "China",      "valor" => 8.2],
+        ["category" => "Índia",      "valor" => 1.8],
+        ["category" => "Você",       "valor" => $carbonoUsuario]
+    ];
+
+    return $dadosComparacao;
+}
+
+
+
+public function getTotalCarbonoMesPorAno($idUsuario) {
+    $conexao = Banco::getConexao();
+
+    $sql = "SELECT 
+              MONTH(data_atividade) AS mes_num,
+              SUM(carbono_emitido) AS total
+            FROM atividades_ecologicas
+            WHERE YEAR(data_atividade) = YEAR(CURDATE())
+              AND usuario_id = ?
+            GROUP BY mes_num
+            ORDER BY mes_num";
+
+$stmt = $conexao->prepare($sql);
+if (!$stmt) {
+    die("Erro na preparação da query: " . $conexao->error);
+}
+$stmt->bind_param("i", $idUsuario);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $meses = [
+        "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+        "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+    ];
+
+    // Inicializa array com todos os 12 meses zerados
+    $dados = array_map(function($nomeMes) {
+        return ["mes" => $nomeMes, "carbono" => 0];
+    }, $meses);
+
+    // Preenche os dados reais que vierem do banco
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $indice = (int)$row['mes_num'] - 1;
+            $dados[$indice]["carbono"] = (float)$row['total'];
+        }
+    }
+
+    return $dados;
+}
+
+
+
+  public function getTopDoadores($limite = 5) {
+        $conexao = Banco::getConexao();
+
+    $sql = "SELECT u.nome AS usuario, SUM(d.valor) AS total
+            FROM doacoes d
+            JOIN usuarios u ON u.id = d.usuario_id
+            GROUP BY d.usuario_id
+            ORDER BY total DESC
+            LIMIT ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $limite);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $dados = [];
+
+    while ($row = $res->fetch_assoc()) {
+        $dados[] = [
+            "category" => $row["usuario"],
+            "valor" => (float)$row["total"]
+        ];
+    }
+    return $dados;
+}
+
+public function getTopJogos($limite = 5) {
+        $conexao = Banco::getConexao();
+
+    $sql = "SELECT u.nome AS usuario, g.resultado, g.data_jogada
+            FROM user_game g
+            JOIN usuarios u ON u.id = g.usuario_id
+            ORDER BY g.data_jogada DESC
+            LIMIT ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $limite);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $dados = [];
+
+    while ($row = $res->fetch_assoc()) {
+        $dados[] = [
+            "category" => $row["usuario"],
+            "valor" =>  (float)$row["resultado"]
+        ];
+    }
+    return $dados;
+}
+
+public function getTopQuizzes($limite = 5) {
+        $conexao = Banco::getConexao();
+
+    $sql = "SELECT u.nome AS usuario, q.quiz_nome, MAX(q.pontuacao) AS maior
+            FROM user_quiz q
+            JOIN usuarios u ON u.id = q.usuario_id
+            GROUP BY q.usuario_id, q.quiz_nome
+            ORDER BY maior DESC
+            LIMIT ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $limite);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $dados = [];
+
+    while ($row = $res->fetch_assoc()) {
+        $dados[] = [
+            "category" => $row["usuario"] . " - " . $row["quiz_nome"],
+            "valor" => (int)$row["maior"]
+        ];
+    }
+    return $dados;
+}
+
+public function getAcertosQuizMes($usuarioId) {
+    $usuarioId = 1;
+    $conexao = Banco::getConexao();
+
+    $mesAtual = date('m');
+    $anoAtual = date('Y');
+
+    $sql = "SELECT MAX(pontuacao) as maior_pontuacao
+            FROM user_quiz 
+            WHERE usuario_id = ? 
+           ";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $usuarioId); // Corrigido aqui
+    $stmt->execute();
+    $resultado = $stmt->get_result()->fetch_assoc(); // Corrigido aqui também
+
+    return $resultado['maior_pontuacao'] ?? 0;
+}
+
+
+
+ public function getTotalDoadoMes($usuarioId) {
+        $usuarioId = 1;
+
+    $conexao = Banco::getConexao();
+
+    $mesAtual = date('m');
+    $anoAtual = date('Y');
+
+    $sql = "SELECT SUM(valor) as total 
+            FROM doacoes 
+            WHERE usuario_id = ? 
+             ";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $usuarioId); // Corrigido aqui
+    $stmt->execute();
+    $resultado = $stmt->get_result()->fetch_assoc();
+
+    return $resultado['total'] ?? 0;
+}
+
 
     public function readById($id) {
         $conexao = Banco::getConexao();
