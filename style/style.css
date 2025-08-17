@@ -2579,34 +2579,6 @@ header{
     font-size: 14px;
 }
 
-.input-group {
-    position: relative;
-    margin-bottom: 25px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px 40px 10px 10px;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    outline: none;
-}
-
-.input-group input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.input-group i {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    font-size: 20px;
-    color: white;
-}
-
 #toggleSenha{
     cursor: pointer !important;
 }
@@ -2678,6 +2650,14 @@ header{
     background: rgba(255, 255, 255, 0.15);
     color: white;
     outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border: 2px solid var(--primary-dark);
+    box-shadow: var(--shadow-neon);
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
 }
 
 .input-group input::placeholder {
@@ -2691,6 +2671,15 @@ header{
     transform: translateY(-50%);
     font-size: 20px;
     color: white;
+    transition: all 0.3s ease;
+}
+
+/* Quando o input estiver focado, o ícone fica verde */
+.input-group input:focus + i,
+.input-group input:focus ~ i {
+    color: var(--primary);
+    text-shadow: var(--shadow-neon);
+    transform: translateY(-50%) scale(1.05);
 }
 
 .sign-in-container button {

@@ -12,14 +12,17 @@
         <form>
             <div class="input-group">
                 <input type="name" id="name" name="name" placeholder="Digite seu nome completo" required>
+                <i class="ri-user-fill"></i>
             </div>
         
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                <i class="ri-at-line"></i>
             </div>
 
             <div class="input-group">
                 <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14" required>
+                <i class="ri-id-card-fill"></i>
             </div>
 
             <div class="input-group">

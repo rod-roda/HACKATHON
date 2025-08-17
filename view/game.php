@@ -48,7 +48,7 @@
         </div>
 
         <p class="points-title">
-            Melhor pontuação: <span id="points-text">0</span>
+            Melhor pontuação: <span id="points-text">0 PTS</span>
         </p>
 
         <div class="game-board">
@@ -97,7 +97,7 @@
             .then(data => {
                 if(data.status){
                     let dados = data.cod != 404 ? data.dados.resultado : 0;
-                    textoId.textContent = dados;
+                    textoId.textContent = `${dados} PTS`;
                 }else{
                     showNotification(`Erro ao resgatar sua pontuação: ${data.msg}`, 'warning');
                 }
