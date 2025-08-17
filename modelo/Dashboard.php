@@ -38,21 +38,50 @@ class AtividadeEcologica implements JsonSerializable {
     }
 public function getTotalCarbono() {
     $conexao = Banco::getConexao();
-    $sql = "SELECT SUM(carbono_emitido) AS total FROM atividades_ecologicas";
+    $sql = "SELECT 
+            SUM(carbono_emitido) AS total,
+            SUM(CASE 
+                WHEN YEAR(data_atividade) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
+                AND MONTH(data_atividade) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)
+                THEN carbono_emitido ELSE 0 
+            END) as total_mes_anterior
+            FROM atividades_ecologicas";
     $result = $conexao->query($sql);
     $row = $result ? $result->fetch_assoc() : null;
-    return $row && $row['total'] !== null ? (float)$row['total'] : 0.0;
+    
+    $total = $row && $row['total'] !== null ? (float)$row['total'] : 0.0;
+    $totalMesAnterior = $row && $row['total_mes_anterior'] !== null ? (float)$row['total_mes_anterior'] : 0.0;
+    
+    return [
+        'total' => $total,
+        'comparacao' => ($total > 0 && $totalMesAnterior > 0) ? round(($total - $totalMesAnterior) / $totalMesAnterior * 100, 1) : 0
+    ];
 }
 
 public function getTotalCarbonoMes() {
     $conexao = Banco::getConexao();
-    $sql = "SELECT SUM(carbono_emitido) AS total
+    $sql = "SELECT 
+            SUM(carbono_emitido) AS total,
+            COUNT(DISTINCT DATE(data_atividade)) as dias_ativos,
+            AVG(carbono_emitido) as media_diaria
             FROM atividades_ecologicas
             WHERE YEAR(data_atividade) = YEAR(CURRENT_DATE())
               AND MONTH(data_atividade) = MONTH(CURRENT_DATE())";
     $result = $conexao->query($sql);
     $row = $result ? $result->fetch_assoc() : null;
-    return $row && $row['total'] !== null ? (float)$row['total'] : 0.0;
+    
+    $total = $row && $row['total'] !== null ? (float)$row['total'] : 0.0;
+    $diasAtivos = $row && $row['dias_ativos'] !== null ? (int)$row['dias_ativos'] : 0;
+    $mediaDiaria = $row && $row['media_diaria'] !== null ? (float)$row['media_diaria'] : 0.0;
+    
+    $diasNoMes = date('t');
+    $tendencia = $mediaDiaria * $diasNoMes;
+    
+    return [
+        'total' => $total,
+        'tendencia_mes' => round(($tendencia - $total) / $total * 100, 1),
+        'dias_ativos' => $diasAtivos
+    ];
 }
 
 
@@ -79,32 +108,119 @@ public function getResumoAtividadesPorUsuario($usuarioId) {
     $stmt->close();
     return $atividades;
 }
+private function getDadosPaisAPI($nomePais) {
+    try {
+        $ctx = stream_context_create([
+            'http' => [
+                'timeout' => 10,
+                'ignore_errors' => true,
+                'header' => [
+                    'Accept: application/json',
+                    'User-Agent: PHP/EcoSystem'
+                ]
+            ]
+        ]);
+
+        // Busca dados de população primeiro
+        $urlPopulacao = "https://restcountries.com/v3.1/name/" . urlencode($nomePais) . "?fields=name,population";
+        $populacao = @file_get_contents($urlPopulacao, false, $ctx);
+        if ($populacao === false) {
+            throw new Exception("Erro ao acessar API de população");
+        }
+
+        $dadosPopulacao = json_decode($populacao, true);
+        if (!$dadosPopulacao || !isset($dadosPopulacao[0]['population'])) {
+            throw new Exception("Dados de população inválidos");
+        }
+
+        // Busca dados de emissão
+        $urlEmissoes = "https://api.climatetrace.org/v6/country/emissions";
+        $emissoes = @file_get_contents($urlEmissoes, false, $ctx);
+        if ($emissoes === false) {
+            throw new Exception("Erro ao acessar API de emissões");
+        }
+
+        $dadosEmissoes = json_decode($emissoes, true);
+        if (!$dadosEmissoes || !isset($dadosEmissoes['data'])) {
+            throw new Exception("Dados de emissão inválidos");
+        }
+
+        // Encontra os dados do país nas emissões
+        $emissaoPais = null;
+        foreach ($dadosEmissoes['data'] as $pais) {
+            if (strtolower($pais['country_name']) === strtolower($nomePais)) {
+                $emissaoPais = floatval($pais['total_emissions']);
+                break;
+            }
+        }
+
+        if ($emissaoPais === null) {
+            throw new Exception("País não encontrado nos dados de emissão");
+        }
+
+        // Calcula emissão per capita (converte para kg e divide pela população)
+        $populacaoTotal = $dadosPopulacao[0]['population'];
+        $emissaoPerCapitaAnual = ($emissaoPais * 1000) / $populacaoTotal; // Converte para kg
+        $emissaoPerCapitaDiaria = $emissaoPerCapitaAnual / 365; // Converte para média diária
+
+        return $emissaoPerCapitaDiaria;
+
+    } catch (Exception $e) {
+        error_log("Erro ao buscar dados do país {$nomePais}: " . $e->getMessage());
+        // Em caso de erro, retorna valor médio estimado baseado em dados históricos
+        return match($nomePais) {
+            'United States' => 44.79, // ~16.35 toneladas/ano
+            'Russian Federation' => 35.61, // ~13 toneladas/ano
+            'China' => 21.91, // ~8 toneladas/ano
+            'Germany' => 24.65, // ~9 toneladas/ano
+            'Argentina' => 13.69, // ~5 toneladas/ano
+            default => 20.0
+        };
+    }
+}
+
 public function getComparacaoCarbonoComPaises($usuarioId) {
     $conexao = Banco::getConexao();
 
-    // Pega o último registro de carbono do usuário
-    $sqlUltimo = "SELECT carbono_emitido 
-                  FROM atividades_ecologicas 
-                  WHERE usuario_id = ? 
-                  ORDER BY data_atividade DESC 
-                  LIMIT 1";
-    $stmtUltimo = $conexao->prepare($sqlUltimo);
-    $stmtUltimo->bind_param("i", $usuarioId);
-    $stmtUltimo->execute();
-    $resUltimo = $stmtUltimo->get_result();
-    $rowUltimo = $resUltimo->fetch_assoc();
-    $stmtUltimo->close();
+    // Calcula média diária do usuário
+    $sql = "SELECT SUM(carbono_emitido) as total,
+                   COUNT(DISTINCT DATE(data_atividade)) as dias
+            FROM atividades_ecologicas 
+            WHERE usuario_id = ?
+            GROUP BY usuario_id";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $usuarioId);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $row = $res->fetch_assoc();
+    $stmt->close();
 
-    $carbonoUsuario = $rowUltimo ? (float)$rowUltimo["carbono_emitido"] : 0;
+    $mediaUsuario = $row && $row['dias'] > 0 ? $row['total'] / $row['dias'] : 0;
 
-    // Médias fixas de exemplo para países (em toneladas por pessoa/ano)
-    $dadosComparacao = [
-        ["category" => "Brasil",     "valor" => 2.2],
-        ["category" => "EUA",        "valor" => 15.5],
-        ["category" => "China",      "valor" => 8.2],
-        ["category" => "Índia",      "valor" => 1.8],
-        ["category" => "Você",       "valor" => $carbonoUsuario]
+    // Lista de países e seus nomes para exibição
+    $paises = [
+        'United States' => 'EUA',
+        'Russian Federation' => 'Rússia',
+        'China' => 'China',
+        'Germany' => 'Europa',
+        'Argentina' => 'Argentina'
     ];
+
+    // Inicia com os dados do usuário
+    $dadosComparacao = [
+        ["category" => "Você", "valor" => round($mediaUsuario, 2)]
+    ];
+
+    // Busca dados de cada país
+    foreach ($paises as $nomeAPI => $nomeExibicao) {
+        $emissaoPerCapita = $this->getDadosPaisAPI($nomeAPI);
+        if ($emissaoPerCapita !== null) {
+            $dadosComparacao[] = [
+                "category" => $nomeExibicao,
+                "valor" => round($emissaoPerCapita, 2)
+            ];
+        }
+    }
 
     return $dadosComparacao;
 }
@@ -229,41 +345,83 @@ public function getAcertosQuizMes($usuarioId) {
     $usuarioId = 1;
     $conexao = Banco::getConexao();
 
-    $mesAtual = date('m');
-    $anoAtual = date('Y');
-
-    $sql = "SELECT MAX(pontuacao) as maior_pontuacao
+    // Busca pontuação do mês atual e do mês anterior
+    $sql = "SELECT 
+            COALESCE(MAX(CASE 
+                WHEN YEAR(data_jogada) = YEAR(CURRENT_DATE)
+                AND MONTH(data_jogada) = MONTH(CURRENT_DATE)
+                THEN pontuacao END), 0) as pontuacao_atual,
+            COALESCE(MAX(CASE 
+                WHEN YEAR(data_jogada) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
+                AND MONTH(data_jogada) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)
+                THEN pontuacao END), 0) as pontuacao_anterior,
+            COUNT(DISTINCT CASE 
+                WHEN YEAR(data_jogada) = YEAR(CURRENT_DATE)
+                AND MONTH(data_jogada) = MONTH(CURRENT_DATE)
+                THEN DATE(data_jogada) END) as dias_jogados
             FROM user_quiz 
-            WHERE usuario_id = ? 
-           ";
+            WHERE usuario_id = ?";
+            
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("i", $usuarioId); // Corrigido aqui
+    $stmt->bind_param("i", $usuarioId);
     $stmt->execute();
-    $resultado = $stmt->get_result()->fetch_assoc(); // Corrigido aqui também
+    $resultado = $stmt->get_result()->fetch_assoc();
 
-    return $resultado['maior_pontuacao'] ?? 0;
+    $pontuacaoAtual = $resultado['pontuacao_atual'] ?? 0;
+    $pontuacaoAnterior = $resultado['pontuacao_anterior'] ?? 0;
+    $diasJogados = $resultado['dias_jogados'] ?? 0;
+
+    // Calcula a evolução em relação ao mês anterior
+    $evolucao = $pontuacaoAnterior > 0 ? 
+        round(($pontuacaoAtual - $pontuacaoAnterior) / $pontuacaoAnterior * 100, 1) : 0;
+
+    return [
+        'pontuacao' => $pontuacaoAtual,
+        'evolucao' => $evolucao,
+        'dias_jogados' => $diasJogados
+    ];
 }
 
 
 
  public function getTotalDoadoMes($usuarioId) {
-        $usuarioId = 1;
-
+    $usuarioId = 1;
     $conexao = Banco::getConexao();
 
-    $mesAtual = date('m');
-    $anoAtual = date('Y');
-
-    $sql = "SELECT SUM(valor) as total 
+    $sql = "SELECT 
+            COALESCE(SUM(CASE 
+                WHEN YEAR(data_doacao) = YEAR(CURRENT_DATE)
+                AND MONTH(data_doacao) = MONTH(CURRENT_DATE)
+                THEN valor END), 0) as total_atual,
+            COALESCE(SUM(CASE 
+                WHEN YEAR(data_doacao) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
+                AND MONTH(data_doacao) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)
+                THEN valor END), 0) as total_anterior,
+            COUNT(DISTINCT CASE 
+                WHEN YEAR(data_doacao) = YEAR(CURRENT_DATE)
+                AND MONTH(data_doacao) = MONTH(CURRENT_DATE)
+                THEN DATE(data_doacao) END) as dias_doacao
             FROM doacoes 
-            WHERE usuario_id = ? 
-             ";
+            WHERE usuario_id = ?";
+
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("i", $usuarioId); // Corrigido aqui
+    $stmt->bind_param("i", $usuarioId);
     $stmt->execute();
     $resultado = $stmt->get_result()->fetch_assoc();
 
-    return $resultado['total'] ?? 0;
+    $totalAtual = $resultado['total_atual'] ?? 0;
+    $totalAnterior = $resultado['total_anterior'] ?? 0;
+    $diasDoacao = $resultado['dias_doacao'] ?? 0;
+
+    // Calcula a evolução em relação ao mês anterior
+    $evolucao = $totalAnterior > 0 ? 
+        round(($totalAtual - $totalAnterior) / $totalAnterior * 100, 1) : 0;
+
+    return [
+        'total' => $totalAtual,
+        'evolucao' => $evolucao,
+        'dias_doacao' => $diasDoacao
+    ];
 }
 
 

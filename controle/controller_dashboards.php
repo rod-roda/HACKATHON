@@ -3,6 +3,7 @@ use Firebase\JWT\MeuTokenJWT;
 require_once __DIR__ . '/../modelo/MeuTokenJWT.php';
 require_once __DIR__ . '/../modelo/Banco.php';
 require_once __DIR__ . '/../modelo/Dashboard.php';
+require_once __DIR__ . '/../modelo/IaService.php';
 
 // Criar nova atividade
 function createAtividade() {
@@ -24,6 +25,22 @@ function createAtividade() {
     $atividade->setNomeAtividade($dados->nome_atividade);
     $atividade->setQuantidade($dados->quantidade);
     $atividade->setDataAtividade($dados->data_atividade);
+
+    // Calcula a emissão usando IA
+    $iaService = new IaService();
+    $pergunta = "Considere uma pessoa que realizou a seguinte atividade: " . 
+              match($dados->nome_atividade) {
+                  'carro' => "dirigiu {$dados->quantidade} quilômetros de carro",
+                  'energia' => "consumiu {$dados->quantidade} kWh de energia elétrica",
+                  'aviao' => "viajou {$dados->quantidade} quilômetros de avião",
+                  'carne' => "consumiu {$dados->quantidade} kg de carne bovina",
+                  'gas' => "utilizou {$dados->quantidade} metros cúbicos de gás natural",
+                  'onibus' => "viajou {$dados->quantidade} quilômetros de ônibus"
+              } . 
+              ". Calcule a pegada de carbono desta atividade usando médias e padrões conhecidos. Forneça apenas o valor numérico em kg de CO2 equivalente, sem explicações adicionais.";
+    
+    $emissao = floatval($iaService->gerarResposta($pergunta));
+    $atividade->setCarbonoEmitido($emissao);
 
     $atividade->create();
 

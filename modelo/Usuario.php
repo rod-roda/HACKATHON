@@ -56,17 +56,40 @@ class Usuario implements JsonSerializable{
 
     public function cadastrar($nome, $email, $senha_hash, $cpf)
     {
-        $conexao = Banco::getConexao();
-        $sql = "INSERT INTO usuario(nome, email, senha_hash, cpf) VALUES (?, ?, ?, ?);";
-        $prepareSql = $conexao->prepare($sql);
-        $prepareSql->bind_param("ssss", $nome, $email, $senha_hash, $cpf);
-        $executou = $prepareSql->execute();
-        return $executou;
+        try {
+            $conexao = Banco::getConexao();
+            
+            // Remove caracteres especiais do CPF
+            $cpf = preg_replace('/[^0-9]/', '', $cpf);
+            
+            $sql = "INSERT INTO usuarios(nome, email, senha_hash, cpf) VALUES (?, ?, ?, ?);";
+            $prepareSql = $conexao->prepare($sql);
+            if (!$prepareSql) {
+                throw new Exception("Erro ao preparar query: " . $conexao->error);
+            }
+            
+            $prepareSql->bind_param("ssss", $nome, $email, $senha_hash, $cpf);
+            
+            if (!$prepareSql->execute()) {
+                $erro = $prepareSql->error;
+                $prepareSql->close();
+                if (strpos($erro, 'Duplicate entry') !== false) {
+                    throw new Exception("Este email já está cadastrado.");
+                }
+                throw new Exception("Erro ao cadastrar: " . $erro);
+            }
+            
+            $prepareSql->close();
+            return true;
+        } catch (Exception $e) {
+            error_log("Erro ao cadastrar usuário: " . $e->getMessage());
+            throw $e;
+        }
     }
 
     public function consultarSenha($email){
         $conexao = Banco::getConexao();
-        $sql = "SELECT senha_hash FROM usuario WHERE email = ?;";
+        $sql = "SELECT senha_hash FROM usuarios WHERE email = ?;";
         $prepareSql = $conexao->prepare($sql);
         $prepareSql->bind_param("s", $email);
         $executou = $prepareSql->execute();
@@ -78,7 +101,7 @@ class Usuario implements JsonSerializable{
 
     public function logar($email, $senha){
         $conexao = Banco::getConexao();
-        $sql = "SELECT count(*) as qtd FROM usuario WHERE email = ? AND senha_hash = ?;";
+        $sql = "SELECT count(*) as qtd FROM usuarios WHERE email = ? AND senha_hash = ?;";
         $prepareSql = $conexao->prepare($sql);
         $prepareSql->bind_param("ss", $email, $senha);
         $executou = $prepareSql->execute();
@@ -89,12 +112,31 @@ class Usuario implements JsonSerializable{
 
     public function isUser($email){
         $conexao = Banco::getConexao();
-        $sql = "SELECT COUNT(*) AS qtd FROM usuario WHERE email = ?";
+        $sql = "SELECT COUNT(*) AS qtd FROM usuarios WHERE email = ?";
         $prepareSql = $conexao->prepare($sql);
         $prepareSql->bind_param("s", $email);
         $executou = $prepareSql->execute();
         $matrizTuplas = $prepareSql->get_result();
         $objTupla = $matrizTuplas->fetch_object();
         return $objTupla->qtd > 0;
+    }
+
+    public function readUserByEmail($email){
+        $conexao = Banco::getConexao();
+        $sql = "SELECT * FROM usuarios WHERE email = ?";
+        $prepareSql = $conexao->prepare($sql);
+        $prepareSql->bind_param("s", $email);
+        $executou = $prepareSql->execute();
+        
+        $matrizTuplas = $prepareSql->get_result();
+        $objTupla = $matrizTuplas->fetch_object();
+        
+        $usuario = new Usuario();
+        $usuario->setId($objTupla->id);
+        $usuario->setNome($objTupla->nome);
+        $usuario->setCpf($objTupla->cpf);
+
+        $prepareSql->close();
+        return $usuario;
     }
 }

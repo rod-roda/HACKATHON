@@ -1,4 +1,29 @@
 <?php
+// Tratamento global de erros para requisições AJAX/API
+$isApiRequest = (
+    isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest'
+) || (
+    isset($_SERVER['CONTENT_TYPE']) && 
+    strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false
+);
+
+if ($isApiRequest) {
+    ini_set('display_errors', 0);
+    set_exception_handler(function($e) {
+        header('Content-Type: application/json');
+        http_response_code(500);
+        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        exit;
+    });
+    set_error_handler(function($errno, $errstr, $errfile, $errline) {
+        header('Content-Type: application/json');
+        http_response_code(500);
+        echo json_encode(['status' => 'error', 'message' => $errstr]);
+        exit;
+    });
+}
+
 require_once("modelo/Router.php");
 
 $roteador = new Router();

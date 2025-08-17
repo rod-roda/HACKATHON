@@ -234,6 +234,46 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
+
+        .grafico-titulo {
+            color: #29fd53;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .grafico-titulo i {
+            margin-right: 8px;
+        }
+
+        .graficoOcorrencias {
+            background: #201f1f;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .graficoOcorrencias:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .grafico-frame {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .grafico-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
         
                 .stat-card {
             background:#201f1f;
@@ -362,7 +402,7 @@
         </div>
     </div>
     <div class="stat-footer">
-        <i class="bi bi-info-circle"></i> Soma de todas as atividades
+        <i class="bi bi-arrow-up"></i> <span id="carbonoVariacao">0%</span> em relação ao mês anterior
     </div>
 </div>
 
@@ -377,7 +417,8 @@
         </div>
     </div>
     <div class="stat-footer">
-        <i class="bi bi-info-circle"></i> Considerando <?php echo date('m/Y'); ?>
+        <i class="bi bi-calendar-check"></i> Registros em <span id="diasAtivosCarbonoMes">0</span> dias | 
+        <span id="tendenciaMes" class="text-warning">+0%</span> tendência
     </div>
 </div>
 
@@ -392,7 +433,8 @@
         </div>
     </div>
     <div class="stat-footer">
-        <i class="bi bi-info-circle"></i> Considerando <?php echo date('m/Y'); ?>
+        <i class="bi bi-star"></i> Em <span id="diasQuiz">0</span> dias | 
+        <span id="evolucaoQuiz" class="text-success">+0%</span> evolução
     </div>
 </div>
 
@@ -408,7 +450,8 @@
             </div>
         </div>
         <div class="stat-footer">
-            <i class="bi bi-arrow-up"></i> +320 este mês
+            <i class="bi bi-heart"></i> Doações em <span id="diasDoacao">0</span> dias | 
+            <span id="evolucaoDoacao" class="text-success">+0%</span> evolução
         </div>
     </div>
 </div>
@@ -416,41 +459,41 @@
                 
 <div class="caixas">
    <div class="graficoOcorrencias">
-    <h3 class="grafico-titulo">Sua média em relação aos outros países</h3>
+    <h3 class="grafico-titulo"><i class="bi bi-globe"></i> Sua média em relação aos outros países</h3>
     <div class="grafico-frame">
         <iframe src="graficos/graficoComparacao.html"></iframe>
     </div>
 </div>
 
     <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">🌎 Emissões de CO₂ neste ano</h3>
+        <h3 class="grafico-titulo"><i class="bi bi-cloud"></i> Emissões de CO₂ neste ano</h3>
         <div class="grafico-frame">
             <iframe src="graficos/graficoMesEmissao.html"></iframe>
         </div>
     </div>
 
     <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">Suas atividades</h3>
+        <h3 class="grafico-titulo"><i class="bi bi-activity"></i> Suas atividades</h3>
         <div class="grafico-frame">
             <iframe src="graficos/graficoTipoAtividade.html"></iframe>
         </div>
     </div>
 
     <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">Top doadores</h3>
+        <h3 class="grafico-titulo"><i class="bi bi-heart"></i> Top doadores</h3>
         <div class="grafico-frame">
             <iframe src="graficos/graficoDoadores.html"></iframe>
         </div>
     </div>
  <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">Top quiz</h3>
+        <h3 class="grafico-titulo"><i class="bi bi-star"></i> Top quiz</h3>
         <div class="grafico-frame">
             <iframe src="graficos/graficoTopQuiz.html"></iframe>
         </div>
     </div>
 
      <div class="graficoOcorrencias">
-        <h3 class="grafico-titulo">Top games</h3>
+        <h3 class="grafico-titulo"><i class="bi bi-controller"></i> Top games</h3>
         <div class="grafico-frame">
             <iframe src="graficos/graficoTopGames.html"></iframe>
         </div>
@@ -467,11 +510,19 @@
         <div class="modal-body">
             <form id="formAtividade">
                 <div class="form-group">
-                    <label for="nome_atividade"><i class="bi bi-tag"></i> Nome da Atividade</label>
-                    <input type="text" id="nome_atividade" name="nome_atividade" required>
+                    <label for="nome_atividade"><i class="bi bi-tag"></i> Tipo de Atividade</label>
+                    <select id="nome_atividade" name="nome_atividade" required>
+                        <option value="">Selecione uma atividade</option>
+                        <option value="carro">Uso de Carro (km)</option>
+                        <option value="energia">Consumo de Energia (kWh)</option>
+                        <option value="aviao">Viagem de Avião (km)</option>
+                        <option value="carne">Consumo de Carne (kg)</option>
+                        <option value="gas">Consumo de Gás (m³)</option>
+                        <option value="onibus">Uso de Ônibus (km)</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="quantidade"><i class="bi bi-123"></i> Quantidade</label>
+                    <label for="quantidade"><i class="bi bi-123"></i> Distância </label>
                     <input type="number" id="quantidade" name="quantidade" required>
                 </div>
         
@@ -493,8 +544,81 @@
         </div>
 
 
+    <script src="../js/functions.js"></script>
     <script src="../js/dashboard.js"></script>
 
+    <style>
+        /* Notificações */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            max-width: 300px;
+            z-index: 9999;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .notification-message {
+            margin-right: 10px;
+            color: #fff;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .notification-success {
+            background-color: #28a745;
+        }
+
+        .notification-error {
+            background-color: #dc3545;
+        }
+
+        .notification-warning {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .notification.hide {
+            animation: slideOut 0.3s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
 
 </body>
 </html>

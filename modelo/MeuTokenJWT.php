@@ -60,7 +60,6 @@ class MeuTokenJWT
 
         //Public Claims
         $objPayload->emailUsuario = $parametro_claims->emailUsuario;
-        $objPayload->senhaUsuario = $parametro_claims->senhaUsuario;
 
         //Private claims
 

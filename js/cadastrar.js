@@ -28,12 +28,16 @@ document.querySelector('form').addEventListener('submit', function(e) {
 
     fetchPost('/HACKATHON/cadastrar', user)
         .then(res => {
+            if(!res) {
+                showNotification("Erro ao conectar com o servidor", "error");
+                return;
+            }
             if(res.status){
                 showNotification("Cadastro realizado com sucesso!");
                 localStorage.setItem('token', res.token);
                 window.location.href = "home.php";
             } else {
-                showNotification(`Erro ao cadastrar! ${res.msg}`);
+                showNotification(`Erro ao cadastrar! ${res.msg}`, "error");
             }
         });
 });

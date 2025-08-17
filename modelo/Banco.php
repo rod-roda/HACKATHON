@@ -8,30 +8,22 @@
         private static $CONEXAO = null;
 
     private static function conectar(){
-
-        error_reporting(E_ERROR | E_PARSE);
         try{
             if(Banco::$CONEXAO==null){
-                Banco::$CONEXAO= new mysqli(Banco::$HOST,Banco::$USER,Banco::$PWD,Banco::$DB,Banco::$PORT);
+                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                Banco::$CONEXAO = new mysqli(Banco::$HOST,Banco::$USER,Banco::$PWD,Banco::$DB,Banco::$PORT);
+                Banco::$CONEXAO->set_charset('utf8mb4');
+                
                 if(Banco::$CONEXAO->connect_error){
-                    $objResposta =new stdClass();
-                    $objResposta->cod= 1;
-                    $objResposta->msg = 'eror ao conectar no banco!!';
-                    $objResposta->erro = Banco::$CONEXAO->connect_error;
-                    die(json_encode($objResposta));
+                    throw new Exception('Erro ao conectar no banco: ' . Banco::$CONEXAO->connect_error);
                 }
             }
+        } catch (mysqli_sql_exception $e) {
+            error_log("Erro SQL: " . $e->getMessage());
+            throw new Exception('Erro ao conectar no banco de dados: ' . $e->getMessage());
         } catch (Exception $e) {
-            // Em caso de qualquer outra exceção, trata normalmente
-            $objResposta = new stdClass();
-            $objResposta->cod = 1;
-            $objResposta->erro = $e->getMessage();
-            die(json_encode($objResposta));
-        } catch (Error $e) {
-            $objResposta = new stdClass();
-            $objResposta->cod = 2;
-            $objResposta->erro = $e->getMessage();
-            die(json_encode($objResposta));
+            error_log("Erro geral: " . $e->getMessage());
+            throw $e;
         }
     }
 
