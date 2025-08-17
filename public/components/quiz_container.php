@@ -111,15 +111,15 @@
         <div class="quiz-stats mt-xl">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-value text-primary" id="precisao-value">85%</div>
+                    <div class="stat-value text-primary" id="precisao-value">...</div>
                     <div class="stat-label">Precisão</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value text-accent" id="qtdRespondidas-value">12</div>
+                    <div class="stat-value text-accent" id="qtdRespondidas-value">...</div>
                     <div class="stat-label">Questões Respondidas</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value text-success" id="pontuacao-value">3</div>
+                    <div class="stat-value text-success" id="pontuacao-value">...</div>
                     <div class="stat-label">Pontuação Atual</div>
                 </div>
             </div>
