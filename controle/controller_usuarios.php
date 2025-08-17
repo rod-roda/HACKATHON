@@ -5,6 +5,7 @@ require_once "modelo/MeuTokenJWT.php";
 require_once "modelo/Banco.php";
 require_once "modelo/Usuario.php";
 require_once "docs/codes/crypto.php";
+require_once "docs/codes/functions.php";
 
 function cadastrar(){
     $json = file_get_contents('php://input');
@@ -40,6 +41,9 @@ function cadastrar(){
         $objToken = new MeuTokenJWT();
         $claims = new stdClass();
 
+        $usuario = $usuario->readUserByEmail($email);
+        $claims->idUsuario = $usuario->getId();
+        
         $claims->nomeUsuario = $nome;
         $claims->emailUsuario = $email;
 
@@ -83,6 +87,7 @@ function logar(){
         $claims = new stdClass();
 
         $usuario = $usuario->readUserByEmail($email);
+        $claims->idUsuario = $usuario->getId();
         $claims->nomeUsuario = $usuario->getNome();
 
         $claims->emailUsuario = $email;
@@ -148,11 +153,4 @@ function validarCPF($cpf) {
     }
 
     return true;
-}
-
-function error($msg, $cod, $resposta = new stdClass()){
-    $resposta->cod = $cod;
-    $resposta->status = false;
-    $resposta->msg = $msg;
-    return $resposta;
 }

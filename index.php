@@ -38,6 +38,16 @@ $roteador->post('/usuario/token/payload', function () {
     echo readPayloadToken();
 });
 
+$roteador->post('/user_game/insert', function () {
+    require_once __DIR__ . '/controle/controller_user_game.php';
+    echo insertScore();
+});
+
+$roteador->post('/user_quiz/insert', function () {
+    require_once __DIR__ . '/controle/controller_user_quiz.php';
+    echo insertScore();
+});
+
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 
