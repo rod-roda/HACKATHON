@@ -27,6 +27,12 @@ $roteador->get('/dashboard/relatorio/graficos', function () {
     require_once __DIR__ . '/controle/controller_dashboards.php';
     readGraficosGerais();
 });
+$roteador->get('/perguntas/random', function () {
+    require_once __DIR__ . '/controle/controller_perguntas_quiz.php';
+    echo read10Perguntas();
+});
+
+
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 
