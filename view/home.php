@@ -1,18 +1,9 @@
-<?php
-// Este arquivo serve como a página inicial do seu site.
-// A inclusão dos links e do cabeçalho é feita por PHP.
-
-// Inclui o cabeçalho do HTML, incluindo o título e os links para CSS e fontes.
-// Supondo que "links.php" já importe o seu style.css.
-include __DIR__ . '/../public/components/header.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco System - Home</title>
+    <title>Home | Eco System</title>
     <?php include __DIR__ . '/../public/components/links.php'; ?>
 </head>
 <body>
