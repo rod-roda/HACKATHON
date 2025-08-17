@@ -66,7 +66,7 @@
       chart.cursor.lineY.opacity = 0;
 
       // Carregar dados da API
-      fetch("/HACKATON/dashboard/relatorio/graficos")
+      fetch("/HACKATHON/dashboard/relatorio/graficos")
         .then(res => res.json())
         .then(res => {
           if (res.status && res.dados && res.dados.carbono_mes) {

@@ -49,7 +49,7 @@ async function registrarAtividade() {
             data_atividade: form.data_atividade.value
         };
 
-        const resposta = await fetch("/HACKATON/dashboard", {
+        const resposta = await fetch("/HACKATHON/dashboard", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -74,7 +74,7 @@ async function registrarAtividade() {
 
 async function carregarCarbonoStats() {
     try {
-        const resposta = await fetch("/HACKATON/dashboard/relatorio/dashboards");
+        const resposta = await fetch("/HACKATHON/dashboard/relatorio/dashboards");
         const json = await resposta.json();
 
         if (json.status) {

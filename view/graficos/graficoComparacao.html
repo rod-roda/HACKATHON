@@ -130,7 +130,7 @@ am5.ready(async function () {
 
   // BUSCAR DADOS da rota correta
   try {
-    const resp = await fetch("/HACKATON/dashboard/relatorio/graficos");
+    const resp = await fetch("/HACKATHON/dashboard/relatorio/graficos");
     const json = await resp.json();
     if (json.status && json.dados && json.dados.comparacao) {
       const dados = json.dados.comparacao;
