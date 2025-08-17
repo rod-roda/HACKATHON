@@ -10,12 +10,19 @@ let quizData;
 // Initialize quiz
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('quiz')) {
-        fetchGet(`${window.location.origin}/HACKATHON/perguntas/random`)
+        let token = localStorage.getItem('token')
+        console.log("Token do localStorage: " + token.trim())
+        
+        fetchGet(`${window.location.origin}/HACKATHON/perguntas/random`, token)
         .then(data => {
-            quizData = transformarQuiz(data);
-            console.log("Quiz carregado:", quizData);
-            initializeQuiz();
-            setupEventListeners();
+            if(data.status){
+                quizData = transformarQuiz(data);
+                console.log("Quiz carregado:", quizData);
+                initializeQuiz();
+                setupEventListeners();
+            }else{
+                showNotification(`Erro: ${data.msg}`, 'warning');
+            }
         }); 
     }
 });
@@ -27,25 +34,6 @@ function initializeQuiz() {
     
     updateProgressBar();
     loadQuestion(currentQuestion);
-}
-
-function fetchGet(uri) {
-    return fetch(uri, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .catch(error => {
-        console.error('Erro no fetchGet:', error);
-        return null;
-    });
 }
 
 function transformarQuiz(apiResponse) {
@@ -278,41 +266,6 @@ function restartQuiz() {
 
 function goToHome() {
     window.location.href = '../view/home.php';
-}
-
-function showNotification(message, type = 'info') {
-    // Remove existing notifications
-    const existingNotifications = document.querySelectorAll('.notification');
-    existingNotifications.forEach(notification => notification.remove());
-
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
-                <i class="ri-close-line"></i>
-            </button>
-        </div>
-    `;
-
-    // Add to page
-    document.body.appendChild(notification);
-
-    // Auto remove after 5 seconds
-    setTimeout(() => closeNotification(notification), 3000);
-}
-
-function closeNotification(el) {
-    const notification = el.classList.contains('notification')
-        ? el
-        : el.closest('.notification');
-
-    if (notification) {
-        notification.classList.add('hide');
-        notification.addEventListener('animationend', () => notification.remove(), { once: true });
-    }
 }
 
 // ========== UTILITY FUNCTIONS ==========

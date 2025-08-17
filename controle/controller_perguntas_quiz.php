@@ -9,20 +9,20 @@ function readById($id){
     $objPergunta = new PerguntaQuiz();
     
     $headers = getallheaders();
-    // $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
-    // $token = new MeuTokenJWT();
-    // if($token->validarToken($authorization)){
+    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+    $token = new MeuTokenJWT();
+    if($token->validarToken($authorization)){
         $dados = $objPergunta->readById($id);
         $objResposta->cod = 1;
         $objResposta->status = true;
-        $objResposta->mensagem = "Pergunta encontrada!";
+        $objResposta->msg = "Pergunta encontrada!";
         $objResposta->dados = $dados;
-    // }else{
-    //     $objResposta->cod = 2;
-    //     $objResposta->status = false;
-    //     $objResposta->mensagem = "Token invalido!";
-    //     $objResposta->tokenRecebido = $authorization;
-    // }
+    }else{
+        $objResposta->cod = 2;
+        $objResposta->status = false;
+        $objResposta->msg = "Token invalido!";
+        $objResposta->tokenRecebido = $authorization;
+    }
 
     header("Content-Type: application/json");
     header("HTTP/1.1 200");
@@ -41,18 +41,18 @@ function read10Perguntas(){
     $headers = getallheaders();
     $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
     $token = new MeuTokenJWT();
-    // if($token->validarToken($authorization)){
+    if($token->validarToken($authorization)){
         $dados = $objPergunta->read10Perguntas($array_perguntas);
         $objResposta->cod = 1;
         $objResposta->status = true;
-        $objResposta->mensagem = "Perguntas encontradas!";
+        $objResposta->msg = "Perguntas encontradas!";
         $objResposta->dados = $dados;
-    // }else{
-    //     $objResposta->cod = 2;
-    //     $objResposta->status = false;
-    //     $objResposta->mensagem = "Token invalido!";
-    //     $objResposta->tokenRecebido = $authorization;
-    // }
+    }else{
+        $objResposta->cod = 2;
+        $objResposta->status = false;
+        $objResposta->msg = "Token invalido!";
+        $objResposta->tokenRecebido = $authorization;
+    }
 
     header("Content-Type: application/json");
     header("HTTP/1.1 200");
