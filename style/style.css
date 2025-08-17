@@ -2723,14 +2723,19 @@ header{
 }
 
 .profile-icon {
-    font-size: 2rem;
+    font-size: 1.4rem; /* Reduzido de 2rem para 1.4rem */
     color: var(--main-color);
     background: var(--secondary);
-    padding: var(--space-sm);
+    padding: 8px; /* Reduzido o padding */
     border-radius: var(--radius-full);
     border: 2px solid var(--main-color);
     transition: var(--transition-normal);
     box-shadow: var(--shadow-neon);
+    width: 40px; /* Tamanho fixo */
+    height: 40px; /* Tamanho fixo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile-icon:hover {
