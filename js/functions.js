@@ -27,7 +27,6 @@ function fetchPost(uri, data, token = null) {
     };
 
     if (token) headers['Authorization'] = `Bearer ${token}`;
-    console.log(token);
     
     return fetch(uri, {
         method: 'POST',

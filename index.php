@@ -33,6 +33,11 @@ $roteador->post('/pix/gerarCodigo', function () {
 });
 
 
+$roteador->post('/usuario/token/payload', function () {
+    require_once __DIR__ . '/controle/controller_usuarios.php';
+    echo readPayloadToken();
+});
+
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 

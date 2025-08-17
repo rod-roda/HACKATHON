@@ -40,7 +40,8 @@ function cadastrar(){
         $objToken = new MeuTokenJWT();
         $claims = new stdClass();
 
-        $claims->email = $email;
+        $claims->nomeUsuario = $nome;
+        $claims->emailUsuario = $email;
 
         $token = $objToken->gerarToken($claims);
 
@@ -80,7 +81,11 @@ function logar(){
     if($usuario->logar($email, $senha_hash)){
         $objToken = new MeuTokenJWT();
         $claims = new stdClass();
-        $claims->email = $email;
+
+        $usuario = $usuario->readUserByEmail($email);
+        $claims->nomeUsuario = $usuario->getNome();
+
+        $claims->emailUsuario = $email;
         $token = $objToken->gerarToken($claims);
 
         $resposta->cod = 1;
@@ -92,6 +97,30 @@ function logar(){
     }
 
     return json_encode(error("Erro no sistema", 500, $resposta));
+}
+
+function readPayloadToken(){
+    $json = file_get_contents('php://input');
+    $objJson = json_decode($json);
+    $token = $objJson->token;
+    
+    $meuToken = new MeuTokenJWT();
+    if($meuToken->validarToken($token)){
+        $payload = $meuToken->getPayload();
+        $resposta = new stdClass();
+
+        $resposta->cod = 1;
+        $resposta->status = true;
+        $resposta->msg = "Payload resgatado com sucesso!";
+        $resposta->payload = $payload;   
+    }else{
+        $resposta->cod = 2;
+        $resposta->status = false;
+        $resposta->msg = "Token invalido!";
+        $resposta->tokenRecebido = $token;
+    }
+
+    return json_encode($resposta);
 }
 
 /*----------------------------------- UTILIDADES -----------------------------------*/
