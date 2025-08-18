@@ -6,7 +6,7 @@
     <ul class="navbar">
         <li><a href="/HACKATHON/view/weather.php">Mapa</a></li>
         <li><a href="/HACKATHON/view/dashboard.php">DashBoard</a></li>
-        <li><a href="">Monitoramento</a></li>
+        <li><a href="/HACKATHON/view/monitoring.php">Monitoramento</a></li>
         <li><a href="/HACKATHON/view/quiz.php">EcoQuiz</a></li>
         <li><a href="/HACKATHON/view/game.php">EcoGame</a></li>
         <li><a href="/HACKATHON/view/donation.php">Doações</a></li>
