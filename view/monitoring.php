@@ -29,20 +29,115 @@ $data = json_decode($response, true);
 
     <style>
         body {
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto-principal);
+            /* background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 50%, var(--primary) 100%); */
+            background: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background: radial-gradient(circle at 20% 80%, rgba(41, 253, 83, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(41, 253, 83, 0.1) 0%, transparent 50%); */
+            pointer-events: none;
+            z-index: -1;
         }
 
         .dashboard-container {
-            padding-top: 100px;
-            max-width: 1200px;
+            padding-top: 120px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: var(--space-xl);
+            padding-left: var(--space-xl);
+            padding-right: var(--space-xl);
+            padding-bottom: var(--space-4xl);
         }
 
-        .loading-container, .error-message {
+        .page-header {
             text-align: center;
-            color: var(--primary);
+            margin-bottom: var(--space-4xl);
+            position: relative;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: var(--font-black);
+            background: linear-gradient(135deg, var(--main-color), #00ff88, var(--main-color));
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease-in-out infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-lg);
+        }
+
+        .page-title i {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--main-color);
+            filter: drop-shadow(0 0 20px rgba(41, 253, 83, 0.5));
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .page-subtitle {
+            font-size: var(--font-xl);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 30vh;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(41, 253, 83, 0.2);
+            border-top: 4px solid var(--main-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: var(--space-xl);
+            box-shadow: 0 0 30px rgba(41, 253, 83, 0.3);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: var(--font-xl);
+            color: var(--main-color);
+            font-weight: var(--font-semibold);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            text-align: center;
+            color: #ff6b6b;
             font-size: var(--font-lg);
             margin-top: var(--space-3xl);
         }
@@ -50,64 +145,174 @@ $data = json_decode($response, true);
         .location-header {
             display: flex;
             align-items: center;
-            gap: var(--space-md);
-            margin-bottom: var(--space-xl);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: var(--space-lg);
+            justify-content: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-3xl);
+            padding: var(--space-xl);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-2xl);
+            border: 1px solid rgba(41, 253, 83, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .location-header img {
-            width: 60px;
-            height: 45px;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-sm);
+        .location-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(41, 253, 83, 0.1), transparent);
+            animation: shimmer 3s infinite;
         }
 
-        .location-header h1 {
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        #location-icon {
+            font-size: 3rem;
+            color: var(--main-color);
+            text-shadow: 0 0 20px rgba(41, 253, 83, 0.5);
+            filter: drop-shadow(0 0 10px rgba(41, 253, 83, 0.3));
+        }
+
+        .location-title {
             font-size: var(--font-3xl);
             font-weight: var(--font-bold);
             margin: 0;
             color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .search-container {
             display: flex;
             gap: var(--space-md);
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-3xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .search-container .form-control {
             flex-grow: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(41, 253, 83, 0.3);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg) var(--space-xl);
+            color: var(--text-primary);
+            font-size: var(--font-lg);
+            transition: all var(--transition-normal);
+        }
+
+        .search-container .form-control:focus {
+            outline: none;
+            border-color: var(--main-color);
+            box-shadow: 0 0 0 4px rgba(41, 253, 83, 0.2), 0 0 20px rgba(41, 253, 83, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .search-container .form-control::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-container .btn {
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-xl);
+            font-weight: var(--font-semibold);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-container .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .search-container .btn:hover::before {
+            left: 100%;
         }
         
+        .weather-hero {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(41, 253, 83, 0.2);
+            border-radius: var(--radius-3xl);
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
         .current-data-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-md);
-            margin-bottom: var(--space-xl);
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: var(--space-lg);
+            margin-bottom: var(--space-3xl);
         }
 
         .data-card {
-            background-color: var(--card-bg-transparent);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(41, 253, 83, 0.2);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-xl);
             text-align: center;
-            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--main-color), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .data-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--main-color);
+            box-shadow: 0 20px 40px rgba(41, 253, 83, 0.2);
+        }
+
+        .data-card:hover::before {
+            transform: translateX(100%);
         }
         
         .data-card .value {
-            font-size: var(--font-2xl);
-            font-weight: var(--font-bold);
-            color: var(--text-primary);
+            font-size: var(--font-3xl);
+            font-weight: var(--font-black);
+            color: var(--main-color);
+            text-shadow: 0 0 10px rgba(41, 253, 83, 0.5);
+            margin-bottom: var(--space-sm);
+            display: block;
         }
         
         .data-card .label {
-            font-size: var(--font-sm);
-            color: var(--text-muted);
+            font-size: var(--font-md);
+            color: var(--text-secondary);
             text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: var(--font-semibold);
         }
         
         .condition-card {
@@ -115,30 +320,162 @@ $data = json_decode($response, true);
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
         }
+
+        .condition-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--main-color), transparent, var(--main-color));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: xor;
+            -webkit-mask-composite: xor;
+        }
+
         .condition-card img {
-            width: 64px;
-            height: 64px;
-            margin-bottom: var(--space-sm);
+            width: 80px;
+            height: 80px;
+            margin-bottom: var(--space-md);
+            filter: drop-shadow(0 0 20px rgba(41, 253, 83, 0.5));
         }
+
         .condition-card .label {
-            font-size: var(--font-md);
+            font-size: var(--font-xl);
+            color: var(--text-primary);
+            text-transform: none;
+            letter-spacing: normal;
         }
 
         .charts-section {
             display: grid;
-            grid-template-columns: 1fr; /* Cada gráfico em uma linha */
-            gap: var(--space-xl); /* Espaçamento maior entre os gráficos */
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-3xl);
         }
 
         .chart-container {
-            background-color: var(--card-bg-transparent);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(41, 253, 83, 0.2);
+            border-radius: var(--radius-2xl);
             padding: var(--space-lg);
-            box-shadow: var(--shadow-md);
-            height: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-normal);
+        }
+
+        .chart-container:hover {
+            transform: translateY(-5px);
+            border-color: var(--main-color);
+            box-shadow: 0 20px 40px rgba(41, 253, 83, 0.2);
+        }
+
+        .chart-title {
+            font-size: var(--font-xl);
+            font-weight: var(--font-bold);
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-shrink: 0;
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid rgba(41, 253, 83, 0.2);
+        }
+
+        .chart-wrapper {
+            flex: 1;
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-wrapper canvas {
+            max-width: 100% !important;
+            max-height: 100% !important;
+            width: auto !important;
+            height: auto !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding-left: var(--space-md);
+                padding-right: var(--space-md);
+            }
+
+            .page-title {
+                font-size: var(--font-3xl);
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .current-data-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                gap: var(--space-md);
+            }
+
+            .condition-card {
+                grid-column: span 1;
+            }
+
+            .charts-section {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .chart-container {
+                min-height: 350px;
+                padding: var(--space-md);
+            }
+
+            .chart-wrapper {
+                min-height: 280px;
+            }
+
+            .search-container {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+
+            .location-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-md);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .current-data-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 1fr);
+                gap: var(--space-md);
+            }
+
+            .data-card .value {
+                font-size: var(--font-2xl);
+            }
+
+            .chart-container {
+                min-height: 300px;
+                padding: var(--space-md);
+            }
+
+            .chart-wrapper {
+                min-height: 250px;
+            }
         }
     </style>
 </head>
@@ -148,59 +485,76 @@ $data = json_decode($response, true);
 
     <div class="dashboard-container">
         
-        <div class="location-header">
-            <img id="flag-img" src="" alt="Bandeira do país">
-            <h1 id="location-title">Monitoramento Climático</h1>
-        </div>
-
-        <div class="search-container">
-            <input type="text" id="location-input" class="form-control" placeholder="Digite uma cidade e pressione Enter..." />
-            <button id="search-button" class="btn btn-primary">Buscar</button>
+        <div class="page-header">
+            <h1 class="page-title">
+                <i class="ri-cloud-line"></i>
+                Monitoramento Climático
+            </h1>
+            <p class="page-subtitle">
+                Monitoramento em tempo real das condições meteorológicas para sustentabilidade ambiental
+            </p>
         </div>
 
         <div id="loading-message" class="loading-container" style="display: none;">
-            <i class="ri-loader-4-line ri-spin"></i> Carregando dados...
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Carregando dados climáticos...</div>
         </div>
 
         <div id="dashboard-content" style="display: none;">
-            <div class="current-data-grid">
-                <div id="condition-card" class="data-card condition-card">
-                    <img id="condition-icon" src="" alt="Ícone do tempo">
-                    <div id="condition-text" class="label">--</div>
-                </div>
-                <div class="data-card">
-                    <div id="temp-value" class="value"></div>
-                    <div class="label">Temperatura</div>
-                </div>
-                <div class="data-card">
-                    <div id="feelslike-value" class="value"></div>
-                    <div class="label">Sensação</div>
-                </div>
-                <div class="data-card">
-                    <div id="wind-value" class="value"></div>
-                    <div class="label">Vento</div>
-                </div>
-                <div class="data-card">
-                    <div id="humidity-value" class="value"></div>
-                    <div class="label">Umidade</div>
-                </div>
-                <div class="data-card">
-                    <div id="pressure-value" class="value"></div>
-                    <div class="label">Pressão</div>
+            <div class="location-header">
+                <i class="ri-building-fill" id="location-icon"></i>
+                <h2 id="location-title" class="location-title">Monitoramento Climático</h2>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="location-input" class="form-control" placeholder="Digite o nome de uma cidade..." />
+                <button id="search-button" class="btn btn-primary">
+                    <i class="ri-search-line"></i> Buscar
+                </button>
+            </div>
+
+            <div class="weather-hero">
+                <div class="current-data-grid">
+                    <div id="condition-card" class="data-card">
+                        <img id="condition-icon" src="" alt="Ícone do tempo">
+                        <div id="condition-text" class="label">--</div>
+                    </div>
+                    <div class="data-card">
+                        <span id="temp-value" class="value">--°C</span>
+                        <div class="label">🌡️ Temperatura</div>
+                    </div>
+                    <div class="data-card">
+                        <span id="feelslike-value" class="value">--°C</span>
+                        <div class="label">🌡️ Sensação Térmica</div>
+                    </div>
+                    <div class="data-card">
+                        <span id="wind-value" class="value">-- km/h</span>
+                        <div class="label">💨 Velocidade do Vento</div>
+                    </div>
+                    <div class="data-card">
+                        <span id="humidity-value" class="value">--%</span>
+                        <div class="label">💧 Umidade Relativa</div>
+                    </div>
+                    <div class="data-card">
+                        <span id="pressure-value" class="value">-- hPa</span>
+                        <div class="label">📊 Pressão Atmosférica</div>
+                    </div>
                 </div>
             </div>
 
             <div class="charts-section">
                 <div class="chart-container">
-                    <canvas id="tempChart"></canvas>
+                    <h3 class="chart-title">🌡️ Variação de Temperatura</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="tempChart"></canvas>
+                    </div>
                 </div>
                 
                 <div class="chart-container">
-                    <canvas id="windChart"></canvas>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="precipChart"></canvas>
+                    <h3 class="chart-title">💨 Velocidade do Vento</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="windChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -211,7 +565,6 @@ $data = json_decode($response, true);
         const loadingMessage = document.getElementById('loading-message');
         const dashboardContent = document.getElementById('dashboard-content');
         const locationTitle = document.getElementById('location-title');
-        const flagImg = document.getElementById('flag-img');
         const tempValueDiv = document.getElementById('temp-value');
         const feelslikeValueDiv = document.getElementById('feelslike-value');
         const windValueDiv = document.getElementById('wind-value');
@@ -228,31 +581,89 @@ $data = json_decode($response, true);
         const chartGlobalOptions = {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 10,
+                    bottom: 10,
+                    left: 10,
+                    right: 10
+                }
+            },
             plugins: {
-                legend: { display: false },
+                legend: { 
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#ffffff',
+                        font: { 
+                            size: 13, 
+                            weight: '600' 
+                        },
+                        usePointStyle: true,
+                        padding: 15,
+                        boxWidth: 12,
+                        boxHeight: 12
+                    }
+                },
                 tooltip: {
-                    titleColor: 'var(--text-primary)',
-                    bodyColor: 'var(--text-primary)',
-                    backgroundColor: 'var(--card-bg)',
-                    borderColor: 'var(--border-color)',
-                    borderWidth: 1,
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                    borderColor: 'var(--main-color)',
+                    borderWidth: 2,
+                    cornerRadius: 8,
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 13 },
+                    padding: 12,
+                    displayColors: true,
+                    usePointStyle: true
                 }
             },
             scales: {
                 x: {
-                    grid: { color: 'rgba(255,255,255,0.2)' },
-                    ticks: { color: 'var(--text-muted)' }
+                    grid: { 
+                        color: 'rgba(41, 253, 83, 0.1)',
+                        borderColor: 'rgba(41, 253, 83, 0.3)'
+                    },
+                    ticks: { 
+                        color: '#ffffff',
+                        font: { size: 11, weight: '500' },
+                        maxTicksLimit: 12,
+                        padding: 5
+                    }
                 },
                 y: {
-                    grid: { color: 'rgba(255,255,255,0.2)' },
-                    ticks: { color: 'var(--text-muted)' }
+                    grid: { 
+                        color: 'rgba(41, 253, 83, 0.1)',
+                        borderColor: 'rgba(41, 253, 83, 0.3)'
+                    },
+                    ticks: { 
+                        color: '#ffffff',
+                        font: { size: 11, weight: '500' },
+                        padding: 5
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 4,
+                    hoverRadius: 6,
+                    borderWidth: 2
+                },
+                line: {
+                    borderWidth: 3,
+                    tension: 0.4
+                },
+                bar: {
+                    borderRadius: 4,
+                    borderSkipped: false
                 }
             }
         };
 
         // Função para buscar os dados da API
         async function fetchData(location) {
-            loadingMessage.style.display = 'block';
+            loadingMessage.style.display = 'flex';
             dashboardContent.style.display = 'none';
 
             try {
@@ -275,7 +686,6 @@ $data = json_decode($response, true);
         // Função para atualizar a interface com os dados
         function updateDashboard(data) {
             locationTitle.innerText = `${data.location.name}, ${data.location.region}`;
-            flagImg.src = `https://flagcdn.com/w40/${data.location.country.toLowerCase()}.png`;
 
             tempValueDiv.innerText = `${data.current.temp_c}°C`;
             feelslikeValueDiv.innerText = `${data.current.feelslike_c}°C`;
@@ -293,9 +703,8 @@ $data = json_decode($response, true);
             const feelslikeTemps = forecastHours.map(hour => hour.feelslike_c);
             const windSpeeds = forecastHours.map(hour => hour.wind_kph);
             const gustSpeeds = forecastHours.map(hour => hour.gust_kph);
-            const precipitations = forecastHours.map(hour => hour.precip_mm);
 
-            renderCharts(labels, temps, feelslikeTemps, windSpeeds, gustSpeeds, precipitations);
+            renderCharts(labels, temps, feelslikeTemps, windSpeeds, gustSpeeds);
             dashboardContent.style.display = 'block';
         }
 
@@ -308,10 +717,9 @@ $data = json_decode($response, true);
         }
 
         // Função para renderizar os gráficos
-        function renderCharts(labels, temps, feelslikeTemps, windSpeeds, gustSpeeds, precipitations) {
+        function renderCharts(labels, temps, feelslikeTemps, windSpeeds, gustSpeeds) {
             if (charts.tempChart) charts.tempChart.destroy();
             if (charts.windChart) charts.windChart.destroy();
-            if (charts.precipChart) charts.precipChart.destroy();
             
             // Gráfico de Temperatura (Temperatura Real vs. Sensação)
             const tempChartElement = document.getElementById('tempChart');
@@ -320,20 +728,43 @@ $data = json_decode($response, true);
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Temp. Real (°C)',
+                        label: 'Temperatura Real (°C)',
                         data: temps,
-                        borderColor: 'var(--primary)',
-                        backgroundColor: 'rgba(0, 255, 255, 0.2)',
-                        fill: true, tension: 0.4
+                        borderColor: 'var(--main-color)',
+                        backgroundColor: 'rgba(41, 253, 83, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: 'black',
+                        pointBorderColor: 'var(--primary)',
+                        pointHoverBackgroundColor: '#00ff88'
                     }, {
-                        label: 'Sensação (°C)',
+                        label: 'Sensação Térmica (°C)',
                         data: feelslikeTemps,
-                        borderColor: '#FF69B4',
-                        backgroundColor: 'rgba(255, 105, 180, 0.2)',
-                        fill: true, tension: 0.4
+                        borderColor: '#00ddff',
+                        backgroundColor: 'rgba(0, 221, 255, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#00ddff',
+                        pointBorderColor: 'var(--primary)',
+                        pointHoverBackgroundColor: '#33e6ff'
                     }]
                 },
-                options: chartGlobalOptions
+                options: {
+                    ...chartGlobalOptions,
+                    scales: {
+                        ...chartGlobalOptions.scales,
+                        y: {
+                            ...chartGlobalOptions.scales.y,
+                            title: {
+                                display: true,
+                                text: 'Temperatura (°C)',
+                                color: '#ffffff',
+                                font: { size: 12, weight: '600' },
+                                padding: { top: 0, bottom: 10 }
+                            }
+                        }
+                    }
+                }
             });
 
             // Gráfico de Vento (Velocidade vs. Rajadas)
@@ -343,37 +774,39 @@ $data = json_decode($response, true);
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Velocidade (km/h)',
+                        label: 'Velocidade do Vento (km/h)',
                         data: windSpeeds,
-                        backgroundColor: 'var(--secondary)',
-                        borderColor: 'var(--secondary)',
-                        borderWidth: 1
+                        backgroundColor: 'rgba(41, 253, 83, 0.7)',
+                        borderColor: 'var(--main-color)',
+                        borderWidth: 2,
+                        borderRadius: 6,
+                        hoverBackgroundColor: 'rgba(41, 253, 83, 0.9)'
                     }, {
                         label: 'Rajadas (km/h)',
                         data: gustSpeeds,
-                        backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                        borderColor: 'rgba(255, 255, 255, 0.8)',
-                        borderWidth: 1
+                        backgroundColor: 'rgba(0, 221, 255, 0.7)',
+                        borderColor: '#00ddff',
+                        borderWidth: 2,
+                        borderRadius: 6,
+                        hoverBackgroundColor: 'rgba(0, 221, 255, 0.9)'
                     }]
                 },
-                options: chartGlobalOptions
-            });
-
-            // Gráfico de Precipitação
-            const precipChartElement = document.getElementById('precipChart');
-            charts.precipChart = new Chart(precipChartElement, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Precipitação (mm)',
-                        data: precipitations,
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: chartGlobalOptions
+                options: {
+                    ...chartGlobalOptions,
+                    scales: {
+                        ...chartGlobalOptions.scales,
+                        y: {
+                            ...chartGlobalOptions.scales.y,
+                            title: {
+                                display: true,
+                                text: 'Velocidade (km/h)',
+                                color: '#ffffff',
+                                font: { size: 12, weight: '600' },
+                                padding: { top: 0, bottom: 10 }
+                            }
+                        }
+                    }
+                }
             });
         }
 
