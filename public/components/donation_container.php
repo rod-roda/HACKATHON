@@ -53,9 +53,9 @@
                         <input type="number" min="1" step="1" id="customAmount" name="customAmount" class="custom-amount" placeholder="R$ Valor personalizado">
                     </div>
                     <div class="form-group donate-button-group">
-                        <button type="submit" class="btn btn-success">
-                            <i class="ri-gift-fill"></i> Doar Agora
-                        </button>
+                            <button type="button" class="btn btn-success" id="openPixModal">
+                                <i class="ri-gift-fill"></i> Doar Agora
+                            </button>
                     </div>
                 </div>
             </form>
@@ -80,4 +80,20 @@
             </div>
         </div>
     </div>
+        <!-- Modal QR Code Pix -->
+        <div id="pixModal" class="pix-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
+            <div style="background:#fff; padding:32px 24px; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.2); position:relative; min-width:320px; max-width:90vw; text-align:center;">
+                <span id="closePixModal" style="position:absolute; top:12px; right:16px; font-size:24px; cursor:pointer;">&times;</span>
+                <h2 style="margin-bottom:16px;">Escaneie o QR Code Pix</h2>
+                <img id="pixQrCodeImg" src="" alt="QR Code Pix" style="width:220px; height:220px; margin-bottom:16px;" />
+                <p style="margin-bottom:8px;">Use o app do seu banco para escanear e doar.</p>
+                <div id="pixKeyBlock" style="margin-bottom:16px; font-size:14px; color:#666; word-break:break-all; background:#f5f5f5; padding:8px; border-radius:6px; border:1px solid #ddd;"></div>
+                <button id="copyPixBtn" style="background:#0e9a2d; color:#fff; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-size:14px; margin-top:8px; display:flex; align-items:center; justify-content:center; gap:8px; margin:0 auto;">
+                    <i class="ri-file-copy-line"></i> Copiar Código PIX
+                </button>
+                <div id="copyFeedback" style="margin-top:8px; color:#28a745; font-size:12px; display:none;">
+                    ✓ Código copiado com sucesso!
+                </div>
+            </div>
+        </div>
 </section>

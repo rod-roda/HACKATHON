@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Doadores</title>
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <style>
+    #chartdiv { width: 100%; height: 400px; }
+  </style>
+</head>
+<body>
+
+<div id="chartdiv"></div>
+<!-- graficoJogos.html -->
+<script>
+am4core.ready(async function () {
+  am4core.useTheme(am4themes_animated);
+
+  var chart = am4core.create("chartdiv", am4charts.XYChart);
+  chart.colors.step = 2;
+
+  var xAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+  xAxis.dataFields.category = "category";
+  xAxis.renderer.labels.template.rotation = -30;
+
+  var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
+  yAxis.min = 0;
+
+  var series = chart.series.push(new am4charts.ColumnSeries());
+  series.dataFields.valueY = "valor";
+  series.dataFields.categoryX = "category";
+  series.name = "Jogos";
+  series.columns.template.tooltipText = "{category}: [bold]{valueY}[/]";
+
+  try {
+    const resp = await fetch("/HACKATHON/dashboard/relatorio/graficos");
+    const json = await resp.json();
+    if (json.status && json.dados && json.dados.jogos) {
+      chart.data = json.dados.jogos;
+    }
+  } catch (e) {
+    console.error("Erro ao carregar top jogos:", e);
+  }
+});
+</script>
+
+
+</body>
+</html>

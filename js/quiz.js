@@ -8,44 +8,34 @@ let score = 0;
 let quizData;
 
 // Initialize quiz
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     if (window.location.pathname.includes('quiz')) {
-        fetchGet(`${window.location.origin}/HACKATHON/perguntas/random`)
-        .then(data => {
-            quizData = transformarQuiz(data);
-            console.log("Quiz carregado:", quizData);
-            initializeQuiz();
-            setupEventListeners();
-        }); 
+        let token = localStorage.getItem('token')
+        console.log("Token do localStorage: " + token.trim())
+
+        fetchGet(`${window.location.origin}/HACKATHON/perguntas/random`, token)
+            .then(data => {
+                if (data.status) {
+                    quizData = transformarQuiz(data);
+                    console.log("Quiz carregado:", quizData);
+                    initializeQuiz();
+                    setupEventListeners();
+                } else {
+                    showNotification(`Erro: ${data.msg}`, 'warning');
+                }
+            });
     }
 });
 
 function initializeQuiz() {
+    updateScoreQuiz();
+
     const nextButton = document.querySelector('.btn-primary');
     nextButton.disabled = true;
     nextButton.style.opacity = '0.6';
-    
+
     updateProgressBar();
     loadQuestion(currentQuestion);
-}
-
-function fetchGet(uri) {
-    return fetch(uri, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .catch(error => {
-        console.error('Erro no fetchGet:', error);
-        return null;
-    });
 }
 
 function transformarQuiz(apiResponse) {
@@ -69,7 +59,7 @@ function setupEventListeners() {
     // Answer option selection
     const answerOptions = document.querySelectorAll('.answer-option');
     answerOptions.forEach(option => {
-        option.addEventListener('click', function() {
+        option.addEventListener('click', function () {
             selectAnswer(this);
         });
     });
@@ -77,7 +67,7 @@ function setupEventListeners() {
     // Form submission
     const quizForm = document.getElementById('quizForm');
     if (quizForm) {
-        quizForm.addEventListener('submit', function(e) {
+        quizForm.addEventListener('submit', function (e) {
             e.preventDefault();
             submitAnswer();
         });
@@ -189,13 +179,13 @@ function previousQuestion() {
 function updateProgressBar() {
     const progressFill = document.querySelector('.progress-fill');
     const progressText = document.querySelector('.progress-text');
-    
+
     const percentage = (currentQuestion / totalQuestions) * 100;
-    
+
     if (progressFill) {
         progressFill.style.width = percentage + '%';
     }
-    
+
     if (progressText) {
         progressText.textContent = `Pergunta ${currentQuestion} de ${totalQuestions}`;
     }
@@ -207,7 +197,7 @@ function loadQuestion(questionNumber) {
     const question = quizData[questionNumber - 1];
     console.log(question);
     console.log(`Questao nmro ${questionNumber}`);
-    
+
     if (question) {
         // Update question title
         const questionTitle = document.querySelector('.question-title');
@@ -232,7 +222,7 @@ function loadQuestion(questionNumber) {
 
 function showQuizResults() {
     const percentage = Math.round((score / totalQuestions) * 100);
-    
+
     const resultHTML = `
         <div class="quiz-result card shadow-neon text-center">
             <h2 class="text-3xl font-bold text-primary mb-lg">Quiz Concluído!</h2>
@@ -259,6 +249,8 @@ function showQuizResults() {
 
     const quizWrapper = document.querySelector('.quiz-wrapper');
     quizWrapper.innerHTML = resultHTML;
+
+    insertScoreQuiz();
 }
 
 function getScoreMessage(percentage) {
@@ -280,48 +272,81 @@ function goToHome() {
     window.location.href = '../view/home.php';
 }
 
-function showNotification(message, type = 'info') {
-    // Remove existing notifications
-    const existingNotifications = document.querySelectorAll('.notification');
-    existingNotifications.forEach(notification => notification.remove());
+async function readScoreQuiz() {
+    const token = localStorage.getItem('token');
+    try {
+        const data = await fetchGet(`${window.location.origin}/HACKATHON/user_quiz/read`, token);
 
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
-                <i class="ri-close-line"></i>
-            </button>
-        </div>
-    `;
-
-    // Add to page
-    document.body.appendChild(notification);
-
-    // Auto remove after 5 seconds
-    setTimeout(() => closeNotification(notification), 3000);
-}
-
-function closeNotification(el) {
-    const notification = el.classList.contains('notification')
-        ? el
-        : el.closest('.notification');
-
-    if (notification) {
-        notification.classList.add('hide');
-        notification.addEventListener('animationend', () => notification.remove(), { once: true });
+        if (data?.status) {
+            if (data.cod === 404) return null;
+            return data; // dados válidos
+        } else {
+            showNotification(`Erro ao resgatar sua pontuação: ${data?.msg ?? 'Erro desconhecido'}`, 'warning');
+            return null;
+        }
+    } catch (err) {
+        showNotification('Falha de rede ao resgatar sua pontuação.', 'warning');
+        return null;
     }
 }
+
+async function updateScoreQuiz() {
+    const precisao = document.getElementById('precisao-value');
+    const qtdRespondidasEl = document.getElementById('qtdRespondidas-value');
+    const pontuacaoEl = document.getElementById('pontuacao-value');
+
+    const data = await readScoreQuiz();
+    if (!data || !data.dados) return;
+
+    const { pontuacao = 0, qtdRespondidas = 0, qtdCorretas = 0 } = data.dados;
+
+    const perc = qtdRespondidas > 0 ? Math.round((qtdCorretas / qtdRespondidas) * 100) : 0;
+
+    pontuacaoEl.textContent = `${pontuacao} PTS`;
+    qtdRespondidasEl.textContent = qtdRespondidas;
+    precisao.textContent = `${perc}%`;
+}
+
+async function insertScoreQuiz() {
+    const token = localStorage.getItem('token');
+
+    const dados_antigos = await readScoreQuiz();
+
+    let pontuacao = (typeof score === 'number' ? score : 0) * 5;
+    let qtdRespondidas = typeof totalQuestions === 'number' ? totalQuestions : 0;
+    let qtdCorretas = typeof score === 'number' ? score : 0;
+
+    if (dados_antigos?.dados) {
+        pontuacao += Number(dados_antigos.dados.pontuacao ?? 0);
+        qtdRespondidas += Number(dados_antigos.dados.qtdRespondidas ?? 0);
+        qtdCorretas += Number(dados_antigos.dados.qtdCorretas ?? 0);
+    }
+
+    const jsonBody = {
+        quiz_nome: 'EcoQuiz',
+        pontuacao,
+        qtdRespondidas,
+        qtdCorretas,
+    };
+
+    try {
+        const data = await fetchPost(`${window.location.origin}/HACKATHON/user_quiz/insert`, jsonBody, token);
+        if (!data?.status) {
+            showNotification('Erro ao atualizar sua pontuação', 'warning');
+        }
+    } catch (err) {
+        showNotification('Falha de rede ao atualizar sua pontuação', 'warning');
+    }
+}
+
 
 // ========== UTILITY FUNCTIONS ==========
 
 // Add smooth scrolling for anchor links
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -335,10 +360,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Add loading animation for buttons
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             if (!this.classList.contains('loading')) {
                 this.classList.add('loading');
                 setTimeout(() => {

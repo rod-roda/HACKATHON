@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13-Ago-2025 às 04:44
+-- Tempo de geração: 18-Ago-2025 às 00:45
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -48,6 +48,29 @@ CREATE TABLE `doacoes` (
   `metodo_pagamento` varchar(50) DEFAULT NULL,
   `data_doacao` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `doacoes`
+--
+
+INSERT INTO `doacoes` (`id`, `usuario_id`, `valor`, `metodo_pagamento`, `data_doacao`) VALUES
+(1, 1, '50.00', 'PIX', '2025-08-17 23:10:00'),
+(2, 6, '75.50', 'PIX', '2025-08-17 23:15:00'),
+(3, 14, '120.00', 'PIX', '2025-08-17 23:20:00'),
+(4, 15, '200.00', 'PIX', '2025-08-17 23:25:00'),
+(5, 16, '35.75', 'PIX', '2025-08-17 23:30:00'),
+(6, 17, '90.00', 'PIX', '2025-08-17 23:35:00'),
+(7, 19, '150.00', 'PIX', '2025-08-17 23:40:00'),
+(8, 20, '500.00', 'PIX', '2025-08-17 23:45:00'),
+(9, 21, '80.25', 'PIX', '2025-08-17 23:50:00'),
+(10, 22, '300.00', 'PIX', '2025-08-17 23:55:00'),
+(11, 23, '45.00', 'PIX', '2025-08-18 00:00:00'),
+(12, 24, '110.00', 'PIX', '2025-08-18 00:05:00'),
+(13, 25, '250.00', 'PIX', '2025-08-18 00:10:00'),
+(14, 26, '400.00', 'PIX', '2025-08-18 00:15:00'),
+(15, 27, '60.00', 'PIX', '2025-08-18 00:20:00'),
+(16, 28, '180.00', 'PIX', '2025-08-18 00:25:00'),
+(17, 29, '275.00', 'PIX', '2025-08-18 00:30:00');
 
 -- --------------------------------------------------------
 
@@ -199,9 +222,34 @@ CREATE TABLE `user_game` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `jogo_nome` varchar(100) NOT NULL,
-  `resultado` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`resultado`)),
+  `resultado` int(11) NOT NULL,
   `data_jogada` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `user_game`
+--
+
+INSERT INTO `user_game` (`id`, `usuario_id`, `jogo_nome`, `resultado`, `data_jogada`) VALUES
+(1, 1, 'EcoMarine', 105, '2025-08-17 03:25:14'),
+(2, 15, 'EcoMarine', 575, '2025-08-17 14:24:48'),
+(3, 1, 'EcoMarine', 150, '2025-08-17 21:10:00'),
+(4, 6, 'EcoMarine', 300, '2025-08-17 21:15:00'),
+(5, 14, 'EcoMarine', 450, '2025-08-17 21:20:00'),
+(6, 15, 'EcoMarine', 575, '2025-08-17 21:25:00'),
+(7, 16, 'EcoMarine', 220, '2025-08-17 21:30:00'),
+(8, 17, 'EcoMarine', 95, '2025-08-17 21:35:00'),
+(9, 19, 'EcoMarine', 230, '2025-08-17 21:40:00'),
+(10, 20, 'EcoMarine', 600, '2025-08-17 21:45:00'),
+(11, 21, 'EcoMarine', 340, '2025-08-17 21:50:00'),
+(12, 22, 'EcoMarine', 720, '2025-08-17 21:55:00'),
+(13, 23, 'EcoMarine', 180, '2025-08-17 22:00:00'),
+(14, 24, 'EcoMarine', 410, '2025-08-17 22:05:00'),
+(15, 25, 'EcoMarine', 380, '2025-08-17 22:10:00'),
+(16, 26, 'EcoMarine', 500, '2025-08-17 22:15:00'),
+(17, 27, 'EcoMarine', 270, '2025-08-17 22:20:00'),
+(18, 28, 'EcoMarine', 455, '2025-08-17 22:25:00'),
+(19, 29, 'EcoMarine', 610, '2025-08-17 22:30:00');
 
 -- --------------------------------------------------------
 
@@ -214,22 +262,73 @@ CREATE TABLE `user_quiz` (
   `usuario_id` int(11) NOT NULL,
   `quiz_nome` varchar(100) NOT NULL,
   `pontuacao` int(11) NOT NULL,
-  `data_jogada` timestamp NULL DEFAULT current_timestamp()
+  `data_jogada` timestamp NULL DEFAULT current_timestamp(),
+  `qtdRespondidas` int(11) NOT NULL,
+  `qtdCorretas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `user_quiz`
+--
+
+INSERT INTO `user_quiz` (`id`, `usuario_id`, `quiz_nome`, `pontuacao`, `data_jogada`, `qtdRespondidas`, `qtdCorretas`) VALUES
+(1, 15, 'EcoQuiz', 600, '2025-08-17 04:27:33', 60, 50),
+(2, 1, 'EcoQuiz', 45, '2025-08-17 15:46:48', 20, 9),
+(3, 1, 'EcoQuiz', 45, '2025-08-17 19:10:00', 20, 9),
+(4, 6, 'EcoQuiz', 120, '2025-08-17 19:15:00', 30, 18),
+(5, 14, 'EcoQuiz', 300, '2025-08-17 19:20:00', 40, 25),
+(6, 15, 'EcoQuiz', 720, '2025-08-17 19:25:00', 70, 60),
+(7, 16, 'EcoQuiz', 250, '2025-08-17 19:30:00', 35, 20),
+(8, 17, 'EcoQuiz', 400, '2025-08-17 19:35:00', 50, 30),
+(9, 19, 'EcoQuiz', 310, '2025-08-17 19:40:00', 40, 22),
+(10, 20, 'EcoQuiz', 500, '2025-08-17 19:45:00', 55, 40),
+(11, 21, 'EcoQuiz', 275, '2025-08-17 19:50:00', 30, 18),
+(12, 22, 'EcoQuiz', 610, '2025-08-17 19:55:00', 65, 52),
+(13, 23, 'EcoQuiz', 150, '2025-08-17 20:00:00', 25, 15),
+(14, 24, 'EcoQuiz', 420, '2025-08-17 20:05:00', 50, 32),
+(15, 25, 'EcoQuiz', 380, '2025-08-17 20:10:00', 45, 28),
+(16, 26, 'EcoQuiz', 520, '2025-08-17 20:15:00', 60, 45),
+(17, 27, 'EcoQuiz', 210, '2025-08-17 20:20:00', 30, 17),
+(18, 28, 'EcoQuiz', 455, '2025-08-17 20:25:00', 55, 38),
+(19, 29, 'EcoQuiz', 600, '2025-08-17 20:30:00', 65, 50);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura da tabela `usuario`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `nome` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
   `senha_hash` varchar(255) NOT NULL,
-  `data_criacao` timestamp NULL DEFAULT current_timestamp()
+  `data_criacao` timestamp NULL DEFAULT current_timestamp(),
+  `cpf` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha_hash`, `data_criacao`, `cpf`) VALUES
+(1, 'Rodrigo Roda', 'rodrroda@gmail.com', 'IrgRAEYBxTwTXev7jfUgiFhETjlBb0NteUVEN2UvM1VLT1paSGc9PQ==', '2025-08-14 00:18:10', '48304487845'),
+(6, 'Rodrigo Roda', 'teste@gmail.com', '3B8azF/ihYx1PCVsVLm/RUVmYnVtK1JQeWhEYUZmdFcveFYrR3c9PQ==', '2025-08-16 01:07:22', '483.044.878'),
+(14, 'Rodrigo Roda Oliveto Alves', 'rodrigo.oliveto2@p4ed.com', 'S2cHjzaHuPc0Jy2vjGg+b21JYnBPckMvNHE3bUxFd1RoVzJLdFE9PQ==', '2025-08-16 01:31:39', '483.044.878'),
+(15, 'Rodrigo Roda Oliveto Alves', 'rodriguinhoroda@gmail.com', 'NikoZrOjFal43MuCqthoMDFHa2ptdXZEY1V6OHV6VncycWtXOUE9PQ==', '2025-08-16 01:32:51', '483.044.878'),
+(16, 'Rodrigo Roda', 'slaoq@gmail.com', 'fIvtFw/Pjkz1xWZOv/60sTdFNWsrU3Y0RmFpYmZIK2tWbGdmd2c9PQ==', '2025-08-17 01:24:15', '48304487845'),
+(17, 'Rodrigo Roda', 'slaoq2@gmail.com', 'oqj/J0Jw6YLnXzhm+q0v03pkYUtLVGY2bkZUekxCNUMwM1ViK3c9PQ==', '2025-08-17 02:44:53', '48304487845'),
+(19, 'thiaguinnnnn', 'thiaguinhomain@gmail.com', 'HOhQoUek+EN4sgD9Kk93yHRMdzdlMFZ0SVJreXVwSzlKSDkwa3c9PQ==', '2025-08-17 14:54:50', '483.044.878'),
+(20, 'Mariana Silva', 'mariana.silva@gmail.com', '/1RTxd5MSz8SwdIahN3/oWlQdDNPU2R4OVJLYnlBNXJvSm1PeWc9PQ==', '2025-08-17 22:38:08', '12345678901'),
+(21, 'Carlos Souza', 'carlos.souza@gmail.com', '9BTLx/rglhv1zh24TOBkumEwakpBMExxTk9Lc1BBTGNLL0dFWFE9PQ==', '2025-08-17 22:38:08', '98765432100'),
+(22, 'Ana Oliveira', 'ana.oliveira@gmail.com', 'u2RgyM5OBdKaRVQhGzfmpGlLTXNsYjZ0bXNMOGtPSUxNem9LWXc9PQ==', '2025-08-17 22:38:08', '45612378900'),
+(23, 'João Pereira', 'joao.pereira@gmail.com', 'MscfVnlx2gHOqO+261yvGXJVSFhTaHFOcDhVaTBPNHVOZXlzeWc9PQ==', '2025-08-17 22:38:08', '78945612300'),
+(24, 'Fernanda Costa', 'fernanda.costa@gmail.com', 'g6d604h5LzUnFr65alRwT25ybGw1UU1FRXhuYWpSc0pncFZvNnc9PQ==', '2025-08-17 22:38:08', '85274196300'),
+(25, 'Rafael Gomes', 'rafael.gomes@gmail.com', 'ehXfWdERi+rgV7rA5it9LElTeVA1L0RvTTdadWZ2S1ZsWFROU3c9PQ==', '2025-08-17 22:38:08', '36925814700'),
+(26, 'Beatriz Almeida', 'beatriz.almeida@gmail.com', 'Xmrdf2pf9tZgLnTqwYDrjExwUzB0QmNjeVdXUTF0UkFxRHNLbGc9PQ==', '2025-08-17 22:38:08', '74185296300'),
+(27, 'Lucas Fernandes', 'lucas.fernandes@gmail.com', 'jGOHi0zJuNZ/kriCRvpsUTZyMnBqTFl3V3BJdHlLeGh6ZUdIaEE9PQ==', '2025-08-17 22:38:08', '15975348600'),
+(28, 'Juliana Rocha', 'juliana.rocha@gmail.com', 'Eho53BSRm9jswsGI429VaVJvQXp2SXhjT2MzbmRady9RQ254cFE9PQ==', '2025-08-17 22:38:08', '25845678900'),
+(29, 'Gabriel Lima', 'gabriel.lima@gmail.com', 'rSGrKC1dVxjGZpRXnmXS/U1uVTFZd3BYdkMzU3Z6VVVjWUtuR1E9PQ==', '2025-08-17 22:38:08', '32165498700');
 
 --
 -- Índices para tabelas despejadas
@@ -277,9 +376,9 @@ ALTER TABLE `user_quiz`
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices para tabela `usuario`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
@@ -297,7 +396,7 @@ ALTER TABLE `cache`
 -- AUTO_INCREMENT de tabela `doacoes`
 --
 ALTER TABLE `doacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `log`
@@ -315,19 +414,19 @@ ALTER TABLE `perguntas_quiz`
 -- AUTO_INCREMENT de tabela `user_game`
 --
 ALTER TABLE `user_game`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `user_quiz`
 --
 ALTER TABLE `user_quiz`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT de tabela `usuarios`
+-- AUTO_INCREMENT de tabela `usuario`
 --
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restrições para despejos de tabelas
@@ -337,25 +436,25 @@ ALTER TABLE `usuarios`
 -- Limitadores para a tabela `doacoes`
 --
 ALTER TABLE `doacoes`
-  ADD CONSTRAINT `doacoes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `doacoes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `log`
 --
 ALTER TABLE `log`
-  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `user_game`
 --
 ALTER TABLE `user_game`
-  ADD CONSTRAINT `user_game_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_game_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `user_quiz`
 --
 ALTER TABLE `user_quiz`
-  ADD CONSTRAINT `user_quiz_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_quiz_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
