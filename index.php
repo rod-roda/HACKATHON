@@ -84,6 +84,22 @@ $roteador->get('/user_game/read', function () {
     echo readById();
 });
 
+$roteador->get('/dashboard/relatorio/dashboards', function () {
+    require_once __DIR__ . '/controle/controller_dashboards.php';
+    readDashboardStats();
+});
+
+$roteador->get('/dashboard/relatorio/graficos', function () {
+    require_once __DIR__ . '/controle/controller_dashboards.php';
+    readGraficosGerais();
+});
+
+$roteador->post('/dashboard', function () {
+    require_once __DIR__ . '/controle/controller_dashboards.php';
+        echo createAtividade();
+
+});
+
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 
