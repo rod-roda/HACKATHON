@@ -413,12 +413,25 @@
                 resultado: score
             };
 
-            fetchPost(`${window.location.origin}/HACKATHON/user_game/insert`, jsonBody, token)
+            
+            
+            fetchGet(`${window.location.origin}/HACKATHON/user_game/read`, token)
             .then(data => {
                 if(data.status){
-                    updateBestScore();
+                    if(data.cod != 404 && data.dados.resultado < score){
+
+                        fetchPost(`${window.location.origin}/HACKATHON/user_game/insert`, jsonBody, token)
+                        .then(data => {
+                            if(data.status){
+                                updateBestScore();
+                            }else{
+                                showNotification("Erro ao atualizar sua pontuação", 'warning');
+                            }
+                        });
+
+                    }
                 }else{
-                    showNotification("Erro ao atualizar sua pontuação", 'warning');
+                    showNotification(`Erro ao resgatar sua pontuação: ${data.msg}`, 'warning');
                 }
             });
         }
