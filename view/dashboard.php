@@ -1026,6 +1026,15 @@
 
     <?php include __DIR__ . '/../public/components/header.php'; ?>
 
+    <script>
+        const links = document.querySelectorAll(".navbar li a");
+        links.forEach(link => {
+            if (link.textContent.trim() === "DashBoard") {
+                link.classList.add("active");
+            }
+        });
+    </script>
+
     <!-- Filtros acima dos gráficos -->
  <div class="filtros-container">
     <div class="filtros-header">
