@@ -97,7 +97,11 @@ $roteador->get('/dashboard/relatorio/graficos', function () {
 $roteador->post('/dashboard', function () {
     require_once __DIR__ . '/controle/controller_dashboards.php';
         echo createAtividade();
+});
 
+$roteador->get('/monitoramento/([^/]+)', function ($localizacao) {
+    require_once __DIR__ . '/controle/controller_monitoramento.php';
+    echo monitoringApiCall($localizacao);
 });
 
 /*

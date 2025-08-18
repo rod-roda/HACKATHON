@@ -595,7 +595,7 @@ $data = json_decode($response, true);
             maintainAspectRatio: false,
             layout: {
                 padding: {
-                    top: 10,
+                    top: 0,
                     bottom: 10,
                     left: 10,
                     right: 10
@@ -681,7 +681,11 @@ $data = json_decode($response, true);
             location = location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // Remove acentos e caracteres especiais
             
             try {
-                const response = await fetch(`/HACKATHON/controle/monitoramento/controle_monitoramento.php?localizacao=${location}`);
+                const response = await fetch(`${window.location.origin}/HACKATHON/monitoramento/${location}`, {
+                    headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    }
+                });
                 const data = await response.json();
 
                 if (response.ok) {
