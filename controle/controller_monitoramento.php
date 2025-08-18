@@ -1,6 +1,7 @@
 <?php
 use Firebase\JWT\MeuTokenJWT;
 require_once "modelo/MeuTokenJWT.php";
+require_once "controle/controller_logs.php";
 
 function monitoringApiCall($localizacao){
     $apiKey = "ac194985c6b749509d8235429251308";
@@ -41,6 +42,13 @@ function monitoringApiCall($localizacao){
             http_response_code(404);
             return json_encode(['erro' => $data['error']['message']]);
         } else {
+            $dadosReq = [
+                'apiKey' => $apiKey,
+                'localizacao' => $localizacao,
+                'lang' => $lang
+            ];
+            registrarLog("GET - " . $apiUrl, json_encode($dadosReq), $response);
+
             return $response;
         }
     }else{

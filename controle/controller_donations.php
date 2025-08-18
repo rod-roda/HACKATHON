@@ -1,6 +1,7 @@
 <?php
 use Firebase\JWT\MeuTokenJWT;
 require_once "modelo/MeuTokenJWT.php";
+require_once "controle/controller_logs.php";
 
 
 function getAccessToken() {
@@ -38,6 +39,8 @@ function getAccessToken() {
     $dados = json_decode($response, true);
 
     if (isset($dados['access_token'])) {
+        registrarLog("POST - https://pix.api.efipay.com.br/oauth/token", '{"grant_type": "client_credentials"}', $response);
+        
         return $dados['access_token']; // retorna somente o token
     }
 
@@ -110,6 +113,8 @@ function postGerarCodigo() {
             $dadosResp = json_decode($response, true);
     
             if (isset($dadosResp['pixCopiaECola'])) {
+                registrarLog("POST - https://pix.api.efipay.com.br/v2/cob", json_encode($dados), $response);
+                
                 $objResposta->cod = 1;
                 $objResposta->status = true;
                 $objResposta->mensagem = "Pix gerado com sucesso!";

@@ -18,11 +18,6 @@ document.querySelector('form').addEventListener('submit', function(e) {
         return;
     }
 
-    if (senha.length < 6) {
-        showNotification("A senha deve ter no mínimo 6 caracteres", 'warning');
-        return;
-    }
-
     const user = { nome, email, senha, cpf };
     console.log(user);
 
