@@ -669,6 +669,8 @@ $data = json_decode($response, true);
             loadingMessage.style.display = 'flex';
             dashboardContent.style.display = 'none';
 
+            location = location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // Remove acentos e caracteres especiais
+            
             try {
                 const response = await fetch(`/HACKATHON/controle/monitoramento/controle_monitoramento.php?localizacao=${location}`);
                 const data = await response.json();
