@@ -486,6 +486,15 @@ $data = json_decode($response, true);
 
     <?php include __DIR__ . '/../public/components/header.php'; ?>
 
+    <script>
+        const links = document.querySelectorAll(".navbar li a");
+        links.forEach(link => {
+            if (link.textContent.trim() === "Monitoramento") {
+                link.classList.add("active");
+            }
+        });
+    </script>
+
     <div class="dashboard-container">
         
         <div class="page-header">
@@ -586,7 +595,7 @@ $data = json_decode($response, true);
             maintainAspectRatio: false,
             layout: {
                 padding: {
-                    top: 10,
+                    top: 0,
                     bottom: 10,
                     left: 10,
                     right: 10
