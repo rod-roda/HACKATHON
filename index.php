@@ -58,6 +58,11 @@ $roteador->get('/user_game/read', function () {
     echo readById();
 });
 
+$roteador->get('/monitoramento/([^/]+)', function ($localizacao) {
+    require_once __DIR__ . '/controle/controller_monitoramento.php';
+    echo monitoringApiCall($localizacao);
+});
+
 /*
 EXMPLOS DE ROTAS EM GET,DELETE,POST E PUT
 
