@@ -418,7 +418,7 @@
             fetchGet(`${window.location.origin}/HACKATHON/user_game/read`, token)
             .then(data => {
                 if(data.status){
-                    if(data.cod != 404 && data.dados.resultado < score){
+                    if(data.cod == 404 || data.dados.resultado < score){
 
                         fetchPost(`${window.location.origin}/HACKATHON/user_game/insert`, jsonBody, token)
                         .then(data => {
