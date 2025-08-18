@@ -7,7 +7,8 @@ $apiKey = "ac194985c6b749509d8235429251308";
 
 // Certifique-se de que a requisição é um GET e que o parâmetro de localização foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['localizacao'])) {
-    $localizacao = urlencode($_GET['localizacao']);
+    $localizacao = urlencode($_GET['localizacao']); // Converte para ASCII, removendo acentos e caracteres especiais
+
     $lang = 'pt'; // Idioma para a resposta da API (português)
     
     // Altera a API para buscar a previsão de 3 dias
