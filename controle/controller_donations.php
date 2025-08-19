@@ -2,7 +2,7 @@
 use Firebase\JWT\MeuTokenJWT;
 require_once "modelo/MeuTokenJWT.php";
 require_once "modelo/Donation.php";
-
+require_once "controle/controller_logs.php";
 
 function getAccessToken() {
     $config = [
@@ -39,6 +39,8 @@ function getAccessToken() {
     $dados = json_decode($response, true);
 
     if (isset($dados['access_token'])) {
+        registrarLog("POST - https://pix.api.efipay.com.br/oauth/token", '{"grant_type": "client_credentials"}', $response);
+        
         return $dados['access_token']; // retorna somente o token
     }
 
@@ -116,6 +118,8 @@ function postGerarCodigo() {
                 $objResposta->mensagem = "Pix gerado com sucesso!";
                 $objResposta->pixCopiaECola = $dadosResp['pixCopiaECola'];
                 $objResposta->txid = $dadosResp['txid'];
+
+                registrarLog("POST - https://pix.api.efipay.com.br/v2/cob", json_encode($dados), $response);
             } else {
                 $objResposta->cod = 0;
                 $objResposta->status = false;
@@ -196,6 +200,8 @@ function getVerificarStatusPix($txid) {
                 $objResposta->mensagem = "Consulta realizada com sucesso!";
                 $objResposta->statusPix = $dadosResp['status'];
                 $objResposta->resposta_api = $dadosResp;
+
+                registrarLog("GET - https://pix.api.efipay.com.br/v2/cob/" . urlencode($txid), "", $response);
             } else {
                 $objResposta->cod = 0;
                 $objResposta->status = false;
@@ -217,9 +223,6 @@ function getVerificarStatusPix($txid) {
         return json_encode($objResposta);
     }
 }
-
-
-
 
 function registrarPix() {
     $resposta = new stdClass();
