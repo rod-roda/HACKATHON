@@ -15,9 +15,8 @@
 8. [Banco de Dados](#-banco-de-dados)
 9. [Segurança & Boas Práticas](#-segurança--boas-práticas)
 10. [Roadmap / Próximos Passos](#-roadmap--próximos-passos)
-11. [Contribuição](#-contribuição)
-12. [Licença](#-licença)
-13. [Créditos & Contato](#-créditos--contato)
+11. [Licença](#-licença)
+12. [Créditos & Contato](#-créditos--contato)
 
 ---
 ## 🧭 Visão Geral
