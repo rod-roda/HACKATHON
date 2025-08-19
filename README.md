@@ -215,7 +215,6 @@ HACKATHON/
 │   ├── quiz.php                       # Página do EcoQuiz
 │   └── weather.php                    # Visualização mapa meteorológico (MapTiler)
 ```
-> A estrutura acima prioriza transparência para onboarding rápido de novos contribuidores.
 
 ---
 ## 🔐 Fluxo de Autenticação (JWT)
