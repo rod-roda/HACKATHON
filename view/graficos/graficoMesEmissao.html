@@ -35,10 +35,20 @@
       xAxis.renderer.labels.template.rotation = 0;
       xAxis.renderer.labels.template.horizontalCenter = "middle";
       xAxis.renderer.labels.template.verticalCenter = "middle";
+      xAxis.renderer.labels.template.fill = "#FFFFFF"
+
+      /*xAxis.get("renderer").labels.template.setAll({
+        fill: am5.color(0xffffff)
+      }); */
 
       // Eixo Y = emissões
       var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
       yAxis.min = 0;
+      yAxis.renderer.labels.template.fill = "#FFFFFF"
+
+      /*yAxis.get("renderer").labels.template.setAll({
+        fill: am5.color(0xffffff)
+      });*/
 
       // Série de linha
       var series = chart.series.push(new am4charts.LineSeries());
@@ -48,6 +58,7 @@
       series.strokeWidth = 3;
       series.tooltipText = "{categoryX}: [bold]{valueY}[/] kg";
       series.tensionX = 0.8;
+      //series.fill = "#ffffff"
 
       // Pontos nas linhas
       var bullet = series.bullets.push(new am4charts.CircleBullet());
@@ -58,7 +69,8 @@
       // Labels acima dos pontos
       var labelBullet = series.bullets.push(new am4charts.LabelBullet());
       labelBullet.label.text = "{valueY}";
-      labelBullet.label.dy = -10;
+      labelBullet.label.dy = -12;
+      labelBullet.label.fill = "#ffffff"
 
       // Cursor interativo
       chart.cursor = new am4charts.XYCursor();

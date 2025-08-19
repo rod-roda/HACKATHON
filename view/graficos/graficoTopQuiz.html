@@ -24,9 +24,11 @@ am4core.ready(async function () {
   var xAxis = chart.xAxes.push(new am4charts.CategoryAxis());
   xAxis.dataFields.category = "category";
   xAxis.renderer.labels.template.rotation = -30;
+  xAxis.renderer.labels.template.fill = "#ffffff"
 
   var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
   yAxis.min = 0;
+  yAxis.renderer.labels.template.fill = "#ffffff"
 
   var series = chart.series.push(new am4charts.ColumnSeries());
   series.dataFields.valueY = "valor";

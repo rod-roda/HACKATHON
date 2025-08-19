@@ -1,16 +1,21 @@
-@ -1,66 +0,0 @@
-<!-- Styles -->
-<style>
-#chartdiv {
-  width: 100%;
-  height: 500px;
-}
-</style>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<!-- Resources -->
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipo de Atividade</title>
+
+  <!-- Recursos do amCharts -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+</head>
+
+<body>
+
+  <div id="chartdiv" style="width: 100%; height: 500px;"></div>
 
 <!-- Chart code --><script>
 am5.ready(async function() {
@@ -29,6 +34,15 @@ am5.ready(async function() {
     })
   );
 
+  series.labels.template.setAll({
+    fill: am5.color(0xffffff), // branco
+    fontSize: 14
+  });
+  series.ticks.template.setAll({
+    stroke: am5.color(0xffffff) // cor das linhas que ligam labels ao gráfico
+  });
+
+
   try {
     const resp = await fetch("/HACKATHON//dashboard/relatorio/graficos");
 const json = await resp.json();
@@ -43,5 +57,5 @@ if (json.status && json.dados && json.dados.resumo) {
 });
 </script>
 
-<!-- HTML -->
-<div id="chartdiv"></div>
+</body>
+</html>
