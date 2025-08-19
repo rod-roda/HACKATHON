@@ -98,8 +98,12 @@ Garanta permissões de leitura nos certificados (Windows: ver propriedades > seg
 
 ### 7. Gemini API
 - Acesse: https://console.cloud.google.com/ e gere sua chave de utilização da API do Gemini
+- Substitua no modelo `IaLanguage.php`
+```php
+$this->geminiEndpoint = "SUA_API_KEY_AQUI";
+```
 
-### 7. Acessar
+### 8. Acessar
 Abra no navegador:
 ```
 http://localhost/HACKATHON/view/home.php
