@@ -96,6 +96,9 @@ $apiKey = "SUA_CHAVE_AQUI";
 ### 6. Permissões / Certificados
 Garanta permissões de leitura nos certificados (Windows: ver propriedades > segurança).
 
+### 7. Gemini API
+- Acesse: https://console.cloud.google.com/ e gere sua chave de utilização da API do Gemini
+
 ### 7. Acessar
 Abra no navegador:
 ```
