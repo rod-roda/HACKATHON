@@ -1,5 +1,7 @@
+let pixInterval = null; // global
+let pixModal = null;    // global
+
 function generateQRCode(text, size = 256) {
-    // Usar API externa para gerar QR Code
     const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}`;
     return qrApiUrl;
 }
@@ -11,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeDonation() {
-    const pixModal = document.getElementById('pixModal');
+    pixModal = document.getElementById('pixModal');
     const openPixModalBtn = document.getElementById('openPixModal');
     const closePixModalBtn = document.getElementById('closePixModal');
     const pixQrCodeImg = document.getElementById('pixQrCodeImg');
@@ -20,10 +22,11 @@ function initializeDonation() {
     const copyFeedback = document.getElementById('copyFeedback');
     
     let currentPixKey = '';
+    let currentTxid = '';
+    let currentValor = 0;
 
     if (openPixModalBtn) {
         openPixModalBtn.addEventListener('click', function() {
-
             const valor = getDonationValue();
             const ong = document.getElementById('orgSelect');
 
@@ -37,21 +40,28 @@ function initializeDonation() {
                 return;
             }
 
-            let token = localStorage.getItem('token')
+            currentValor = valor; 
+
+            let token = localStorage.getItem('token');
             
             fetchPost('/HACKATHON/pix/gerarCodigo', { valor: valor}, token)
             .then(res => {
                 if(res.status){
-                    currentPixKey = res.pixCopiaECola; // Armazena a chave PIX
+                    currentPixKey = res.pixCopiaECola; 
+                    currentTxid = res.txid; 
                     const qrApiUrl = generateQRCode(currentPixKey);
     
                     pixModal.style.display = 'flex';
                     pixKeyBlock.textContent = currentPixKey;
                     pixQrCodeImg.src = qrApiUrl;
                     
-                    // Reset feedback message
                     copyFeedback.style.display = 'none';
-                }else{
+
+                    // Inicia verificação periódica do status do PIX a cada 5 segundos
+                    if (pixInterval) clearInterval(pixInterval);
+                    pixInterval = setInterval(() => checkPixStatus(currentTxid, token, currentValor), 5000);
+
+                } else {
                     showNotification(`Erro: ${res.msg}`, 'warning');
                 }
             });
@@ -64,7 +74,6 @@ function initializeDonation() {
             if (currentPixKey) {
                 copyToClipboard(currentPixKey)
                     .then(() => {
-                        // Mostra feedback de sucesso
                         copyFeedback.style.display = 'block';
                         copyPixBtn.innerHTML = '<i class="ri-check-line"></i> Copiado!';
                         copyPixBtn.style.background = '#28a745';
@@ -85,12 +94,16 @@ function initializeDonation() {
     if (closePixModalBtn) {
         closePixModalBtn.addEventListener('click', function() {
             pixModal.style.display = 'none';
+            if (pixInterval) clearInterval(pixInterval);
         });
     }
 
     if (pixModal) {
         pixModal.addEventListener('click', function(e) {
-            if (e.target === pixModal) pixModal.style.display = 'none';
+            if (e.target === pixModal) {
+                pixModal.style.display = 'none';
+                if (pixInterval) clearInterval(pixInterval);
+            }
         });
     }
 }
@@ -100,24 +113,20 @@ function getDonationValue() {
     const selectedRadio = document.querySelector('input[name="amount"]:checked');
 
     let value = 0;
-
     if (customAmountInput.value && Number(customAmountInput.value) > 0) {
         value = Number(customAmountInput.value);
     } else if (selectedRadio) {
         value = Number(selectedRadio.value);
     }
-
     return value;
 }
 
 async function copyToClipboard(text) {
     try {
-        // Tenta usar a API moderna do clipboard
         if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(text);
             return Promise.resolve();
         } else {
-            // Fallback para navegadores mais antigos
             const textArea = document.createElement('textarea');
             textArea.value = text;
             textArea.style.position = 'fixed';
@@ -130,13 +139,55 @@ async function copyToClipboard(text) {
             const successful = document.execCommand('copy');
             document.body.removeChild(textArea);
             
-            if (successful) {
-                return Promise.resolve();
-            } else {
-                return Promise.reject();
-            }
+            if (successful) return Promise.resolve();
+            else return Promise.reject();
         }
     } catch (err) {
         return Promise.reject(err);
     }
+}
+
+
+function checkPixStatus(txid, token, valor) {
+    fetchGet(`/HACKATHON/pix/status/${txid}`, token)
+    .then(res => {
+        if(res.statusPix === "CONCLUIDA") {
+            showNotification('Pagamento PIX recebido com sucesso!', 'success');
+            
+            if (pixInterval) clearInterval(pixInterval);
+            if (pixModal) pixModal.style.display = 'none';
+
+            fetchPost('/HACKATHON/pix/registrar', {
+                valor: valor
+            }, token)
+            .then(r => {
+                console.log("Registro salvo:", r);
+            })
+            .catch(err => console.error("Erro ao registrar doação:", err));
+        }
+    })
+    .catch(err => console.error('Erro ao verificar status do PIX:', err));
+}
+
+function fetchGet(url, token) {
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json());
+}
+
+function fetchPost(url, data, token) {
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Authorization': token ? `Bearer ${token}` : '',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json());
 }
