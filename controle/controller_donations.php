@@ -1,7 +1,7 @@
 <?php
 use Firebase\JWT\MeuTokenJWT;
 require_once "modelo/MeuTokenJWT.php";
-require_once "controle/controller_logs.php";
+require_once "modelo/Donation.php";
 
 
 function getAccessToken() {
@@ -39,8 +39,6 @@ function getAccessToken() {
     $dados = json_decode($response, true);
 
     if (isset($dados['access_token'])) {
-        registrarLog("POST - https://pix.api.efipay.com.br/oauth/token", '{"grant_type": "client_credentials"}', $response);
-        
         return $dados['access_token']; // retorna somente o token
     }
 
@@ -113,12 +111,11 @@ function postGerarCodigo() {
             $dadosResp = json_decode($response, true);
     
             if (isset($dadosResp['pixCopiaECola'])) {
-                registrarLog("POST - https://pix.api.efipay.com.br/v2/cob", json_encode($dados), $response);
-                
                 $objResposta->cod = 1;
                 $objResposta->status = true;
                 $objResposta->mensagem = "Pix gerado com sucesso!";
                 $objResposta->pixCopiaECola = $dadosResp['pixCopiaECola'];
+                $objResposta->txid = $dadosResp['txid'];
             } else {
                 $objResposta->cod = 0;
                 $objResposta->status = false;
@@ -138,18 +135,116 @@ function postGerarCodigo() {
         $objResposta->tokenRecebido = $authorization;
         return json_encode($objResposta);
     }
-
 }
-function registrarPix() {
-    $json = file_get_contents('php://input');
-    $objJson = json_decode($json);
 
+function getVerificarStatusPix($txid) {
+    $objResposta = new stdClass();
+
+    if (empty($txid)) {
+        $objResposta->cod = 0;
+        $objResposta->status = false;
+        $objResposta->mensagem = "O campo 'txid' é obrigatório!";
+        header("Content-Type: application/json");
+        return json_encode($objResposta);
+    }
+
+    $headers = getallheaders();
+    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+    $meuToken = new MeuTokenJWT();
+
+    if ($meuToken->validarToken($authorization)) {
+        $token = getAccessToken();
+        if (!$token) {
+            $objResposta->cod = 0;
+            $objResposta->status = false;
+            $objResposta->mensagem = "Erro ao gerar token de acesso!";
+            header("Content-Type: application/json");
+            return json_encode($objResposta);
+        }
+        
+        $config = [
+            "certificado" => "C:/xampp/htdocs/HACKATHON/certificados/certificado_completo.pem",
+            "token" => $token
+        ];
+
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://pix.api.efipay.com.br/v2/cob/" . urlencode($txid),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_SSLCERT => $config["certificado"],
+            CURLOPT_SSLCERTPASSWD => "",
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Bearer {$config['token']}",
+                "Content-Type: application/json"
+            ]
+        ]);
+
+        $response = curl_exec($curl);
+
+        if ($response === false) {
+            $objResposta->cod = 0;
+            $objResposta->status = false;
+            $objResposta->mensagem = "Erro CURL: " . curl_error($curl);
+            $objResposta->resposta_api = null;
+        } else {
+            $dadosResp = json_decode($response, true);
+
+            if (isset($dadosResp['status'])) {
+                $objResposta->cod = 1;
+                $objResposta->status = true;
+                $objResposta->mensagem = "Consulta realizada com sucesso!";
+                $objResposta->statusPix = $dadosResp['status'];
+                $objResposta->resposta_api = $dadosResp;
+            } else {
+                $objResposta->cod = 0;
+                $objResposta->status = false;
+                $objResposta->mensagem = "Erro ao consultar PIX";
+                $objResposta->resposta_api = $dadosResp;
+            }
+        }
+
+        curl_close($curl);
+
+        header("Content-Type: application/json");
+        return json_encode($objResposta);
+
+    } else {
+        $objResposta->cod = 2;
+        $objResposta->status = false;
+        $objResposta->msg = "Token inválido!";
+        $objResposta->tokenRecebido = $authorization;
+        return json_encode($objResposta);
+    }
+}
+
+
+
+
+function registrarPix() {
     $resposta = new stdClass();
 
-    if (empty($objJson->usuarioId)) {
-        return json_encode(error("O campo 'usuarioId' é obrigatório", 400, $resposta));
+    $headers = getallheaders();
+    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+
+    if (!$authorization) {
+        return json_encode(error("Cabeçalho Authorization não encontrado", 401, $resposta));
     }
-    $usuarioId = $objJson->usuarioId;
+
+    $token = new MeuTokenJWT();
+    if (!$token->validarToken($authorization)) {
+        $resposta->cod = 2;
+        $resposta->status = false;
+        $resposta->msg = "Token inválido!";
+        $resposta->tokenRecebido = $authorization;
+        return json_encode($resposta);
+    }
+
+    $payload = $token->getPayload($authorization); // contém o ID do usuário
+    $usuarioId = $payload->idUsuario;
+
+    $json = file_get_contents('php://input');
+    $objJson = json_decode($json);
 
     if (empty($objJson->valor) || !is_numeric($objJson->valor) || $objJson->valor <= 0) {
         return json_encode(error("O campo 'valor' é inválido", 400, $resposta));
