@@ -54,7 +54,7 @@
                 <a href="/HACKATHON/view/game.php" class="module-card">
                     <i class="ri-game-line module-icon"></i>
                     <h3 class="text-primary">EcoGame</h3>
-                    <p class="text-secondary">Um simulador divertido onde suas decisões impactam o futuro do planeta.</p>
+                    <p class="text-secondary">Um simulador divertido onde sua ajuda faz a diferença no futuro do planeta.</p>
                 </a>
 
                 <!-- Card do Módulo de Doações -->
