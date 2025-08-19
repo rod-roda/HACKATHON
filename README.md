@@ -256,7 +256,7 @@ Lista completa das rotas ativas definidas em `index.php` (excluindo as comentada
 | POST | `/dashboard` | Registra atividade (emissão / ação sustentável) |
 | GET | `/monitoramento/{localizacao}` | Retorna dados climáticos (WeatherAPI) |
 
-> Todas as rotas protegidas exigem envio de JWT válido (authorization header / token localStorage conforme implementação). Ajuste middlewares futuros conforme necessidade.
+> Todas as rotas protegidas exigem envio de JWT válido (authorization header / token localStorage conforme implementação).
 
 ---
 ## 🗄 Banco de Dados (Resumo Lógico)
