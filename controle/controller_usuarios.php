@@ -108,11 +108,12 @@ function readPayloadToken(){
     $json = file_get_contents('php://input');
     $objJson = json_decode($json);
     $token = $objJson->token;
+
+    $resposta = new stdClass();
     
     $meuToken = new MeuTokenJWT();
     if($meuToken->validarToken($token)){
         $payload = $meuToken->getPayload();
-        $resposta = new stdClass();
 
         $resposta->cod = 1;
         $resposta->status = true;
