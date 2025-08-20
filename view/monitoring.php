@@ -141,6 +141,33 @@ $data = json_decode($response, true);
             margin-top: var(--space-3xl);
         }
 
+        .retry-button {
+            background: linear-gradient(135deg, var(--main-color), #00ff88);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--space-md) var(--space-xl);
+            color: var(--text-dark);
+            font-size: var(--font-md);
+            font-weight: var(--font-semibold);
+            cursor: pointer;
+            margin-top: var(--space-lg);
+            transition: all var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            box-shadow: 0 4px 15px rgba(41, 253, 83, 0.3);
+        }
+
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(41, 253, 83, 0.4);
+            background: linear-gradient(135deg, #00ff88, var(--main-color));
+        }
+
+        .retry-button:active {
+            transform: translateY(0);
+        }
+
         .location-header {
             display: flex;
             align-items: center;
@@ -729,7 +756,15 @@ $data = json_decode($response, true);
         // Função para exibir erro
         function showError(message) {
             locationTitle.innerText = 'Erro';
-            const errorHtml = `<p class="error-message" style="color: var(--error);">${message}</p>`;
+            const errorHtml = `
+                <div class="error-message" style="color: var(--error);">
+                    <p>${message}</p>
+                    <button class="retry-button" onclick="window.location.reload()">
+                        <i class="ri-refresh-line"></i>
+                        Tentar Novamente
+                    </button>
+                </div>
+            `;
             dashboardContent.innerHTML = errorHtml;
             dashboardContent.style.display = 'block';
         }
