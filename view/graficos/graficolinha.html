@@ -87,10 +87,15 @@ var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
   }),
   tooltip: am5.Tooltip.new(root, {})
 }));
+  xAxis.renderer.labels.template.fill = "#ffffff"
+
+
 
 var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
   renderer: am5xy.AxisRendererY.new(root, {})
 }));
+  yAxis.renderer.labels.template.fill = "#ffffff"
+
 
 
 // Add series

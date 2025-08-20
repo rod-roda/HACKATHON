@@ -1,4 +1,3 @@
-@ -1,66 +0,0 @@
 <!-- Styles -->
 <style>
 #chartdiv {
@@ -29,9 +28,24 @@ am5.ready(async function() {
     })
   );
 
+  series.labels.template.setAll({
+    fill: am5.color(0xffffff), // branco
+    fontSize: 14
+  });
+  series.ticks.template.setAll({
+    stroke: am5.color(0xffffff) // cor das linhas que ligam labels ao gráfico
+  });
+
+
   try {
-    const resp = await fetch("/HACKATHON//dashboard/relatorio/graficos");
-const json = await resp.json();
+   let token = localStorage.getItem('token');
+        const resp = await fetch("/HACKATHON/dashboard/relatorio/graficos", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`,
+        },
+        });const json = await resp.json();
 if (json.status && json.dados && json.dados.resumo) {
   series.data.setAll(json.dados.resumo);
 }

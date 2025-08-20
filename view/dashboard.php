@@ -8,13 +8,15 @@
     <style>
         .graficoOcorrencias {
             border-radius: 16px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
             width: 100%;
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
-            height: 600px;
+            height: auto;
+            background: #201f1f;
+            transition: all 0.3s ease;
 
         }
 
@@ -39,14 +41,7 @@
             display: block;
         }
         
-        .graficoOcorrencias h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #00488B;
-            border-left: 5px solid #00488B;
-            padding-left: 10px;
-        }
+  
         :root {
             --primary: #00488B;
             --secondary: #0d6efd;
@@ -659,14 +654,7 @@
             margin-right: 8px;
         }
 
-        .graficoOcorrencias {
-            background: #201f1f;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
+   
 
         .graficoOcorrencias:hover {
             transform: translateY(-5px);
@@ -820,11 +808,7 @@
 
 }
 
-.graficoOcorrencias {
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-}
+
 
 .grafico-titulo {
     font-size: 1.1rem;
@@ -1077,9 +1061,7 @@
             <h3 id="carbonoTotal" class="stat-value">0 kg</h3>
         </div>
     </div>
-    <div class="stat-footer">
-        <i class="bi bi-arrow-up"></i> <span id="carbonoVariacao">0%</span> em relação ao mês anterior
-    </div>
+
 </div>
 
 <div class="stat-card">
@@ -1092,10 +1074,7 @@
             <h3 id="carbonoMes" class="stat-value">0 kg</h3>
         </div>
     </div>
-    <div class="stat-footer">
-        <i class="bi bi-calendar-check"></i> Registros em <span id="diasAtivosCarbonoMes">0</span> dias | 
-        <span id="tendenciaMes" class="text-warning">+0%</span> tendência
-    </div>
+
 </div>
 
 <div class="stat-card">
@@ -1108,10 +1087,7 @@
             <h3 id="qtdQuiz" class="stat-value">13</h3>
         </div>
     </div>
-    <div class="stat-footer">
-        <i class="bi bi-star"></i> Em <span id="diasQuiz">0</span> dias | 
-        <span id="evolucaoQuiz" class="text-success">+0%</span> evolução
-    </div>
+  
 </div>
 
 
@@ -1125,10 +1101,7 @@
                 <h3 id="donation"  class="stat-value">R$203</h3>
             </div>
         </div>
-        <div class="stat-footer">
-            <i class="bi bi-heart"></i> Doações em <span id="diasDoacao">0</span> dias | 
-            <span id="evolucaoDoacao" class="text-success">+0%</span> evolução
-        </div>
+      
     </div>
 </div>
 
@@ -1198,7 +1171,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="quantidade"><i class="bi bi-123"></i> Distância </label>
+                    <label for="quantidade"><i class="bi bi-123"></i> Medida </label>
                     <input type="number" id="quantidade" name="quantidade" required>
                 </div>
         

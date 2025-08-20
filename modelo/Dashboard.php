@@ -28,7 +28,6 @@ class AtividadeEcologica implements JsonSerializable {
         $conexao = Banco::getConexao();
         $sql = "INSERT INTO atividades_ecologicas (usuario_id, nome_atividade, quantidade, carbono_emitido, data_atividade) 
                 VALUES (?, ?, ?, ?, ?)";
-        echo $this->usuario_id;
         $prepareSql = $conexao->prepare($sql);
         $prepareSql->bind_param("isdds", $this->usuario_id, $this->nome_atividade, $this->quantidade, $this->carbono_emitido, $this->data_atividade);
         $prepareSql->execute();
@@ -36,53 +35,68 @@ class AtividadeEcologica implements JsonSerializable {
         $prepareSql->close();
         return $this;
     }
-public function getTotalCarbono() {
+public function getTotalCarbono($usuarioId) {
     $conexao = Banco::getConexao();
     $sql = "SELECT 
-            SUM(carbono_emitido) AS total,
-            SUM(CASE 
-                WHEN YEAR(data_atividade) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
-                AND MONTH(data_atividade) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)
-                THEN carbono_emitido ELSE 0 
-            END) as total_mes_anterior
-            FROM atividades_ecologicas";
-    $result = $conexao->query($sql);
-    $row = $result ? $result->fetch_assoc() : null;
-    
-    $total = $row && $row['total'] !== null ? (float)$row['total'] : 0.0;
-    $totalMesAnterior = $row && $row['total_mes_anterior'] !== null ? (float)$row['total_mes_anterior'] : 0.0;
-    
+                SUM(carbono_emitido) AS total,
+                SUM(CASE 
+                    WHEN YEAR(data_atividade) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
+                    AND MONTH(data_atividade) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)
+                    THEN carbono_emitido ELSE 0 
+                END) as total_mes_anterior
+            FROM atividades_ecologicas
+            WHERE usuario_id = ?";
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $usuarioId);
+    $stmt->execute();
+    $row = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    $total = $row['total'] ?? 0.0;
+    $totalMesAnterior = $row['total_mes_anterior'] ?? 0.0;
+
     return [
-        'total' => $total,
-        'comparacao' => ($total > 0 && $totalMesAnterior > 0) ? round(($total - $totalMesAnterior) / $totalMesAnterior * 100, 1) : 0
+        'total' => (float)$total,
+        'comparacao' => ($totalMesAnterior > 0) 
+            ? round(($total - $totalMesAnterior) / $totalMesAnterior * 100, 1) 
+            : 0
     ];
 }
 
-public function getTotalCarbonoMes() {
+
+
+public function getTotalCarbonoMes($usuarioId) {
     $conexao = Banco::getConexao();
     $sql = "SELECT 
-            SUM(carbono_emitido) AS total,
-            COUNT(DISTINCT DATE(data_atividade)) as dias_ativos,
-            AVG(carbono_emitido) as media_diaria
+                SUM(carbono_emitido) AS total,
+                COUNT(DISTINCT DATE(data_atividade)) as dias_ativos,
+                AVG(carbono_emitido) as media_diaria
             FROM atividades_ecologicas
             WHERE YEAR(data_atividade) = YEAR(CURRENT_DATE())
-              AND MONTH(data_atividade) = MONTH(CURRENT_DATE())";
-    $result = $conexao->query($sql);
-    $row = $result ? $result->fetch_assoc() : null;
-    
+              AND MONTH(data_atividade) = MONTH(CURRENT_DATE())
+              AND usuario_id = ?";
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i", $usuarioId);
+    $stmt->execute();
+    $row = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
     $total = $row && $row['total'] !== null ? (float)$row['total'] : 0.0;
     $diasAtivos = $row && $row['dias_ativos'] !== null ? (int)$row['dias_ativos'] : 0;
     $mediaDiaria = $row && $row['media_diaria'] !== null ? (float)$row['media_diaria'] : 0.0;
-    
+
     $diasNoMes = date('t');
     $tendencia = $mediaDiaria * $diasNoMes;
-    
+
     return [
         'total' => $total,
-        'tendencia_mes' => round(($tendencia - $total) / $total * 100, 1),
+        'tendencia_mes' => $total > 0 ? round(($tendencia - $total) / $total * 100, 1) : 0,
         'dias_ativos' => $diasAtivos
     ];
 }
+
 
 
 
@@ -181,7 +195,6 @@ private function getDadosPaisAPI($nomePais) {
 
 public function getComparacaoCarbonoComPaises($usuarioId) {
     $conexao = Banco::getConexao();
-
     // Calcula média diária do usuário
     $sql = "SELECT SUM(carbono_emitido) as total,
                    COUNT(DISTINCT DATE(data_atividade)) as dias
@@ -196,7 +209,7 @@ public function getComparacaoCarbonoComPaises($usuarioId) {
     $stmt->close();
 
     $mediaUsuario = $row && $row['dias'] > 0 ? $row['total'] / $row['dias'] : 0;
-
+    
     // Lista de países e seus nomes para exibição
     $paises = [
         'United States' => 'EUA',
