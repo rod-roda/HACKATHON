@@ -323,7 +323,6 @@ Projeto desenvolvido para fins educacionais e demonstração em Hackathon.
 6. **Isabelli** – GitHub: https://github.com/iisaag
 7. **Ana Clara** – GitHub: https://github.com/claramorei
 8. **Isabela Rangel** – GitHub: https://github.com/isarangel000
-9. **Abner Telles** – GitHub: (adicionar)
 
 **Hackathon:** Dados pelo Clima  
 **ODS Foco:** 13 – Ação Contra a Mudança Global do Clima  
