@@ -182,14 +182,20 @@ private function getDadosPaisAPI($nomePais) {
     } catch (Exception $e) {
         error_log("Erro ao buscar dados do país {$nomePais}: " . $e->getMessage());
         // Em caso de erro, retorna valor médio estimado baseado em dados históricos
-        return match($nomePais) {
-            'United States' => 44.79, // ~16.35 toneladas/ano
-            'Russian Federation' => 35.61, // ~13 toneladas/ano
-            'China' => 21.91, // ~8 toneladas/ano
-            'Germany' => 24.65, // ~9 toneladas/ano
-            'Argentina' => 13.69, // ~5 toneladas/ano
-            default => 20.0
-        };
+        switch($nomePais) {
+            case 'United States':
+                return 44.79; // ~16.35 toneladas/ano
+            case 'Russian Federation':
+                return 35.61; // ~13 toneladas/ano
+            case 'China':
+                return 21.91; // ~8 toneladas/ano
+            case 'Germany':
+                return 24.65; // ~9 toneladas/ano
+            case 'Argentina':
+                return 13.69; // ~5 toneladas/ano
+            default:
+                return 20.0;
+        }
     }
 }
 
@@ -355,7 +361,6 @@ public function getTopQuizzes($limite = 5) {
 }
 
 public function getAcertosQuizMes($usuarioId) {
-    $usuarioId = 1;
     $conexao = Banco::getConexao();
 
     // Busca pontuação do mês atual e do mês anterior
@@ -398,7 +403,6 @@ public function getAcertosQuizMes($usuarioId) {
 
 
  public function getTotalDoadoMes($usuarioId) {
-    $usuarioId = 1;
     $conexao = Banco::getConexao();
 
     $sql = "SELECT 

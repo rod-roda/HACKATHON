@@ -4,13 +4,13 @@ require_once __DIR__ . '/../modelo/MeuTokenJWT.php';
 require_once __DIR__ . '/../modelo/Banco.php';
 require_once __DIR__ . '/../modelo/Dashboard.php';
 require_once __DIR__ . '/../modelo/IaService.php';
+require_once __DIR__ . '/auth_helper.php';
 
 // Criar nova atividade
 function createAtividade() {
     header('Content-Type: application/json'); // Moved to top
     
-    $headers = getallheaders();
-    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+    $authorization = getAuthorizationHeader();
     $token = new MeuTokenJWT();
     $resposta = new stdClass();
     $atividade = new AtividadeEcologica();
@@ -35,15 +35,34 @@ function createAtividade() {
         $atividade->setDataAtividade($dados->data_atividade);
 
         $iaService = new IaService();
+        
+        $atividade_descricao = "";
+        switch($dados->nome_atividade) {
+            case 'carro':
+                $atividade_descricao = "dirigiu {$dados->quantidade} quilômetros de carro";
+                break;
+            case 'energia':
+                $atividade_descricao = "consumiu {$dados->quantidade} kWh de energia elétrica";
+                break;
+            case 'aviao':
+                $atividade_descricao = "viajou {$dados->quantidade} quilômetros de avião";
+                break;
+            case 'carne':
+                $atividade_descricao = "consumiu {$dados->quantidade} kg de carne bovina";
+                break;
+            case 'gas':
+                $atividade_descricao = "utilizou {$dados->quantidade} metros cúbicos de gás natural";
+                break;
+            case 'onibus':
+                $atividade_descricao = "viajou {$dados->quantidade} quilômetros de ônibus";
+                break;
+            default:
+                $atividade_descricao = "realizou uma atividade com {$dados->quantidade} unidades";
+                break;
+        }
+        
         $pergunta = "Considere uma pessoa que realizou a seguinte atividade: " . 
-                match($dados->nome_atividade) {
-                    'carro' => "dirigiu {$dados->quantidade} quilômetros de carro",
-                    'energia' => "consumiu {$dados->quantidade} kWh de energia elétrica",
-                    'aviao' => "viajou {$dados->quantidade} quilômetros de avião",
-                    'carne' => "consumiu {$dados->quantidade} kg de carne bovina",
-                    'gas' => "utilizou {$dados->quantidade} metros cúbicos de gás natural",
-                    'onibus' => "viajou {$dados->quantidade} quilômetros de ônibus"
-                } . 
+                $atividade_descricao . 
                 ". Calcule a pegada de carbono desta atividade usando médias e padrões conhecidos. Forneça apenas o valor numérico em kg de CO2 equivalente, sem explicações adicionais.";
         
         $emissao = floatval($iaService->gerarResposta($pergunta));
@@ -67,8 +86,7 @@ function createAtividade() {
 }
 // Listar atividades
 function readAtividades() {
-    $headers = getallheaders();
-    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+    $authorization = getAuthorizationHeader();
     $token = new MeuTokenJWT();
     $resposta = new stdClass();
     $atividade = new AtividadeEcologica();
@@ -89,7 +107,7 @@ function readAtividades() {
 
     header("Content-Type: application/json");
     header("HTTP/1.1 200");
-    return json_encode(value: $resposta);
+    return json_encode($resposta);
 
 
       
@@ -106,14 +124,12 @@ function readAtividades() {
 
 
 function readDashboardStats() {
-    $headers = getallheaders();
-    $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+    header('Content-Type: application/json');
+    
+    $authorization = getAuthorizationHeader();
     $token = new MeuTokenJWT();
     $resposta = new stdClass();
     $atividade = new AtividadeEcologica();
-
-    // Pega o JSON enviado pelo front-end
-    $dados = json_decode(file_get_contents("php://input"));
 
     if($token->validarToken($authorization)){
         $payload = $token->getPayload($authorization); //contem o ID
@@ -127,16 +143,12 @@ function readDashboardStats() {
         $resposta->mensagem = "Totais de carbono encontrados!";
         $resposta->dados = [
             "total" => $atividade->getTotalCarbono($usuario_id),
-            "mes"   => $atividade->getTotalCarbonoMes($usuario_id), // <- dado total do mês atual (pode manter)
+            "mes"   => $atividade->getTotalCarbonoMes($usuario_id),
             "quiz_acertos_mes" => $atividade->getAcertosQuizMes($usuario_id),
             "total_doado_mes" => $atividade->getTotalDoadoMes($usuario_id)
         ];
 
-         echo json_encode($resposta);
-        exit;
-
-
-        header("Content-Type: application/json");
+        echo json_encode($resposta);
         exit;
 
     }else{
@@ -144,6 +156,8 @@ function readDashboardStats() {
         $resposta->status = false;
         $resposta->msg = "Token invalido!";
         $resposta->tokenRecebido = $authorization;
+        echo json_encode($resposta);
+        exit;
     }
 }
 
@@ -151,8 +165,7 @@ function readGraficosGerais() {
     header('Content-Type: application/json');
     
     try {
-        $headers = getallheaders();
-        $authorization = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+        $authorization = getAuthorizationHeader();
         $token = new MeuTokenJWT();
         $resposta = new stdClass();
         $atividade = new AtividadeEcologica();
