@@ -71,7 +71,7 @@
     try {
       let token = localStorage.getItem("token");
 
-      const resp = await fetch("/HACKATHON/dashboard/relatorio/graficos", {
+      const resp = await fetch("/dashboard/relatorio/graficos", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

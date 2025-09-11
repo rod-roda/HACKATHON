@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         dashboardContent.style.display = 'none';
 
         try {
-            const response = await fetch(`/HACKATHON/controle/monitoramento/controle_monitoramento.php?localizacao=${location}`);
+            const response = await fetch(`/controle/monitoramento/controle_monitoramento.php?localizacao=${location}`);
             const data = await response.json();
 
             if (response.ok) {

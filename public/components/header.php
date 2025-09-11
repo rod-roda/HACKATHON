@@ -1,21 +1,21 @@
 <header>
-    <a href="/HACKATHON/view/home.php" class="logo">
+    <a href="/view/home.php" class="logo">
         <i class="ri-leaf-fill"><span>EcoSystem</span></i>
     </a>
 
     <ul class="navbar">
-        <li><a href="/HACKATHON/view/weather.php">Mapa</a></li>
-        <li><a href="/HACKATHON/view/dashboard.php">DashBoard</a></li>
-        <li><a href="/HACKATHON/view/monitoring.php">Monitoramento</a></li>
-        <li><a href="/HACKATHON/view/quiz.php">EcoQuiz</a></li>
-        <li><a href="/HACKATHON/view/game.php">EcoGame</a></li>
-        <li><a href="/HACKATHON/view/donation.php">Doações</a></li>
+        <li><a href="/view/weather.php">Mapa</a></li>
+        <li><a href="/view/dashboard.php">DashBoard</a></li>
+        <li><a href="/view/monitoring.php">Monitoramento</a></li>
+        <li><a href="/view/quiz.php">EcoQuiz</a></li>
+        <li><a href="/view/game.php">EcoGame</a></li>
+        <li><a href="/view/donation.php">Doações</a></li>
     </ul>
 
     <div class="main">
         <!-- Elementos para usuário não logado -->
         <div id="auth-buttons" class="auth-buttons">
-            <a href="/HACKATHON/view/logar.php" class="user">
+            <a href="/view/logar.php" class="user">
                 <i class="ri-user-fill"></i>Log-in
             </a>
             <button class="neon" id="btn-cadastrar">Sign-Up</button>
@@ -63,7 +63,7 @@
             if (token) {
                 // Usuário está logado
                 try { 
-                    fetchPost('/HACKATHON/usuario/token/payload', {token: token})
+                    fetchPost('/usuario/token/payload', {token: token})
                         .then(res => {
                             if(res.status){
                                 document.getElementById('user-name').textContent = res.payload.nomeUsuario;
@@ -92,7 +92,7 @@
         document.getElementById('logout-btn').addEventListener('click', function() {
             localStorage.removeItem('token');
             showAuthButtons();
-            window.location.href = '/HACKATHON/view/home.php';
+            window.location.href = '/view/home.php';
         });
 
         // Toggle dropdown do profile

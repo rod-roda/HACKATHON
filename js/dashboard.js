@@ -64,7 +64,7 @@ async function registrarAtividade() {
         
         let token = localStorage.getItem('token');
 
-        const resposta = await fetch("/HACKATHON/dashboard", {
+        const resposta = await fetch("/dashboard", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -101,7 +101,7 @@ async function registrarAtividade() {
 async function carregarCarbonoStats() {
     try {
         let token = localStorage.getItem('token');
-        const resposta = await fetch("/HACKATHON/dashboard/relatorio/dashboards", {
+        const resposta = await fetch("/dashboard/relatorio/dashboards", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

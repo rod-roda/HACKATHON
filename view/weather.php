@@ -116,7 +116,7 @@
   </main>
 
   <script>
-    maptilersdk.config.apiKey = '7klyOXlTBzazie1U4YF4';
+    maptilersdk.config.apiKey = 'qJag8J6nsYNZRkVog2AP';
     
     const weatherLayers = {
       "precipitation": { "layer": null, "value": "value", "units": " mm" },

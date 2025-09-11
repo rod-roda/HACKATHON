@@ -708,7 +708,7 @@ $data = json_decode($response, true);
             location = location.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // Remove acentos e caracteres especiais
             
             try {
-                const response = await fetch(`${window.location.origin}/HACKATHON/monitoramento/${location}`, {
+                const response = await fetch(`${window.location.origin}/monitoramento/${location}`, {
                     headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }

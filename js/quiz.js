@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let token = localStorage.getItem('token')
         console.log("Token do localStorage: " + token.trim())
 
-        fetchGet(`${window.location.origin}/HACKATHON/perguntas/random`, token)
+        fetchGet(`${window.location.origin}/perguntas/random`, token)
             .then(data => {
                 if (data.status) {
                     quizData = transformarQuiz(data);
@@ -275,7 +275,7 @@ function goToHome() {
 async function readScoreQuiz() {
     const token = localStorage.getItem('token');
     try {
-        const data = await fetchGet(`${window.location.origin}/HACKATHON/user_quiz/read`, token);
+        const data = await fetchGet(`${window.location.origin}/user_quiz/read`, token);
 
         if (data?.status) {
             if (data.cod === 404) return null;
@@ -330,7 +330,7 @@ async function insertScoreQuiz() {
     };
 
     try {
-        const data = await fetchPost(`${window.location.origin}/HACKATHON/user_quiz/insert`, jsonBody, token);
+        const data = await fetchPost(`${window.location.origin}/user_quiz/insert`, jsonBody, token);
         if (!data?.status) {
             showNotification('Erro ao atualizar sua pontuação', 'warning');
         }

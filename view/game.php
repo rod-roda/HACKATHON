@@ -93,7 +93,7 @@
             const textoId = document.getElementById('points-text');
             const token = localStorage.getItem('token');
             
-            fetchGet(`${window.location.origin}/HACKATHON/user_game/read`, token)
+            fetchGet(`${window.location.origin}/user_game/read`, token)
             .then(data => {
                 if(data.status){
                     let dados = data.cod != 404 ? data.dados.resultado : 0;
@@ -415,12 +415,12 @@
 
             
             
-            fetchGet(`${window.location.origin}/HACKATHON/user_game/read`, token)
+            fetchGet(`${window.location.origin}/user_game/read`, token)
             .then(data => {
                 if(data.status){
                     if(data.cod == 404 || data.dados.resultado < score){
 
-                        fetchPost(`${window.location.origin}/HACKATHON/user_game/insert`, jsonBody, token)
+                        fetchPost(`${window.location.origin}/user_game/insert`, jsonBody, token)
                         .then(data => {
                             if(data.status){
                                 updateBestScore();

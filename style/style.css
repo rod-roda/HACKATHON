@@ -9,6 +9,10 @@
     list-style: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* ========== CLASSES UTILITÁRIAS GLOBAIS ========== */
 
 /* Margens */

@@ -2,7 +2,7 @@
 <section class="info-section">
     <div class="ong-banner">
         <a class="ong-img-rect" href="https://www.greenpeace.org/brasil" target="_blank">
-            <img src="../image/greenpeace.webp" alt="Greenpeace">
+            <img src="../image/Greenpeace.webp" alt="Greenpeace">
             <div class="overlay">Clique aqui para visitar a ONG</div>
         </a>
         <div class="ong-info-block">

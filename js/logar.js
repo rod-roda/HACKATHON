@@ -13,7 +13,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
     const user = { email, senha };
     console.log(user);
 
-    fetchPost('/HACKATHON/logar', user)
+    fetchPost('/logar', user)
         .then(res => {
             if(res.status){
                 showNotification("Login realizado com sucesso!");

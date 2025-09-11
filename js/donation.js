@@ -44,7 +44,7 @@ function initializeDonation() {
 
             let token = localStorage.getItem('token');
             
-            fetchPost('/HACKATHON/pix/gerarCodigo', { valor: valor}, token)
+            fetchPost('/pix/gerarCodigo', { valor: valor}, token)
             .then(res => {
                 if(res.status){
                     currentPixKey = res.pixCopiaECola; 
@@ -149,7 +149,7 @@ async function copyToClipboard(text) {
 
 
 function checkPixStatus(txid, token, valor) {
-    fetchGet(`/HACKATHON/pix/status/${txid}`, token)
+    fetchGet(`/pix/status/${txid}`, token)
     .then(res => {
         if(res.statusPix === "CONCLUIDA") {
             showNotification('Pagamento PIX recebido com sucesso!', 'success');
@@ -157,7 +157,7 @@ function checkPixStatus(txid, token, valor) {
             if (pixInterval) clearInterval(pixInterval);
             if (pixModal) pixModal.style.display = 'none';
 
-            fetchPost('/HACKATHON/pix/registrar', {
+            fetchPost('/pix/registrar', {
                 valor: valor
             }, token)
             .then(r => {

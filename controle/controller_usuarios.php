@@ -1,5 +1,5 @@
 <?php
-header('Content-Type = application/json');
+header('Content-Type: application/json');
 use Firebase\JWT\MeuTokenJWT;
 require_once "modelo/MeuTokenJWT.php";
 require_once "modelo/Banco.php";
@@ -25,6 +25,7 @@ function cadastrar(){
 
     if(empty($objJson->cpf)) return json_encode(error("O campo 'cpf' é obrigatório", 400, $resposta));
     $cpf = $objJson->cpf;
+    $cpf = preg_replace('/\D/', '', $cpf);
 
     if(!validarCPF($cpf)){
         return json_encode(error("O campo 'cpf' deve conter um CPF válido", 400, $resposta));
@@ -37,7 +38,7 @@ function cadastrar(){
         return json_encode(error("Usuário já cadastrado", 400, $resposta));
     }
 
-    if($usuario->cadastrar($nome, $email, $senha_hash, $cpf)){
+    if($usuario->cadastrar($nome, $email, $senha_hash, $cpf)){        
         $objToken = new MeuTokenJWT();
         $claims = new stdClass();
 

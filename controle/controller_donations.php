@@ -6,7 +6,7 @@ require_once "controle/controller_logs.php";
 
 function getAccessToken() {
     $config = [
-        "certificado" => "C:/xampp/htdocs/HACKATHON/certificados/certificado_completo.pem",
+        "certificado" => __DIR__ . "/../certificados/certificado_completo.pem",
         "client_id" => "Client_Id_040e1ea39273b7d69e13ba2e1a1fbf363c9d93ca",
         "client_secret" => "Client_Secret_5ebd64768c8002a55f98427382ba212880b6fc9d"
     ];
@@ -76,7 +76,7 @@ function postGerarCodigo() {
         }
     
         $config = [
-            "certificado" => "C:/xampp/htdocs/HACKATHON/certificados/certificado_completo.pem",
+            "certificado" => __DIR__ . "/../certificados/certificado_completo.pem",
             "token" => $token
         ];
     
@@ -167,7 +167,7 @@ function getVerificarStatusPix($txid) {
         }
         
         $config = [
-            "certificado" => "C:/xampp/htdocs/HACKATHON/certificados/certificado_completo.pem",
+            "certificado" => __DIR__ . "/../certificados/certificado_completo.pem",
             "token" => $token
         ];
 

@@ -21,7 +21,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
     const user = { nome, email, senha, cpf };
     console.log(user);
 
-    fetchPost('/HACKATHON/cadastrar', user)
+    fetchPost('/cadastrar', user)
         .then(res => {
             if(res.status){
                 showNotification("Cadastro realizado com sucesso!");
