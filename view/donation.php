@@ -25,7 +25,7 @@
 
     <?php include __DIR__ . '/../public/components/ongs_content.php'; ?>
 
-    <?php include __DIR__ . '/../public/components/donation_container.php'; ?>
+    <?php //include __DIR__ . '/../public/components/donation_container.php'; ?>
 
     <script>
         // Se o usuário digitar valor personalizado, desmarca os radios

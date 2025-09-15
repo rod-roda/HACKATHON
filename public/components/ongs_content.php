@@ -1,10 +1,17 @@
 <!-- Área informativa das ONGs -->
 <section class="info-section">
     <div class="ong-banner">
-        <a class="ong-img-rect" href="https://www.greenpeace.org/brasil" target="_blank">
-            <img src="../image/Greenpeace.webp" alt="Greenpeace">
-            <div class="overlay">Clique aqui para visitar a ONG</div>
-        </a>
+        <div class="ong-image-container">
+            <a class="ong-img-rect" href="https://www.greenpeace.org/brasil" target="_blank">
+                <img src="../image/Greenpeace.webp" alt="Greenpeace">
+                <div class="overlay">Clique aqui para visitar a ONG</div>
+            </a>
+            <div class="ong-qr-container">
+                <div class="qr-title">Doe via PIX</div>
+                <img src="../image/qrcode_greenpeace.png" alt="QR Code Greenpeace" class="qr-code">
+                <div class="qr-text">Escaneie para doar</div>
+            </div>
+        </div>
         <div class="ong-info-block">
             <div class="ong-title-block">Greenpeace</div>
             <div class="ong-desc-block">
@@ -16,10 +23,17 @@
         </div>
     </div>
     <div class="ong-banner reverse">
-        <a class="ong-img-rect" href="https://www.wwf.org.br" target="_blank">
-            <img src="../image/wwf_image.jpg" alt="WWF Brasil">
-            <div class="overlay">Clique aqui para visitar a ONG</div>
-        </a>
+        <div class="ong-image-container">
+            <a class="ong-img-rect" href="https://www.wwf.org.br" target="_blank">
+                <img src="../image/wwf_image.jpg" alt="WWF Brasil">
+                <div class="overlay">Clique aqui para visitar a ONG</div>
+            </a>
+            <div class="ong-qr-container">
+                <div class="qr-title">Doe via PIX</div>
+                <img src="../image/qrcode_wwf.png" alt="QR Code WWF" class="qr-code">
+                <div class="qr-text">Escaneie para doar</div>
+            </div>
+        </div>
         <div class="ong-info-block">
             <div class="ong-title-block">WWF Brasil</div>
             <div class="ong-desc-block">
@@ -31,10 +45,17 @@
         </div>
     </div>
     <div class="ong-banner">
-        <a class="ong-img-rect" href="https://www.sosma.org.br" target="_blank">
-            <img src="../image/sosmataatlantica_image.jpg" alt="SOS Mata Atlântica">
-            <div class="overlay">Clique aqui para visitar a ONG</div>
-        </a>
+        <div class="ong-image-container">
+            <a class="ong-img-rect" href="https://www.sosma.org.br" target="_blank">
+                <img src="../image/sosmataatlantica_image.jpg" alt="SOS Mata Atlântica">
+                <div class="overlay">Clique aqui para visitar a ONG</div>
+            </a>
+            <div class="ong-qr-container">
+                <div class="qr-title">Doe via PIX</div>
+                <img src="../image/qrcode_sosmataatlantica.png" alt="QR Code SOS Mata Atlântica" class="qr-code">
+                <div class="qr-text">Escaneie para doar</div>
+            </div>
+        </div>
         <div class="ong-info-block">
             <div class="ong-title-block">SOS Mata Atlântica</div>
             <div class="ong-desc-block">
@@ -46,10 +67,17 @@
         </div>
     </div>
     <div class="ong-banner reverse">
-        <a class="ong-img-rect" href="https://refloresta.institutoterra.org/home" target="_blank">
-            <img src="../image/institutoterra_image.webp" alt="Instituto Terra">
-            <div class="overlay">Clique aqui para visitar a ONG</div>
-        </a>    
+        <div class="ong-image-container">
+            <a class="ong-img-rect" href="https://refloresta.institutoterra.org/home" target="_blank">
+                <img src="../image/institutoterra_image.webp" alt="Instituto Terra">
+                <div class="overlay">Clique aqui para visitar a ONG</div>
+            </a>
+            <div class="ong-qr-container">
+                <div class="qr-title">Doe via PIX</div>
+                <img src="../image/qrcode_institutoterra.png" alt="QR Code Instituto Terra" class="qr-code">
+                <div class="qr-text">Escaneie para doar</div>
+            </div>
+        </div>    
         <div class="ong-info-block">
             <div class="ong-title-block">Instituto Terra</div>
             <div class="ong-desc-block">
@@ -61,10 +89,17 @@
         </div>
     </div>
     <div class="ong-banner">
-        <a class="ong-img-rect" href="https://www.tamar.org.br" target="_blank">
-            <img src="../image/projetotamar_img.webp" alt="Projeto Tamar">
-            <div class="overlay">Clique aqui para visitar a ONG</div>
-        </a>
+        <div class="ong-image-container">
+            <a class="ong-img-rect" href="https://www.tamar.org.br" target="_blank">
+                <img src="../image/projetotamar_img.webp" alt="Projeto Tamar">
+                <div class="overlay">Clique aqui para visitar a ONG</div>
+            </a>
+            <div class="ong-qr-container">
+                <div class="qr-title">Doe via PIX</div>
+                <img src="../image/qrcode_projetotamar.png" alt="QR Code Projeto Tamar" class="qr-code">
+                <div class="qr-text">Escaneie para doar</div>
+            </div>
+        </div>
         <div class="ong-info-block">
             <div class="ong-title-block">Projeto Tamar</div>
             <div class="ong-desc-block">
