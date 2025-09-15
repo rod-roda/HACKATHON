@@ -7,9 +7,9 @@
                 <div class="overlay">Clique aqui para visitar a ONG</div>
             </a>
             <div class="ong-qr-container">
-                <div class="qr-title">Doe via PIX</div>
+                <div class="qr-title">Acesse o site</div>
                 <img src="../image/qrcode_greenpeace.png" alt="QR Code Greenpeace" class="qr-code">
-                <div class="qr-text">Escaneie para doar</div>
+                <div class="qr-text">Escaneie para saber mais</div>
             </div>
         </div>
         <div class="ong-info-block">
@@ -29,9 +29,9 @@
                 <div class="overlay">Clique aqui para visitar a ONG</div>
             </a>
             <div class="ong-qr-container">
-                <div class="qr-title">Doe via PIX</div>
+                <div class="qr-title">Acesse o site</div>
                 <img src="../image/qrcode_wwf.png" alt="QR Code WWF" class="qr-code">
-                <div class="qr-text">Escaneie para doar</div>
+                <div class="qr-text">Escaneie para saber mais</div>
             </div>
         </div>
         <div class="ong-info-block">
@@ -51,9 +51,9 @@
                 <div class="overlay">Clique aqui para visitar a ONG</div>
             </a>
             <div class="ong-qr-container">
-                <div class="qr-title">Doe via PIX</div>
+                <div class="qr-title">Acesse o site</div>
                 <img src="../image/qrcode_sosmataatlantica.png" alt="QR Code SOS Mata Atlântica" class="qr-code">
-                <div class="qr-text">Escaneie para doar</div>
+                <div class="qr-text">Escaneie para saber mais</div>
             </div>
         </div>
         <div class="ong-info-block">
@@ -73,9 +73,9 @@
                 <div class="overlay">Clique aqui para visitar a ONG</div>
             </a>
             <div class="ong-qr-container">
-                <div class="qr-title">Doe via PIX</div>
+                <div class="qr-title">Acesse o site</div>
                 <img src="../image/qrcode_institutoterra.png" alt="QR Code Instituto Terra" class="qr-code">
-                <div class="qr-text">Escaneie para doar</div>
+                <div class="qr-text">Escaneie para saber mais</div>
             </div>
         </div>    
         <div class="ong-info-block">
@@ -95,9 +95,9 @@
                 <div class="overlay">Clique aqui para visitar a ONG</div>
             </a>
             <div class="ong-qr-container">
-                <div class="qr-title">Doe via PIX</div>
+                <div class="qr-title">Acesse o site</div>
                 <img src="../image/qrcode_projetotamar.png" alt="QR Code Projeto Tamar" class="qr-code">
-                <div class="qr-text">Escaneie para doar</div>
+                <div class="qr-text">Escaneie para saber mais</div>
             </div>
         </div>
         <div class="ong-info-block">
