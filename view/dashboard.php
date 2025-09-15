@@ -1001,6 +1001,205 @@
             }
         }
 
+        /* Seção de dados de São José dos Campos */
+        .sjc-transport-section {
+            background: var(--secondary);
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            margin: 30px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-color);
+            font-size: 1rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .transport-card {
+            background: var(--secondary-light);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            border: 1px solid rgba(41, 253, 83, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .transport-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            border-color: rgba(41, 253, 83, 0.3);
+        }
+
+        .transport-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .transport-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(41, 253, 83, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .eco-icon {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .transport-title h3 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+        }
+
+        .transport-subtitle {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .transport-routes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .route-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid rgba(41, 253, 83, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .route-item:hover {
+            background: rgba(41, 253, 83, 0.05);
+            border-left-color: var(--primary);
+        }
+
+        .route-item.highlight {
+            background: rgba(41, 253, 83, 0.1);
+            border-left-color: var(--primary);
+        }
+
+        .route-name {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .route-distance {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .transport-footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        .eco-tips-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tip-item:hover {
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .tip-item i {
+            color: #22c55e;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .tip-item span {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .transport-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sjc-transport-section {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .route-item {
+                padding: 10px 12px;
+            }
+            
+            .route-name {
+                font-size: 0.9rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1102,6 +1301,84 @@
             </div>
         </div>
       
+    </div>
+</div>
+
+<!-- Seção de dados para moradores de São José dos Campos -->
+<div class="sjc-transport-section">
+    <div class="section-header">
+        <h2><i class="bi bi-geo-alt"></i> Dados para moradores de São José dos Campos</h2>
+        <p>Informações sobre transporte público e mobilidade urbana</p>
+    </div>
+    
+    <div class="transport-grid">
+        <div class="transport-card">
+            <div class="transport-header">
+                <div class="transport-icon">
+                    <i class="bi bi-bus-front"></i>
+                </div>
+                <div class="transport-title">
+                    <h3>Trajeto (one-way)</h3>
+                    <span class="transport-subtitle">Distância (km)</span>
+                </div>
+            </div>
+            <div class="transport-routes">
+                <div class="route-item">
+                    <span class="route-name">SJC → São Paulo</span>
+                    <span class="route-distance">92 km</span>
+                </div>
+                <div class="route-item">
+                    <span class="route-name">SJC → Ubatuba</span>
+                    <span class="route-distance">132 km</span>
+                </div>
+                <div class="route-item">
+                    <span class="route-name">SJC → Campos do Jordão</span>
+                    <span class="route-distance">83 km</span>
+                </div>
+                <div class="route-item">
+                    <span class="route-name">SJC → Taubaté</span>
+                    <span class="route-distance">43 km</span>
+                </div>
+                <div class="route-item highlight">
+                    <span class="route-name">Centro → Vale Sul (SJC)</span>
+                    <span class="route-distance">3 km</span>
+                </div>
+            </div>
+            <div class="transport-footer">
+                <i class="bi bi-info-circle"></i>
+                <span>Distâncias aproximadas para planejamento de viagens</span>
+            </div>
+        </div>
+        
+        <div class="transport-card eco-tips">
+            <div class="transport-header">
+                <div class="transport-icon eco-icon">
+                    <i class="bi bi-leaf"></i>
+                </div>
+                <div class="transport-title">
+                    <h3>Dicas Sustentáveis</h3>
+                    <span class="transport-subtitle">Reduza sua pegada de carbono</span>
+                </div>
+            </div>
+            <div class="eco-tips-content">
+                <div class="tip-item">
+                    <i class="bi bi-bicycle"></i>
+                    <span>Use a bicicleta para trajetos curtos no centro da cidade</span>
+                </div>
+                <div class="tip-item">
+                    <i class="bi bi-people"></i>
+                    <span>Compartilhe carona para destinos como São Paulo</span>
+                </div>
+                <div class="tip-item">
+                    <i class="bi bi-bus-front"></i>
+                    <span>Prefira transporte público para viagens longas</span>
+                </div>
+                <div class="tip-item">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Planeje seus trajetos para otimizar deslocamentos</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
