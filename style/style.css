@@ -2451,6 +2451,7 @@ header{
 .mobile-controls {
     display: none;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: var(--space-sm);
     max-width: 200px;
     margin: var(--space-lg) auto 0;
@@ -2476,10 +2477,10 @@ header{
     color: var(--text-inverse);
 }
 
-.mobile-btn:nth-child(1) { grid-column: 2; } /* Up */
+.mobile-btn:nth-child(1) { grid-column: 2; grid-row: 1; } /* Up */
 .mobile-btn:nth-child(2) { grid-column: 1; grid-row: 2; } /* Left */
-.mobile-btn:nth-child(3) { grid-column: 3; grid-row: 2; } /* Right */
-.mobile-btn:nth-child(4) { grid-column: 2; grid-row: 2; } /* Down */
+.mobile-btn:nth-child(3) { grid-column: 2; grid-row: 3; } /* Down */
+.mobile-btn:nth-child(4) { grid-column: 3; grid-row: 2; } /* Right */
 
 .game-over-overlay {
     position: absolute;
@@ -2529,12 +2530,34 @@ header{
     
     .game-board {
         width: 90vw;
-        max-width: 400px;
+        max-width: 600px;
     }
     
     #gameCanvas {
         width: 100% !important;
         height: auto !important;
+    }
+}
+
+/* Game responsivo para telas muito pequenas */
+@media (max-width: 480px) {
+    .game-board {
+        width: 95vw;
+        max-width: 350px;
+    }
+    
+    .game-title {
+        font-size: var(--font-2xl);
+    }
+    
+    .mobile-controls {
+        gap: var(--space-sm);
+    }
+    
+    .mobile-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
     }
 }
 

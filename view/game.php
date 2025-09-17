@@ -52,7 +52,7 @@
         </p>
 
         <div class="game-board">
-            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            <canvas id="gameCanvas" width="600" height="600"></canvas>
             <div id="gameOverlay" class="game-over-overlay">
                 <div class="game-over-content">
                     <h2 class="game-over-title">Missão Concluída!</h2>
