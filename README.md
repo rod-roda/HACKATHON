@@ -300,7 +300,6 @@ Principais entidades (baseado em `bancoHackathon.sql`):
 ## 🛣 Roadmap / Próximos Passos
 - [ ] Exportação de relatórios (PDF/CSV)
 - [ ] Cache implementado
-- [ ] Dark/Light Theme toggle
 - [ ] Internacionalização (pt-BR/en)
 - [ ] Modo offline parcial (PWA)
 - [ ] Maior responsividade mobile
