@@ -312,8 +312,14 @@ Projeto desenvolvido para fins educacionais e demonstração em Hackathon.
 ---
 ## 👥 Créditos & Contato
 
-### Autores
+### Contribuidores
 
+1. **Rodrigo Roda** - GitHub: https://github.com/rod-roda
+2. **Thiago César** – GitHub: https://github.com/ThhiagoCarvalho
+3. **Heitor Rodrigues** – GitHub: https://github.com/HeitorCRZ
+4. **Natan Telles** – GitHub: https://github.com/natan-telles
+
+### Autores:
 1. **Rodrigo Roda** - GitHub: https://github.com/rod-roda
 2. **Thiago César** – GitHub: https://github.com/ThhiagoCarvalho
 3. **Heitor Rodrigues** – GitHub: https://github.com/HeitorCRZ
