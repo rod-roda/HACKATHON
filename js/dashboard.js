@@ -120,6 +120,15 @@ const CACHE_TTL = 5 * 60 * 1000; // 5 minutos em ms
 
 function getCachedData() {
     try {
+        // Verifica se o token mudou (se outro usuário logou)
+        const cachedToken = sessionStorage.getItem('dashboardCacheToken');
+        const currentToken = localStorage.getItem('token');
+        if (cachedToken !== currentToken) {
+            sessionStorage.removeItem(CACHE_KEY);
+            sessionStorage.removeItem(CACHE_TS_KEY);
+            return null;
+        }
+
         const ts = sessionStorage.getItem(CACHE_TS_KEY);
         if (!ts) return null;
         
@@ -141,6 +150,7 @@ function setCachedData(data) {
     try {
         sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
         sessionStorage.setItem(CACHE_TS_KEY, Date.now().toString());
+        sessionStorage.setItem('dashboardCacheToken', localStorage.getItem('token'));
     } catch (e) {
         // sessionStorage cheio, ignora silenciosamente
     }
