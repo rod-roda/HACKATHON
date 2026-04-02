@@ -82,6 +82,11 @@ $roteador->get('/dashboard/relatorio/graficos', function () {
     readGraficosGerais();
 });
 
+$roteador->get('/dashboard/relatorio/combo', function () {
+    require_once __DIR__ . '/controle/controller_dashboards.php';
+    readDashboardCombo();
+});
+
 $roteador->post('/dashboard', function () {
     require_once __DIR__ . '/controle/controller_dashboards.php';
         echo createAtividade();

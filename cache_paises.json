@@ -1,0 +1,25 @@
+{
+    "timestamp": 1775162050,
+    "dados": [
+        {
+            "category": "EUA",
+            "valor": 44.79
+        },
+        {
+            "category": "Rússia",
+            "valor": 35.61
+        },
+        {
+            "category": "China",
+            "valor": 21.91
+        },
+        {
+            "category": "Europa",
+            "valor": 24.65
+        },
+        {
+            "category": "Argentina",
+            "valor": 13.69
+        }
+    ]
+}

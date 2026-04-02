@@ -209,8 +209,38 @@ public function getComparacaoCarbonoComPaises($usuarioId) {
     $stmt->close();
 
     $mediaUsuario = $row && $row['dias'] > 0 ? $row['total'] / $row['dias'] : 0;
-    
-    // Lista de países e seus nomes para exibição
+
+    // Inicia com os dados do usuário
+    $dadosComparacao = [
+        ["category" => "Você", "valor" => round($mediaUsuario, 2)]
+    ];
+
+    // Busca dados de países com cache em arquivo (24h)
+    $dadosPaises = $this->getDadosPaisesComCache();
+    foreach ($dadosPaises as $item) {
+        $dadosComparacao[] = $item;
+    }
+
+    return $dadosComparacao;
+}
+
+/**
+ * Retorna dados de emissão dos países usando cache em arquivo JSON.
+ * O cache é válido por 24 horas para evitar chamadas externas repetitivas.
+ */
+private function getDadosPaisesComCache() {
+    $cacheFile = __DIR__ . '/../cache_paises.json';
+    $cacheTTL = 86400; // 24 horas em segundos
+
+    // Verifica se o cache existe e é válido
+    if (file_exists($cacheFile)) {
+        $cacheData = json_decode(file_get_contents($cacheFile), true);
+        if ($cacheData && isset($cacheData['timestamp']) && (time() - $cacheData['timestamp']) < $cacheTTL) {
+            return $cacheData['dados'];
+        }
+    }
+
+    // Cache expirado ou inexistente: busca dados frescos
     $paises = [
         'United States' => 'EUA',
         'Russian Federation' => 'Rússia',
@@ -219,23 +249,25 @@ public function getComparacaoCarbonoComPaises($usuarioId) {
         'Argentina' => 'Argentina'
     ];
 
-    // Inicia com os dados do usuário
-    $dadosComparacao = [
-        ["category" => "Você", "valor" => round($mediaUsuario, 2)]
-    ];
-
-    // Busca dados de cada país
+    $dados = [];
     foreach ($paises as $nomeAPI => $nomeExibicao) {
         $emissaoPerCapita = $this->getDadosPaisAPI($nomeAPI);
         if ($emissaoPerCapita !== null) {
-            $dadosComparacao[] = [
+            $dados[] = [
                 "category" => $nomeExibicao,
                 "valor" => round($emissaoPerCapita, 2)
             ];
         }
     }
 
-    return $dadosComparacao;
+    // Salva no cache
+    $cacheContent = json_encode([
+        'timestamp' => time(),
+        'dados' => $dados
+    ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    @file_put_contents($cacheFile, $cacheContent);
+
+    return $dados;
 }
 
 
