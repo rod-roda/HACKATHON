@@ -387,7 +387,6 @@ public function getTopQuizzes($limite = 5) {
 }
 
 public function getAcertosQuizMes($usuarioId) {
-    $usuarioId = 1;
     $conexao = Banco::getConexao();
 
     // Busca pontuação do mês atual e do mês anterior
@@ -430,7 +429,6 @@ public function getAcertosQuizMes($usuarioId) {
 
 
  public function getTotalDoadoMes($usuarioId) {
-    $usuarioId = 1;
     $conexao = Banco::getConexao();
 
     $sql = "SELECT 
